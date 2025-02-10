@@ -63,6 +63,8 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
         <option value="/src/assets/images/tree.svg">Träd</option>
         <option value="/src/assets/images/flower.svg">Blomma</option>
         <option value="/src/assets/images/bush.svg">Buske</option>
+        <option value="/src/assets/images/stone-tiles.svg">sten plattor</option>
+        <option value="/src/assets/images/small-stones.svg">små sten</option>
       </select>
 
       {/* Exportknapp */}
