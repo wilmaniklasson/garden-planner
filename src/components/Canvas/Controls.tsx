@@ -6,11 +6,13 @@ interface ControlsProps {
   color: string;  // Vald färg
   setColor: React.Dispatch<React.SetStateAction<string>>;  // Uppdatera vald färg
   selectedSVG: string;  // Vald SVG
-  setSelectedSVG: React.Dispatch<React.SetStateAction<string>>;  // FUppdatera vald SVG
+  setSelectedSVG: React.Dispatch<React.SetStateAction<string>>;  // Uppdatera vald SVG'
+  lineWidth: number; // Linjetjocklek
+  setLineWidth: React.Dispatch<React.SetStateAction<number>>; // Uppdatera linjetjocklek
   handleExport: () => void;  // Exportera designen
 }
 
-const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport }) => {
+const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport,  lineWidth, setLineWidth }) => {
   return (
     <div className="controls">
       {/* Färgväljare */}
@@ -21,6 +23,20 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
         value={color} 
         onChange={(e) => setColor(e.target.value)}
       />
+      
+      {/* Linjetjocklek */}
+      <label htmlFor="lineWidth">Linjetjocklek:</label>
+      <input
+        id="lineWidth"
+        type="range"
+        title="Välj linjetjocklek"
+        min="1"
+        max="50"
+        value={lineWidth}
+        onChange={(e) => setLineWidth(Number(e.target.value))}
+        step="1"
+      />
+
 
       {/* Verktygsväljare */}
       <label>Verktyg:</label>

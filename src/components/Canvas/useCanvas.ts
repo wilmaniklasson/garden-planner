@@ -4,6 +4,7 @@ import Konva from 'konva';
 
 export const useCanvas = () => {
   const [tool, setTool] = useState('draw'); // draw, circle, rectangle, svg, edit
+  const [lineWidth, setLineWidth] = useState(3);  // Default linjetjocklek
   const [color, setColor] = useState('#ff0000'); // Färg på figuren
   const [shapes, setShapes] = useState<Shape[]>([]); // Alla figurer sparade i state
   const [isDrawing, setIsDrawing] = useState(false); // Håller reda på om användaren ritar
@@ -70,7 +71,7 @@ export const useCanvas = () => {
     // Skapar en ny figur beroende på vilket verktyg som är valt
     switch (tool) {
       case 'draw':
-        newShape = { id: Date.now().toString(), tool: 'line', points: [pos.x, pos.y], color };
+        newShape = { id: Date.now().toString(), tool: 'line', points: [pos.x, pos.y], color, lineWidth, };
         setIsDrawing(true);
         break;
       case 'circle':
@@ -130,5 +131,7 @@ export const useCanvas = () => {
     selectedShapeIndex,
     setSelectedShapeIndex,
     handleExport,
+    lineWidth,
+    setLineWidth,
   };
 };

@@ -12,6 +12,7 @@ export interface Shape {
   height?: number;
   image?: HTMLImageElement | string;
   node?: Konva.Node;
+  lineWidth?: number;
 }
 
 // Funktion för att ladda en bild (hantera både vanliga bilder och SVG)

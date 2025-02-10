@@ -23,6 +23,8 @@ const Canvas: React.FC = () => {
     handleDelete,
     selectedShapeIndex,
     setSelectedShapeIndex,
+    lineWidth,
+    setLineWidth,
     handleExport,
   } = useCanvas();
   
@@ -63,6 +65,9 @@ const Canvas: React.FC = () => {
         selectedSVG={selectedSVG}
         setSelectedSVG={setSelectedSVG}
         handleExport={handleExport}
+        lineWidth={lineWidth}
+        setLineWidth={setLineWidth}
+
       />
 
       <div className="canvas-wrapper" style={{ width: `${windowSize.width * 0.7}px`, height: `${windowSize.height * 0.8}px` }}>
@@ -95,7 +100,7 @@ const Canvas: React.FC = () => {
               // Beroende på formens typ (line, circle, rect, svg) renderas olika Konva-komponenter
               switch (shape.tool) {
                 case 'line':
-                  return <Line key={index} {...shapeProps} points={shape.points} stroke={shape.color} strokeWidth={3} lineCap="round" lineJoin="round" />;
+                  return <Line key={index} {...shapeProps} points={shape.points} stroke={shape.color} strokeWidth={shape.lineWidth} lineCap="round" lineJoin="round" />;
                 case 'circle':
                   return <Circle key={index} {...shapeProps} x={shape.x} y={shape.y} radius={shape.radius} fill={shape.color} />;
                 case 'rect':
