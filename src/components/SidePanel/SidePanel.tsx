@@ -1,13 +1,14 @@
 import { MdFence, MdGrass, MdLocalFlorist } from 'react-icons/md';
 import { FaTree } from 'react-icons/fa';
 import './SidePanel.css';
+import icon from '../../assets/garden-planner-icon.svg';
 
 const SidePanel: React.FC = () => {
   return (
     <aside className='side-panel'>
       <div className='side-panel-header'>
         <h1>Garden Planner</h1>
-        <img src="/src/assets/garden-planner-icon.svg" alt="Garden Planner Icon" />
+        <img src={icon} alt="Garden Planner Icon" />
       </div>
       <div className='icon'>
         <MdGrass size={40} color="#382918" />

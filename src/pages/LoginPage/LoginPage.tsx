@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./LoginPage.css";
+import icon from "../../assets/garden-planner-icon.svg";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ const LoginPage = () => {
   return (
     <div className="login-container">
       <h1>Garden Planner</h1>
-      <img src="../assets/garden-planner-icon.svg" alt="Garden Planner Icon" />
+      <img src={icon} alt="Garden Planner Icon" />
 
       
       {isLogin ? (
