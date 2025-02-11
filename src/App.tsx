@@ -1,19 +1,8 @@
 import './App.css'
-import Canvas from './components/Canvas/Canvas';
-import SidePanel from './components/SidePanel/SidePanel';
-
+import AppRouter from "./routes/Router";
 
 function App() {
-  
-  return (
-    <>
-     <div className="App">
-      <SidePanel />
-      <Canvas />
-      </div>
-     
-    </>
-    );
-  }
+  return <AppRouter />;
+}
 
 export default App;
