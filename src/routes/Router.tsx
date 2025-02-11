@@ -3,10 +3,9 @@ import LoginPage from "../pages/LoginPage/LoginPage";
 import HomePage from "../pages/HomePage/HomePage";
 import CanvasPage from "../pages/CanvasPage/CanvasPage";
 
-
 const AppRouter = () => {
   return (
-    <Router>
+    <Router basename="/garden-planner">
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
