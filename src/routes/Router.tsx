@@ -5,7 +5,7 @@ import CanvasPage from "../pages/CanvasPage/CanvasPage";
 
 const AppRouter = () => {
   return (
-    <Router basename="/garden-planner">
+    <Router>
       <Routes>
         <Route path="/" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
