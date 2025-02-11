@@ -31,7 +31,8 @@ const LoginPage = () => {
   return (
     <div className="login-container">
       <h1>Garden Planner</h1>
-      <img src="/src/assets/garden-planner-icon.svg" alt="Garden Planner Icon" />
+      <img src="../assets/garden-planner-icon.svg" alt="Garden Planner Icon" />
+
       
       {isLogin ? (
         <>
