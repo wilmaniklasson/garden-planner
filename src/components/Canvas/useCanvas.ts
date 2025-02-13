@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Shape, loadImage } from './shapes';
 import Konva from 'konva';
+import useStageStore from '../../store/seStageStore';
 
 export const useCanvas = () => {
   const [tool, setTool] = useState('draw'); // draw, circle, rectangle, svg, edit
@@ -10,13 +11,10 @@ export const useCanvas = () => {
   const [isDrawing, setIsDrawing] = useState(false); // If the user is currently drawing
   const [selectedSVG, setSelectedSVG] = useState('/src/assets/images/tree.svg'); // which SVG is selected
   const stageRef = useRef<Konva.Stage | null>(null); // stage referens to access the Konva stage
-  const [windowSize, setWindowSize] = useState({ // canvas size
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
+  const [windowSize, setWindowSize] = useState({ width: window.innerWidth,height: window.innerHeight,});
   const [selectedShapeIndex, setSelectedShapeIndex] = useState<number | null>(null);  // Index of the selected shape
 
-
+  const { stage, setStage } = useStageStore(); // Hämta stage och setStage från store
   // UppdateWindowSize funktionen
   const updateWindowSize = useCallback(() => {
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
@@ -51,7 +49,7 @@ export const useCanvas = () => {
       const pos = stage.getPointerPosition();
       if (!pos) return;
     
-      // Kolla om användaren klickar på ett befintligt objekt
+      // Check if a shape was clicked
       const clickedShape = stage.getIntersection(pos);
       if (clickedShape) {
         const node = clickedShape;
@@ -89,6 +87,7 @@ export const useCanvas = () => {
 
     // Add the new shape to the shapes array
     if (newShape) setShapes((prevShapes) => [...prevShapes, newShape]);
+    setStage(stageRef.current?.getStage() || null);
   };
 
   // Update the points of the last shape when the mouse moves
@@ -106,14 +105,46 @@ export const useCanvas = () => {
       }
       return [...prevShapes];
     });
+    setStage(stageRef.current?.getStage() || null); // Update Zustand store
   };
 
   // Function to handle when the mouse is released
-  const handleMouseUp = () => setIsDrawing(false);
+  const handleMouseUp = () => {
+    setIsDrawing(false);
+    setStage(stageRef.current?.getStage() || null); // Update Zustand store
+  };
 
   // Function to handle when an object is dragged (moved)
   const handleDelete = (index: number) => {
     setShapes((prevShapes) => prevShapes.filter((_, i) => i !== index));
+    setStage(stageRef.current?.getStage() || null); // Update Zustand store
+  };
+
+  useEffect(() => {
+    // If stageRef or transformerRef doesn't exist or no object is selected, do nothing
+    const container = document.getElementById('canvas-wrapper');
+    if (stageRef.current && !stage && container) {
+      const newStage = new Konva.Stage({
+        width: windowSize.width,
+        height: windowSize.height,
+        container: 'canvas-wrapper',
+      });
+      stageRef.current = newStage;
+      setStage(newStage); // Set the stage in Zustand store
+    }
+  }, [windowSize, stage, setStage]);
+  
+  useEffect(() => {
+    if (stageRef.current) {
+      setStage(stageRef.current.getStage()); // Update Zustand store when stageRef changes
+    }
+  }, [shapes, setStage]); 
+
+  // Function to save the canvas as JSON
+  const saveCanvasAsJson = () => {
+    if (!stage) return; // If stage doesn't exist, do nothing
+    const json = stage.toJSON();
+    console.log("Canvas JSON:", json);
   };
 
   return {
@@ -136,5 +167,6 @@ export const useCanvas = () => {
     handleExport,
     lineWidth,
     setLineWidth,
+    saveCanvasAsJson,
   };
 };

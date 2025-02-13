@@ -10,9 +10,10 @@ interface ControlsProps {
   lineWidth: number; // Line width
   setLineWidth: React.Dispatch<React.SetStateAction<number>>; // Update line width
   handleExport: () => void;  // Export the design
+  saveCanvasAsJson: () => void;  // Save the canvas as JSON
 }
 
-const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport, lineWidth, setLineWidth }) => {
+const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport, lineWidth, setLineWidth, saveCanvasAsJson, }) => {
   return (
     <div className="controls">
       {/* Color Picker */}
@@ -69,6 +70,7 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
 
       {/* Export Button */}
       <button type="button" onClick={handleExport}>Export</button>
+      <button onClick={saveCanvasAsJson}>Save as JSON</button>
     </div>
   );
 };
