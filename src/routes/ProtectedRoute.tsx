@@ -1,16 +1,15 @@
-// ProtectedRoute.tsx
 import { Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { auth } from "../firebaseConfig";
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, User } from "firebase/auth";
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
-  const [user, setUser] = useState<unknown>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Listen for changes in the authentication state
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser: User | null) => {
       setUser(currentUser); // Set the user when auth state changes
       setLoading(false); // Stop loading once the state is determined
     });
