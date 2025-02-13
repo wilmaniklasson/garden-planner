@@ -25,7 +25,7 @@ const saveCanvasToFirestore = async () => {
 
   try {
     // Create a reference to the Firestore document in the 'canvas-storage' collection
-    const docRef = doc(db, "canvas-storage", user.uid, "designs", "latestDesign");
+    const docRef = doc(db, "canvas-storage", user.uid);
 
     // Save the JSON data to Firestore
     await setDoc(docRef, { designData: json, timestamp: new Date() });
