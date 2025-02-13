@@ -26,7 +26,6 @@ const Canvas: React.FC = () => {
     lineWidth,
     setLineWidth,
     handleExport,
-    saveCanvasAsJson,
   } = useCanvas();
   
   const transformerRef = useRef<Konva.Transformer | null>(null);  // Used to manipulate objects on the canvas
@@ -68,7 +67,6 @@ const Canvas: React.FC = () => {
         handleExport={handleExport}
         lineWidth={lineWidth}
         setLineWidth={setLineWidth}
-        saveCanvasAsJson={saveCanvasAsJson}
       />
 
       <div className="canvas-wrapper" style={{ width: `${windowSize.width * 0.7}px`, height: `${windowSize.height * 0.8}px` }}>

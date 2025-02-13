@@ -1,4 +1,5 @@
 import React from 'react';
+import saveCanvasToFirestore from '../../auth/saveCanvasToFirestore';
 
 interface ControlsProps {
   tool: string;  // Selected tool
@@ -10,10 +11,9 @@ interface ControlsProps {
   lineWidth: number; // Line width
   setLineWidth: React.Dispatch<React.SetStateAction<number>>; // Update line width
   handleExport: () => void;  // Export the design
-  saveCanvasAsJson: () => void;  // Save the canvas as JSON
 }
 
-const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport, lineWidth, setLineWidth, saveCanvasAsJson, }) => {
+const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport, lineWidth, setLineWidth }) => {
   return (
     <div className="controls">
       {/* Color Picker */}
@@ -70,7 +70,8 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
 
       {/* Export Button */}
       <button type="button" onClick={handleExport}>Export</button>
-      <button onClick={saveCanvasAsJson}>Save as JSON</button>
+      <button onClick={saveCanvasToFirestore}>Save Canvas</button>
+
     </div>
   );
 };

@@ -14,8 +14,8 @@ export const useCanvas = () => {
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth,height: window.innerHeight,});
   const [selectedShapeIndex, setSelectedShapeIndex] = useState<number | null>(null);  // Index of the selected shape
 
-  const { stage, setStage } = useStageStore(); // Hämta stage och setStage från store
-  // UppdateWindowSize funktionen
+  const { stage, setStage } = useStageStore(); //Get the stage from Zustand store
+  // UppdateWindowSize function to update the window size
   const updateWindowSize = useCallback(() => {
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
   }, []);
@@ -141,12 +141,7 @@ export const useCanvas = () => {
   }, [shapes, setStage]); 
 
   // Function to save the canvas as JSON
-  const saveCanvasAsJson = () => {
-    if (!stage) return; // If stage doesn't exist, do nothing
-    const json = stage.toJSON();
-    console.log("Canvas JSON:", json);
-  };
-
+ 
   return {
     tool,
     setTool,
@@ -167,6 +162,5 @@ export const useCanvas = () => {
     handleExport,
     lineWidth,
     setLineWidth,
-    saveCanvasAsJson,
   };
 };
