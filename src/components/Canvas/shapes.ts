@@ -15,18 +15,20 @@ export interface Shape {
   lineWidth?: number;
 }
 
-// Funktion för att ladda en bild (hantera både vanliga bilder och SVG)
+// Function to load an image (handles both regular images and SVGs)
 export const loadImage = (src: string) => {
   return new Promise<HTMLImageElement>((resolve, reject) => {
     const img = new window.Image();
     img.src = src;
 
     if (src.endsWith('.svg')) {
-      img.onload = () => resolve(img);
+      img.onload = () => {
+        resolve(img);
+      };
     } else {
       img.onload = () => resolve(img);
     }
 
-    img.onerror = (err) => reject(err); 
+    img.onerror = (err) => reject(new Error(`Error loading image: ${err}`)); 
   });
 };

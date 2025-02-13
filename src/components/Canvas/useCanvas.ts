@@ -4,47 +4,47 @@ import Konva from 'konva';
 
 export const useCanvas = () => {
   const [tool, setTool] = useState('draw'); // draw, circle, rectangle, svg, edit
-  const [lineWidth, setLineWidth] = useState(3);  // Default linjetjocklek
-  const [color, setColor] = useState('#ff0000'); // Färg på figuren
-  const [shapes, setShapes] = useState<Shape[]>([]); // Alla figurer sparade i state
-  const [isDrawing, setIsDrawing] = useState(false); // Håller reda på om användaren ritar
-  const [selectedSVG, setSelectedSVG] = useState('/src/assets/images/tree.svg'); // Vilken SVG som är vald
-  const stageRef = useRef<Konva.Stage | null>(null); // stage referens för att komma åt Konva
-  const [windowSize, setWindowSize] = useState({ // canvas storlek
+  const [lineWidth, setLineWidth] = useState(3);  // Default line width
+  const [color, setColor] = useState('#ff0000'); // Color state
+  const [shapes, setShapes] = useState<Shape[]>([]); // All shapes on the canvas
+  const [isDrawing, setIsDrawing] = useState(false); // If the user is currently drawing
+  const [selectedSVG, setSelectedSVG] = useState('/src/assets/images/tree.svg'); // which SVG is selected
+  const stageRef = useRef<Konva.Stage | null>(null); // stage referens to access the Konva stage
+  const [windowSize, setWindowSize] = useState({ // canvas size
     width: window.innerWidth,
     height: window.innerHeight,
   });
-  const [selectedShapeIndex, setSelectedShapeIndex] = useState<number | null>(null);  // Index för vald figur
+  const [selectedShapeIndex, setSelectedShapeIndex] = useState<number | null>(null);  // Index of the selected shape
 
 
-  // Uppdaterar fönsterstorleken när användaren ändrar storlek
+  // UppdateWindowSize funktionen
   const updateWindowSize = useCallback(() => {
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
   }, []);
 
-  // useEffect för att lyssna på fönsterstorleken
+  // useEffect to add event listener for window resize
   useEffect(() => {
     window.addEventListener('resize', updateWindowSize);
     return () => window.removeEventListener('resize', updateWindowSize);
   }, [updateWindowSize]);
 
-// Funktion för att exportera canvasen som en bild
+// Function to handle when an object is dragged (moved)
   const handleExport = () => {
     if (!stageRef.current) return;
 
-    // Skapar en bild-URL från hela canvasen
-    const uri = stageRef.current.toDataURL({ pixelRatio: 2 }); // pixelRatio ökar upplösningen
+    // Create a data URL from the stage
+    const uri = stageRef.current.toDataURL({ pixelRatio: 2 }); // pixelRatio for better quality
 
-    // Skapar en nedladdningslänk
+    // Create a link element and click on it to trigger the download
     const link = document.createElement("a");
     link.href = uri;
-    link.download = "my-garden-design.png"; // Filnamn
+    link.download = "my-garden-design.png"; // Filename
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
-  // Funktion för att hanteraklick på canvasen
+  // Function to handle when an object is dragged (moved)
     const handleMouseDown = async () => {
       if (!stageRef.current) return;
       const stage = stageRef.current.getStage();
@@ -59,16 +59,16 @@ export const useCanvas = () => {
     
         if (index !== -1) {
           setSelectedShapeIndex(index);
-          return; // Avbryt så att ett nytt objekt inte skapas ovanpå det valda
+          return; // Cancel the rest of the function
         }
       }
     
-      // Om "edit" är valt, ska vi INTE lägga till nya objekt
+      // If the edit tool is selected, do nothing
       if (tool === "edit") return;
     
     let newShape: Shape | null = null;
 
-    // Skapar en ny figur beroende på vilket verktyg som är valt
+    // Create a new shape based on the selected tool
     switch (tool) {
       case 'draw':
         newShape = { id: Date.now().toString(), tool: 'line', points: [pos.x, pos.y], color, lineWidth, };
@@ -87,17 +87,18 @@ export const useCanvas = () => {
       }
     }
 
-    // Lägger till den nya figuren i state
+    // Add the new shape to the shapes array
     if (newShape) setShapes((prevShapes) => [...prevShapes, newShape]);
   };
 
-  // Uppdaterar den sista figuren när musen flyttas
+  // Update the points of the last shape when the mouse moves
   const handleMouseMove = () => {
     if (!isDrawing || tool !== 'draw' || !stageRef.current) return;
     const stage = stageRef.current.getStage();
     const pos = stage.getPointerPosition();
     if (!pos) return;
 
+  // Update the points of the last shape
     setShapes((prevShapes) => {
       const lastShape = prevShapes[prevShapes.length - 1];
       if (lastShape?.points) {
@@ -107,8 +108,10 @@ export const useCanvas = () => {
     });
   };
 
+  // Function to handle when the mouse is released
   const handleMouseUp = () => setIsDrawing(false);
 
+  // Function to handle when an object is dragged (moved)
   const handleDelete = (index: number) => {
     setShapes((prevShapes) => prevShapes.filter((_, i) => i !== index));
   };

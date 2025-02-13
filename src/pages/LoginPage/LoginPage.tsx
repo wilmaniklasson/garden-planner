@@ -1,32 +1,65 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebaseConfig";
+
 import "./LoginPage.css";
 import icon from "../../assets/garden-planner-icon.svg";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(true); // Tillstånd för att växla mellan login och registrering
 
-  // Hantera gästinloggning
+  // State to track login mode (login vs. sign-up)
+  const [isLogin, setIsLogin] = useState(true);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  // Handle guest login (To do: Implement Firebase "Anonymous Authentication")
   const handleGuestLogin = () => {
     navigate("/home");
   };
 
-  // Hantera inloggning med e-post och lösenord
-  const handleLogin = (event: React.FormEvent) => {
+  // Handle user login
+  const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("Login attempt");
+    setError(null);
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);  // Using imported auth instance
+      console.log("Login successful");
+      navigate("/home");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError("Login failed: " + error.message);
+      } else {
+        setError("Login failed: Unknown error");
+      }
+    }
   };
 
-  // Hantera konto skapande
-  const handleCreateAccount = (event: React.FormEvent) => {
+  // Handle account creation
+  const handleCreateAccount = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log("Account creation attempt");
+    setError(null);
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);  // Using imported auth instance
+      console.log("Account created");
+      navigate("/home");
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError("Account creation failed: " + error.message);
+      } else {
+        setError("Account creation failed: Unknown error");
+      }
+    }
   };
 
-  // Byt mellan inloggning och konto skapande
+  // Toggle between login and account creation
   const toggleLoginCreate = () => {
     setIsLogin(!isLogin);
+    setError(null);
   };
 
   return (
@@ -34,55 +67,86 @@ const LoginPage = () => {
       <h1>Garden Planner</h1>
       <img src={icon} alt="Garden Planner Icon" />
 
-      
       {isLogin ? (
         <>
-          <h1 className="login-title">Logga in</h1>
-          
+          <h1 className="login-title">Log in</h1>
+          {error && <p className="error-message">{error}</p>}
           <form className="login-form" onSubmit={handleLogin}>
             <div className="input-group">
-              <label htmlFor="email" className="input-label">E-post</label>
-              <input type="email" id="email" className="input-field" placeholder="Ange din e-post" required />
+              <label htmlFor="email" className="input-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                className="input-field"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
 
             <div className="input-group">
-              <label htmlFor="password" className="input-label">Lösenord</label>
-              <input type="password" id="password" className="input-field" placeholder="Ange ditt lösenord" required />
+              <label htmlFor="password" className="input-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                className="input-field"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
             </div>
 
-            <button type="submit" className="login-button">Logga in</button>
+            <button type="submit" className="login-button">Log in</button>
           </form>
-          
+
           <div className="guest-login">
             <button onClick={handleGuestLogin} className="guest-button">
-              Använd som gäst
+              Continue as Guest
             </button>
           </div>
 
           <div className="toggle-link">
-            <span>Har du inte ett konto? <button onClick={toggleLoginCreate} className="toggle-button">Skapa konto</button></span>
+            <span>Don't have an account? <button onClick={toggleLoginCreate} className="toggle-button">Create one</button></span>
           </div>
         </>
       ) : (
         <>
-          <h1 className="login-title">Skapa konto</h1>
-          
+          <h1 className="login-title">Create Account</h1>
+          {error && <p className="error-message">{error}</p>}
           <form className="login-form" onSubmit={handleCreateAccount}>
             <div className="input-group">
-              <label htmlFor="email" className="input-label">E-post</label>
-              <input type="email" id="email" className="input-field" placeholder="Ange din e-post" required />
+              <label htmlFor="email" className="input-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                className="input-field"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
             </div>
 
             <div className="input-group">
-              <label htmlFor="password" className="input-label">Lösenord</label>
-              <input type="password" id="password" className="input-field" placeholder="Ange ditt lösenord" required />
+              <label htmlFor="password" className="input-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                className="input-field"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
             </div>
 
-            <button type="submit" className="login-button">Skapa konto</button>
+            <button type="submit" className="login-button">Create Account</button>
           </form>
 
           <div className="toggle-link">
-            <span>Har du redan ett konto? <button onClick={toggleLoginCreate} className="toggle-button">Logga in</button></span>
+            <span>Already have an account? <button onClick={toggleLoginCreate} className="toggle-button">Log in</button></span>
           </div>
         </>
       )}

@@ -28,13 +28,13 @@ const Canvas: React.FC = () => {
     handleExport,
   } = useCanvas();
   
-  const transformerRef = useRef<Konva.Transformer | null>(null);  // Används för att manipulera objekt på canvas
+  const transformerRef = useRef<Konva.Transformer | null>(null);  // Used to manipulate objects on the canvas
 
   useEffect(() => {
-    // Om stageRef eller transformerRef inte finns, eller om inget objekt är valt, gör inget
+    // If stageRef or transformerRef doesn't exist or no object is selected, do nothing
     if (!stageRef.current || !transformerRef.current || selectedShapeIndex === null) return;
     
-    // Hitta det valda objektet baserat på dess index
+    // Find the selected object based on its index
     const selectedNode = stageRef.current.findOne(`#shape-${selectedShapeIndex}`) as Konva.Node;
     if (selectedNode) {
       transformerRef.current.nodes([selectedNode]);
@@ -42,21 +42,21 @@ const Canvas: React.FC = () => {
     }
   }, [selectedShapeIndex, shapes, stageRef]);
 
-  // Funktion för att hantera när ett objekt dras (flyttas)
+  // Function to handle when an object is dragged (moved)
   const handleDragEnd = (e: Konva.KonvaEventObject<DragEvent>, index: number) => {
-    // skapar en kopia av shapes-arrayen och uppdaterar positionen för det dragna objektet
+    // Create a copy of the shapes array and update the position of the dragged object
     const newShapes = [...shapes];
     newShapes[index] = {
       ...newShapes[index],
       x: e.target.x(),
       y: e.target.y(),
     };
-    setShapes(newShapes);  // Uppdatera state med de nya positionerna
+    setShapes(newShapes);  // Update state with the new positions
   };
 
   return (
     <div className="canvas">
-      {/* Kontrollpanelen med verktyg och inställningar */}
+      {/* Control panel with tools and settings */}
       <Controls 
         tool={tool}
         setTool={setTool}
@@ -67,37 +67,36 @@ const Canvas: React.FC = () => {
         handleExport={handleExport}
         lineWidth={lineWidth}
         setLineWidth={setLineWidth}
-
       />
 
       <div className="canvas-wrapper" style={{ width: `${windowSize.width * 0.7}px`, height: `${windowSize.height * 0.8}px` }}>
-        {/* Konva Stage-komponenten, (canvasytan) */}
+        {/* Konva Stage component (canvas area) */}
         <Stage
           width={windowSize.width * 0.7}
           height={windowSize.height * 0.8}
-          onMouseDown={handleMouseDown}  // Håller koll på musnedtryck
-          onMouseMove={handleMouseMove}  // Håller koll på musrörelse
-          onMouseUp={handleMouseUp}  // Håller koll på musuppsläpp
-          ref={stageRef}  // Referens till Konva stage
+          onMouseDown={handleMouseDown}  // Track mouse down
+          onMouseMove={handleMouseMove}  // Track mouse move
+          onMouseUp={handleMouseUp}  // Track mouse up
+          ref={stageRef}  // Reference to the Konva stage
         >
           <Layer>
-            {/* Rendera alla former (shapes) som finns i state */}
+            {/* Render all shapes stored in state */}
             {shapes.map((shape, index) => {
-              // Grundläggande egenskaper som ska tillämpas på varje form
+              // Common properties applied to each shape
               const shapeProps = {
-                draggable: true,  // Gör varje form dragbar
+                draggable: true,  // Make each shape draggable
                 onClick: () => {
                   if (tool === 'delete') {
-                    handleDelete(index);  // Ta bort formen om "delete" är valt
+                    handleDelete(index);  // Remove shape if "delete" is selected
                   } else {
-                    setSelectedShapeIndex(index);  // Markera formen om inget "delete" är valt
+                    setSelectedShapeIndex(index);  // Select the shape if no "delete" is selected
                   }
                 },
-                onDragEnd: (e: Konva.KonvaEventObject<DragEvent>) => handleDragEnd(e, index),  // Hantera slutet på dragning av formen
-                id: `shape-${index}`,  // Sätt ett unikt ID för varje form
+                onDragEnd: (e: Konva.KonvaEventObject<DragEvent>) => handleDragEnd(e, index),  // Handle drag end
+                id: `shape-${index}`,  // Set a unique ID for each shape
               };
 
-              // Beroende på formens typ (line, circle, rect, svg) renderas olika Konva-komponenter
+              // Render different Konva components depending on the shape type (line, circle, rect, svg)
               switch (shape.tool) {
                 case 'line':
                   return <Line key={index} {...shapeProps} points={shape.points} stroke={shape.color} strokeWidth={shape.lineWidth} lineCap="round" lineJoin="round" />;
@@ -108,10 +107,10 @@ const Canvas: React.FC = () => {
                 case 'svg':
                   return shape.image && typeof shape.image !== 'string' ? <Image key={index} {...shapeProps} x={shape.x} y={shape.y} image={shape.image} width={80} height={80} /> : null;
                 default:
-                  return null;  // Om ingen typ matchar, renderas inget
+                  return null;  // If no type matches, render nothing
               }
             })}
-            {/* Om ett objekt är valt, renderas Transformer för att låta användaren manipulera det */}
+            {/* If a shape is selected, render Transformer to allow user manipulation */}
             {selectedShapeIndex !== null && (
               <Transformer ref={transformerRef} />
             )}
