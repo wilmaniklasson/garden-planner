@@ -1,5 +1,6 @@
 import React from 'react';
 import saveCanvasToFirestore from '../../auth/saveCanvasToFirestore';
+import loadCanvasFromFirestore from '../../auth/loadCanvasFromFirestore';
 
 interface ControlsProps {
   tool: string;  // Selected tool
@@ -71,6 +72,7 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
       {/* Export Button */}
       <button type="button" onClick={handleExport}>Export</button>
       <button onClick={saveCanvasToFirestore}>Save Canvas</button>
+      <button onClick={loadCanvasFromFirestore}>Load Canvas</button>
 
     </div>
   );

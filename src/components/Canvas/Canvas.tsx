@@ -69,7 +69,7 @@ const Canvas: React.FC = () => {
         setLineWidth={setLineWidth}
       />
 
-      <div className="canvas-wrapper" style={{ width: `${windowSize.width * 0.7}px`, height: `${windowSize.height * 0.8}px` }}>
+      <div id="canvas-wrapper" style={{ width: `${windowSize.width * 0.7}px`, height: `${windowSize.height * 0.8}px` }}>
         {/* Konva Stage component (canvas area) */}
         <Stage
           width={windowSize.width * 0.7}

@@ -23,12 +23,14 @@ const HomePage = () => {
       <h1 className="homepage-title">Welcome!</h1>
       
       <button 
+        type="button"
         onClick={() => navigate("/canvas")} 
         className="homepage-button">
         Go to Canvas
       </button>
 
       <button 
+        type="button"
         onClick={handleLogout} 
         className="homepage-button">
         Log out
