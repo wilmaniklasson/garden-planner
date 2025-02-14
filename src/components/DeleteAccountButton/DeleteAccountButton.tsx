@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useDeleteAccount from '../../auth/deleteAccount';
+import useDeleteAccount from '../../utils/deleteAccount';
 import './DeleteAccountButton.css';
 
 const DeleteAccountButton = () => {

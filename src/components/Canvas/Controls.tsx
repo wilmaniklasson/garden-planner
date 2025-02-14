@@ -1,6 +1,6 @@
 import React from 'react';
-import saveCanvasToFirestore from '../../auth/saveCanvasToFirestore';
-import loadCanvasFromFirestore from '../../auth/loadCanvasFromFirestore';
+import saveCanvasToFirestore from '../../utils/saveCanvasToFirestore';
+import loadCanvasFromFirestore from '../../utils/loadCanvasFromFirestore';
 
 interface ControlsProps {
   tool: string;  // Selected tool
