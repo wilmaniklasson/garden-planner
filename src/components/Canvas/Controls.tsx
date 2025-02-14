@@ -1,6 +1,4 @@
 import React from 'react';
-import saveCanvasToFirestore from '../../utils/saveCanvasToFirestore';
-import loadCanvasFromFirestore from '../../utils/loadCanvasFromFirestore';
 
 interface ControlsProps {
   tool: string;  // Selected tool
@@ -12,9 +10,11 @@ interface ControlsProps {
   lineWidth: number; // Line width
   setLineWidth: React.Dispatch<React.SetStateAction<number>>; // Update line width
   handleExport: () => void;  // Export the design
+  saveCanvasToFirebase: () => void;  // Save the canvas to Firebase
+  loadCanvasFromFirebase: () => void;  // Load the canvas from Firebase
 }
 
-const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport, lineWidth, setLineWidth }) => {
+const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport, lineWidth, setLineWidth, saveCanvasToFirebase, loadCanvasFromFirebase, }) => {
   return (
     <div className="controls">
       {/* Color Picker */}
@@ -71,8 +71,8 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
 
       {/* Export Button */}
       <button type="button" onClick={handleExport}>Export</button>
-      <button onClick={saveCanvasToFirestore}>Save Canvas</button>
-      <button onClick={loadCanvasFromFirestore}>Load Canvas</button>
+      <button onClick={saveCanvasToFirebase}>Save Canvas</button>
+      <button onClick={loadCanvasFromFirebase}>Load Canvas</button>
 
     </div>
   );

@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Shape, loadImage } from './shapes';
 import Konva from 'konva';
+import { db, setDoc, doc, getDoc } from '../../firebaseConfig';
+import { getAuth } from 'firebase/auth';
 
 export const useCanvas = () => {
   const [tool, setTool] = useState('draw'); // draw, circle, rectangle, svg, edit
@@ -12,6 +14,51 @@ export const useCanvas = () => {
   const stageRef = useRef<Konva.Stage | null>(null); // stage referens to access the Konva stage
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth,height: window.innerHeight,});
   const [selectedShapeIndex, setSelectedShapeIndex] = useState<number | null>(null);  // Index of the selected shape
+
+  const saveCanvasToFirebase = async (shapes: Shape[]) => {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+  
+      if (!user) {
+        console.log('No user is logged in');
+        return;
+      }
+  
+      // save the canvas data under the user's UID
+      const docRef = doc(db, 'canvas-storage', user.uid);
+      await setDoc(docRef, { shapes });
+      console.log('Canvas saved!');
+    } catch (error) {
+      console.error('Error saving canvas: ', error);
+    }
+  };
+
+
+const loadCanvasFromFirebase = async () => {
+  try {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+      console.log('No user is logged in');
+      return;
+    }
+
+    // Get the canvas data for the user
+    const docRef = doc(db, 'canvas-storage', user.uid);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      const data = docSnap.data();
+      console.log('Canvas loaded!', data);
+    } else {
+      console.log('No canvas data found for this user.');
+    }
+  } catch (error) {
+    console.error('Error loading canvas: ', error);
+  }
+};
 
 
   // UppdateWindowSize function to update the window size
@@ -141,5 +188,7 @@ export const useCanvas = () => {
     handleExport,
     lineWidth,
     setLineWidth,
+    saveCanvasToFirebase,
+    loadCanvasFromFirebase,
   };
 };
