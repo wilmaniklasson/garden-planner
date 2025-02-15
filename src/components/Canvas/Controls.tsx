@@ -11,10 +11,9 @@ interface ControlsProps {
   setLineWidth: React.Dispatch<React.SetStateAction<number>>; // Update line width
   handleExport: () => void;  // Export the design
   saveCanvasToFirebase: () => void;  // Save the canvas to Firebase
-  loadCanvasFromFirebase: () => void;  // Load the canvas from Firebase
 }
 
-const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport, lineWidth, setLineWidth, saveCanvasToFirebase, loadCanvasFromFirebase, }) => {
+const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport, lineWidth, setLineWidth, saveCanvasToFirebase }) => {
   return (
     <div className="controls">
       {/* Color Picker */}
@@ -72,7 +71,6 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
       {/* Export Button */}
       <button type="button" onClick={handleExport}>Export</button>
       <button onClick={saveCanvasToFirebase}>Save Canvas</button>
-      <button onClick={loadCanvasFromFirebase}>Load Canvas</button>
 
     </div>
   );

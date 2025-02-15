@@ -24,16 +24,24 @@ export const useCanvas = () => {
         console.log('No user is logged in');
         return;
       }
-  
-      // save the canvas data under the user's UID
-      const docRef = doc(db, 'canvas-storage', user.uid);
-      await setDoc(docRef, { shapes });
-      console.log('Canvas saved!');
-    } catch (error) {
-      console.error('Error saving canvas: ', error);
-    }
-  };
 
+    // Convert the image from an HTMLImageElement to a URL string
+    const shapesToSave = shapes.map(shape => ({
+      ...shape,
+      image: typeof shape.image === 'string' ? shape.image : shape.image?.src || null
+    }));
+
+    // Reference to the Firestore document using the user's UID
+    const docRef = doc(db, 'canvas-storage', user.uid);
+
+    // Save the shapes to Firestore
+    await setDoc(docRef, { shapes: shapesToSave });
+
+    console.log('Canvas saved!');
+  } catch (error) {
+    console.error('Error saving canvas: ', error);
+  }
+};
 
 const loadCanvasFromFirebase = async () => {
   try {
@@ -45,13 +53,31 @@ const loadCanvasFromFirebase = async () => {
       return;
     }
 
-    // Get the canvas data for the user
+    // Reference to the Firestore document using the user's UID
     const docRef = doc(db, 'canvas-storage', user.uid);
+
+    // Retrieve the document snapshot
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
       const data = docSnap.data();
       console.log('Canvas loaded!', data);
+
+      if (data.shapes) {
+        // Load the images for the SVG shapes asynchronously
+        const shapesWithImages = await Promise.all(
+          data.shapes.map(async (shape: Shape) => {
+            if (shape.tool === 'svg' && typeof shape.image === 'string') {
+              const img = await loadImage(shape.image);
+              return { ...shape, image: img };
+            }
+            return shape;
+          })
+        );
+
+        // Update the state with the loaded shapes
+        setShapes(shapesWithImages);
+      }
     } else {
       console.log('No canvas data found for this user.');
     }
@@ -71,6 +97,18 @@ const loadCanvasFromFirebase = async () => {
     window.addEventListener('resize', updateWindowSize);
     return () => window.removeEventListener('resize', updateWindowSize);
   }, [updateWindowSize]);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        loadCanvasFromFirebase();
+      }
+    });
+  
+    return () => unsubscribe();
+  }, []);
+  
 
 // Function to handle when an object is dragged (moved)
   const handleExport = () => {

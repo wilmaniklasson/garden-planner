@@ -27,7 +27,6 @@ const Canvas: React.FC = () => {
     setLineWidth,
     handleExport,
     saveCanvasToFirebase,
-    loadCanvasFromFirebase,
   } = useCanvas();
   
   const transformerRef = useRef<Konva.Transformer | null>(null);  // Used to manipulate objects on the canvas
@@ -70,7 +69,6 @@ const Canvas: React.FC = () => {
         lineWidth={lineWidth}
         setLineWidth={setLineWidth}
         saveCanvasToFirebase={() => saveCanvasToFirebase(shapes)}
-        loadCanvasFromFirebase={loadCanvasFromFirebase}
       />
 
       <div id="canvas-wrapper" style={{ width: `${windowSize.width * 0.7}px`, height: `${windowSize.height * 0.8}px` }}>
