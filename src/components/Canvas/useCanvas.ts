@@ -6,6 +6,8 @@ import { useZoom } from "../../hooks/useZoom";
 import { exportCanvas } from "../../utils/exportCanvas";
 import { useFirebaseCanvas } from "../../hooks/useFirebaseCanvas";
 import { useCanvasEvents } from '../../hooks/useCanvasEvents';
+import tree from '../../assets/images/tree.svg';
+
 
 export const useCanvas = () => {
   const [tool, setTool] = useState('draw'); // draw, circle, rectangle, svg, edit
@@ -13,7 +15,7 @@ export const useCanvas = () => {
   const [color, setColor] = useState('#ff0000'); // Color state
   const [shapes, setShapes] = useState<Shape[]>([]); // All shapes on the canvas
   const [isDrawing, setIsDrawing] = useState(false); // If the user is currently drawing
-  const [selectedSVG, setSelectedSVG] = useState('/src/assets/images/tree.svg'); // which SVG is selected
+  const [selectedSVG, setSelectedSVG] = useState(tree); // which SVG is selected
   const stageRef = useRef<Konva.Stage | null>(null); // stage referens to access the Konva stage
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth,height: window.innerHeight,});
   

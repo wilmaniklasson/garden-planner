@@ -1,4 +1,10 @@
 import React from 'react';
+import tree from '../../assets/images/tree.svg';
+import flower from '../../assets/images/flower.svg';
+import bush from '../../assets/images/bush.svg';
+import stoneTiles from '../../assets/images/stone-tiles.svg';
+import smallStones from '../../assets/images/small-stones.svg';
+
 
 interface ControlsProps {
   tool: string;  // Selected tool
@@ -61,11 +67,11 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
         value={selectedSVG} 
         onChange={(e) => setSelectedSVG(e.target.value)} 
       >
-        <option value="/src/assets/images/tree.svg">Tree</option>
-        <option value="/src/assets/images/flower.svg">Flower</option>
-        <option value="/src/assets/images/bush.svg">Bush</option>
-        <option value="/src/assets/images/stone-tiles.svg">Stone Tiles</option>
-        <option value="/src/assets/images/small-stones.svg">Small Stones</option>
+        <option value={tree}>Tree</option>
+        <option value={flower}>Flower</option>
+        <option value={bush}>Bush</option>
+        <option value={stoneTiles}>Stone Tiles</option>
+        <option value={smallStones}>Small Stones</option>
       </select>
 
       {/* Export Button */}
