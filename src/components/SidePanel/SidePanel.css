@@ -190,3 +190,31 @@
   
   
 }
+
+
+@media screen and ( max-height: 500px) {
+  
+.controls label,
+  .controls select,
+  .controls input {
+    font-size: 0.9rem; 
+    margin:  0.3 0rem;
+  }
+
+ 
+  .controls input {
+    padding: 0.3rem;
+  }
+
+  .controls button {
+    padding: 0.4rem 0.8rem;
+    margin: 0.5rem 0;
+    font-size: 0.8rem;
+  }
+
+  .controls.collapsed select {
+    padding: 0.2rem;
+    margin: 0.5rem 0;
+    font-size: 0.7rem;
+  }
+  }

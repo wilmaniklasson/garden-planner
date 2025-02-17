@@ -55,8 +55,8 @@ const Canvas: React.FC = () => {
     setShapes(newShapes);  // Update state with the new positions
   };
 
-  const aspectRatio = 1861 / 1548;
-const canvasWidth = windowSize.width * 0.7; // Calculate canvas width based on window size
+  const aspectRatio = 2500 / 1548;
+const canvasWidth = windowSize.width * 0.8; // Calculate canvas width based on window size
 const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height based on aspect ratio
 
   return (
@@ -77,7 +77,7 @@ const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height base
 
 
         {/* Konva Stage component (canvas area) */}
-        <Stage
+        <Stage className='canvas'
           width={canvasWidth} // Use calculated canvasWidth
           height={canvasHeight} // Use calculated canvasHeight
           onMouseDown={handleMouseDown}  // Track mouse down
