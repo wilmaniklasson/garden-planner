@@ -46,4 +46,23 @@ export const useZoom = (stageRef: React.RefObject<Konva.Stage>) => {
       stage.container().removeEventListener("wheel", handleWheel);
     };
   }, []);
+
+  
+  const handleZoom = (zoomIn: boolean) => {
+    const stage = stageRef.current?.getStage();
+    if (!stage) return;
+
+    const scaleBy = 1.05;
+    const { scale, setScale } = useCanvasStore.getState();
+    const newScale = zoomIn ? scale * scaleBy : scale / scaleBy;
+    const minScale = 0.5;
+    const maxScale = 3;
+    if (newScale < minScale || newScale > maxScale) return;
+
+    setScale(newScale);
+    stage.scale({ x: newScale, y: newScale });
+    stage.batchDraw();
+  };
+
+  return { handleZoom };
 };

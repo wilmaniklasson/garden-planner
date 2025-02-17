@@ -32,6 +32,7 @@ export const useCanvas = () => {
   const { saveCanvasToFirebase, loadCanvasFromFirebase } = useFirebaseCanvas(setShapes);
   useZoom(stageRef);
 
+  const { handleZoom } = useZoom(stageRef);
 
   // Load the canvas from Firebase when the user logs in
   useEffect(() => {
@@ -86,5 +87,6 @@ export const useCanvas = () => {
     setLineWidth,
     saveCanvasToFirebase,
     loadCanvasFromFirebase,
+    handleZoom,
   };
 };

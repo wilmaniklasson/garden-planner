@@ -135,6 +135,17 @@
     box-shadow: 0 0 3px 2px rgba(72, 156, 73, 0.5);
   }
 
+  .controls .zoom-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    background-color: rgb(47, 47, 47);
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+  }
 
 @media screen and (max-width: 768px) {
   .side-panel {
@@ -142,9 +153,7 @@
     padding: 0.8rem;
   }
 
-  .side-panel.collapsed {
-    width: 60px;
-  }
+  
 
   .icon {
     font-size: 1rem;
@@ -186,9 +195,6 @@
     margin: 0.8rem 0;
     font-size: 0.7rem;
   }
-
-  
-  
 }
 
 
@@ -208,13 +214,13 @@
 
   .controls button {
     padding: 0.4rem 0.8rem;
-    margin: 0.5rem 0;
+    margin: 0.3rem 0;
     font-size: 0.8rem;
   }
 
   .controls.collapsed select {
     padding: 0.2rem;
-    margin: 0.5rem 0;
+    margin: 0.3rem 0;
     font-size: 0.7rem;
   }
   }

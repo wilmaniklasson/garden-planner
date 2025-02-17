@@ -27,6 +27,7 @@ const Canvas: React.FC = () => {
     setLineWidth,
     handleExport,
     saveCanvasToFirebase,
+    handleZoom,
   } = useCanvas();
   
   const transformerRef = useRef<Konva.Transformer | null>(null);  // Used to manipulate objects on the canvas
@@ -56,7 +57,7 @@ const Canvas: React.FC = () => {
   };
 
   const aspectRatio = 2500 / 1548;
-const canvasWidth = windowSize.width * 0.8; // Calculate canvas width based on window size
+const canvasWidth = windowSize.width * 0.7; // Calculate canvas width based on window size
 const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height based on aspect ratio
 
   return (
@@ -73,6 +74,7 @@ const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height base
         lineWidth={lineWidth}
         setLineWidth={setLineWidth}
         saveCanvasToFirebase={() => saveCanvasToFirebase(shapes)}
+        handleZoom={handleZoom}
       />
 
 

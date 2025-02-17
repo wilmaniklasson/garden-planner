@@ -29,9 +29,10 @@ interface ControlsProps {
   setLineWidth: React.Dispatch<React.SetStateAction<number>>; // Update line width
   handleExport: () => void;  // Export the design
   saveCanvasToFirebase: () => void;  // Save the canvas to Firebase
+  handleZoom: (zoomIn: boolean) => void;  // Zoom in or out
 }
 
-const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport, lineWidth, setLineWidth, saveCanvasToFirebase }) => {
+const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport, lineWidth, setLineWidth, saveCanvasToFirebase, handleZoom }) => {
   const [collapsed, setCollapsed] = useState(false); // State för att kontrollera om panelen är vikad eller inte
 
   const togglePanel = () => {
@@ -132,6 +133,8 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
       {/* Export Button */}
       <button className="handleExport" type="button" onClick={handleExport}>Export</button>
       <button className='aveCanvasToFirebase' type="button" onClick={saveCanvasToFirebase}>Save Canvas</button>
+      <button type='button' className="zoom-button" onClick={() => handleZoom(true)}>+</button>
+      <button type='button' className="zoom-button" onClick={() => handleZoom(false)}>−</button>
 
     </div>
     </aside>
