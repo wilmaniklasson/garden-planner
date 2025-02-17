@@ -60,6 +60,8 @@ const Canvas: React.FC = () => {
 const canvasWidth = windowSize.width * 0.7; // Calculate canvas width based on window size
 const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height based on aspect ratio
 
+
+
   return (
     <div className="canvas-container">
       {/* Control panel with tools and settings */}
@@ -96,9 +98,32 @@ const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height base
                 draggable: true,  // Make each shape draggable
                 onClick: () => {
                   if (tool === 'delete') {
-                    handleDelete(index);  // Remove shape if "delete" is selected
-                  } else {
-                    setSelectedShapeIndex(index);  // Select the shape if no "delete" is selected
+                    handleDelete(index);  // Delete the shape if Delete is active for desktop
+                  }
+                  if (tool === 'edit') {
+                    setSelectedShapeIndex(index);  // Select the shape if Edit is active for desktop
+                  }
+                },
+
+                onTap: () => {
+                  if (tool === 'delete') {
+                 handleDelete(index);  // Delete the shape if Delete is active for mobile
+                  }
+                  },
+              
+                onDblClick: () => {
+                  if (tool !== 'delete') {
+                    setSelectedShapeIndex(index);  // Select the shape if Delete is not active and the shape is double clicked for desktop
+                  }
+                  if (tool === 'edit') {
+                    setSelectedShapeIndex(index);  // Select the shape if Edit is active for mobile
+                  }
+                
+                },
+               
+                onDblTap: () => {
+                  if (tool !== 'delete') {
+                    setSelectedShapeIndex(index);  // Select the shape if Delete is not active and the shape is double clicked for mobile
                   }
                 },
                 onDragEnd: (e: Konva.KonvaEventObject<DragEvent>) => handleDragEnd(e, index),  // Handle drag end
@@ -121,7 +146,8 @@ const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height base
             })}
             {/* If a shape is selected, render Transformer to allow user manipulation */}
             {selectedShapeIndex !== null && (
-              <Transformer ref={transformerRef} />
+              <Transformer ref={transformerRef} 
+              touchEnabled={true} />
             )}
           </Layer>
         </Stage>

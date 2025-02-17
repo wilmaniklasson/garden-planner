@@ -101,6 +101,7 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
         value={tool} 
         onChange={(e) => setTool(e.target.value)}
       >
+        <option value="">None</option>
         <option value="draw">Draw</option>
         <option value="circle">Place Circle</option>
         <option value="rectangle">Place Rectangle</option>
@@ -132,7 +133,7 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
 
       {/* Export Button */}
       <button className="handleExport" type="button" onClick={handleExport}>Export</button>
-      <button className='aveCanvasToFirebase' type="button" onClick={saveCanvasToFirebase}>Save Canvas</button>
+      <button className='saveCanvasToFirebase' type="button" onClick={saveCanvasToFirebase}>Save Canvas</button>
       <button type='button' className="zoom-button" onClick={() => handleZoom(true)}>+</button>
       <button type='button' className="zoom-button" onClick={() => handleZoom(false)}>−</button>
 

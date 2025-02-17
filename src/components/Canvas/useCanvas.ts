@@ -9,7 +9,7 @@ import { useCanvasEvents } from '../../hooks/useCanvasEvents';
 
 
 export const useCanvas = () => {
-  const [tool, setTool] = useState('draw'); // draw, circle, rectangle, svg, edit
+  const [tool, setTool] = useState(''); // draw, circle, rectangle, svg, edit
   const [lineWidth, setLineWidth] = useState(3);  // Default line width
   const [color, setColor] = useState('#ff0000'); // Color state
   const [shapes, setShapes] = useState<Shape[]>([]); // All shapes on the canvas
