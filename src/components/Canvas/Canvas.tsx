@@ -108,7 +108,7 @@ const Canvas: React.FC = () => {
                 case 'rect':
                   return <Rect key={index} {...shapeProps} x={shape.x} y={shape.y} width={shape.width} height={shape.height} fill={shape.color} />;
                 case 'svg':
-                  return shape.image && typeof shape.image !== 'string' ? <Image key={index} {...shapeProps} x={shape.x} y={shape.y} image={shape.image} width={80} height={80} /> : null;
+                  return shape.image && typeof shape.image !== 'string' ? <Image key={index} {...shapeProps} x={shape.x} y={shape.y} image={shape.image} width={150} height={170} /> : null;
                 default:
                   return null;  // If no type matches, render nothing
               }

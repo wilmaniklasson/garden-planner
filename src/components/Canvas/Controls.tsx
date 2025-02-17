@@ -1,9 +1,21 @@
 import React from 'react';
-import tree from '../../assets/images/tree.svg';
-import flower from '../../assets/images/flower.svg';
-import bush from '../../assets/images/bush.svg';
-import stoneTiles from '../../assets/images/stone-tiles.svg';
-import smallStones from '../../assets/images/small-stones.svg';
+// Bushes
+import SquircleBush from '../../assets/images/Squircle-Bush.svg';
+import LayeredSquircleBush from '../../assets/images/Layered-Squircle-Bush.svg';
+import StarShapedBush from '../../assets/images/Star-Shaped-Bush.svg';
+import LayeredStarShapedBush from '../../assets/images/Layered-Star-Shaped-Bush.svg';
+import SquircleBushGroup from '../../assets/images/Squircle-Bush-Group.svg';
+import SmallSquircleBushGroup from '../../assets/images/Small-Squircle-Bush-Group.svg';
+// Flowers
+import PinkFlower from '../../assets/images/Pink-Flower.svg';
+import TripleLayerPinkFlower from '../../assets/images/Triple-Layer-Pink-Flower.svg';
+import MultiLayeredPinkFlower from '../../assets/images/Multi-Layered-Pink-Flower.svg';
+import PinkFlowerGroup from '../../assets/images/Pink-Flower-Group.svg';
+import BigPinkFloweGroup from '../../assets/images/Big-Pink-Flower-Group.svg';
+
+
+
+
 
 
 interface ControlsProps {
@@ -55,7 +67,7 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
         <option value="draw">Draw</option>
         <option value="circle">Place Circle</option>
         <option value="rectangle">Place Rectangle</option>
-        <option value="svg">Place SVG</option>
+        <option value="svg">Place Garde element</option>
         <option value="edit">Select</option>
         <option value="delete">Delete</option>
       </select>
@@ -67,11 +79,23 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
         value={selectedSVG} 
         onChange={(e) => setSelectedSVG(e.target.value)} 
       >
-        <option value={tree}>Tree</option>
-        <option value={flower}>Flower</option>
-        <option value={bush}>Bush</option>
-        <option value={stoneTiles}>Stone Tiles</option>
-        <option value={smallStones}>Small Stones</option>
+        <option value="">None</option>
+        <option value={SquircleBush}>Squircle Bush</option>
+        <option value={LayeredSquircleBush}>Layered Squircle Bush</option>
+        <option value={StarShapedBush}>Star Shaped Bush</option>
+        <option value={LayeredStarShapedBush}>Layered Star Shaped Bush</option>
+        <option value={SquircleBushGroup}>Squircle Bush Group</option>
+        <option value={SmallSquircleBushGroup}>Small Squircle Bush Group</option>
+        <option value={PinkFlower}>Pink Flower</option>
+        <option value={TripleLayerPinkFlower}>Triple Layer Pink Flower</option>
+        <option value={MultiLayeredPinkFlower}>Multi Layered Pink Flower</option>
+        <option value={PinkFlowerGroup}>Pink Flower Group</option>
+        <option value={BigPinkFloweGroup}>Big Pink Flower Group</option>
+      
+       
+
+        
+        
       </select>
 
       {/* Export Button */}
