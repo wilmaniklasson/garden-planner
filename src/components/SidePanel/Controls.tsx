@@ -1,4 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './SidePanel.css';
+//import { MdFence, MdGrass, MdLocalFlorist } from 'react-icons/md';
+//import { FaTree } from 'react-icons/fa';
+import icon from '../../assets/garden-planner-icon.svg';
 // Bushes
 import SquircleBush from '../../assets/images/Squircle-Bush.svg';
 import LayeredSquircleBush from '../../assets/images/Layered-Squircle-Bush.svg';
@@ -12,10 +16,6 @@ import TripleLayerPinkFlower from '../../assets/images/Triple-Layer-Pink-Flower.
 import MultiLayeredPinkFlower from '../../assets/images/Multi-Layered-Pink-Flower.svg';
 import PinkFlowerGroup from '../../assets/images/Pink-Flower-Group.svg';
 import BigPinkFloweGroup from '../../assets/images/Big-Pink-Flower-Group.svg';
-
-
-
-
 
 
 interface ControlsProps {
@@ -32,8 +32,44 @@ interface ControlsProps {
 }
 
 const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport, lineWidth, setLineWidth, saveCanvasToFirebase }) => {
+  const [collapsed, setCollapsed] = useState(false); // State för att kontrollera om panelen är vikad eller inte
+
+  const togglePanel = () => {
+    setCollapsed(!collapsed); // Växla mellan vikad och utökad
+  };
+
   return (
-    <div className="controls">
+    <>
+    <aside className={`side-panel ${collapsed ? 'collapsed' : ''}`}>
+      {/* Ikon för att växla panelen */}
+      <div className="icon" onClick={togglePanel}>
+        <span>{collapsed ? '☰' : '✖'}</span> {/* Använd en ikon eller symbol */}
+      </div>
+   
+      <div className='side-panel-header'>
+        <h1>Garden Planner</h1>
+        <img className='Garden-Planner-Icon' src={icon} alt="Garden Planner Icon" />
+      </div>
+       {/*
+      <div className='icon'>
+        <MdGrass size={40} color="#382918" />
+        <h2>Ground Materials</h2>
+      </div>
+      <div className='icon'>
+        <FaTree size={40} color="#382918" />
+        <h2>Trees & Bushes</h2>
+      </div>
+      <div className='icon'>
+        <MdLocalFlorist size={40} color="#382918" />
+        <h2>Plants & Flowers</h2>
+      </div>
+      <div className='icon'>
+        <MdFence size={40} color="#382918" />
+        <h2>Decoration</h2>
+      </div>
+      */}
+    
+    <div className={`controls ${collapsed ? 'collapsed' : ''}`}>
       {/* Color Picker */}
       <label>Color:</label>
       <input 
@@ -91,18 +127,18 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
         <option value={MultiLayeredPinkFlower}>Multi Layered Pink Flower</option>
         <option value={PinkFlowerGroup}>Pink Flower Group</option>
         <option value={BigPinkFloweGroup}>Big Pink Flower Group</option>
-      
-       
-
-        
-        
       </select>
 
       {/* Export Button */}
-      <button type="button" onClick={handleExport}>Export</button>
-      <button onClick={saveCanvasToFirebase}>Save Canvas</button>
+      <button className="handleExport" type="button" onClick={handleExport}>Export</button>
+      <button className='aveCanvasToFirebase' type="button" onClick={saveCanvasToFirebase}>Save Canvas</button>
 
     </div>
+    </aside>
+    </>
+
+
+    
   );
 };
 

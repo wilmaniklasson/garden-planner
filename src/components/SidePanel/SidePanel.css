@@ -1,23 +1,192 @@
+.side-panel {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  height: 100vh;
+  background-color: white;
+  padding: 1rem;
+  box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  width: 250px;
+  transition: 0.3s ease; 
+}
+
 .icon {
-    display: flex;
-    flex-wrap: row;
-  
-  }
-  .side-panel {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.side-panel.collapsed .icon {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 2rem;
+  color: #333;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.side-panel.collapsed {
+  width: 80px; 
+  padding: 0.5rem;
+}
+.side-panel.collapsed .Garden-Planner-Icon {
+  display: none;
+}
+
+
+.side-panel-header {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.side-panel-header h1 {
+  font-size: 1.3rem;
+}
+
+.side-panel.collapsed .side-panel-header h1 {
+  display: none;
+}
+
+  .controls {
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
-    height: 100vh;
-    background-color: white;
-    padding: 1rem;
-    box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .controls.collapsed label{
+    display: none;
   }
   
-  .side-panel-header {
-    display: flex;
+  .controls label {
+    margin: 0.5rem;
+    font-size: 1rem;
+    color: #333;
   }
   
-  .side-panel-header h1{
-    margin-right: 1rem;
+  .controls input {
+    margin: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: border-color 0.3s;
   }
   
+  .controls input:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  .controls.collapsed input[type="color"] {
+    width: 80%;
+  }
+  .controls select {
+    margin: 0.5rem;
+    padding: 0.3rem 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: border-color 0.3s;
+  }
+
+  .controls.collapsed select{
+    padding: 0.1rem;
+  }
+  
+  .controls select:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  .controls button {
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .controls.collapsed button{
+    padding: 0.3rem;
+  }
+  
+  .controls button:hover {
+    background-color: #45a049;
+  }
+  
+  .controls button:focus {
+    outline: none;
+    box-shadow: 0 0 3px 2px rgba(72, 156, 73, 0.5);
+  }
+
+
+@media screen and (max-width: 768px) {
+  .side-panel {
+    width: 200px;
+    padding: 0.8rem;
+  }
+
+  .side-panel.collapsed {
+    width: 60px;
+  }
+
+  .icon {
+    font-size: 1rem;
+  }
+  .side-panel.collapsed .icon {
+    font-size: 1.5rem;
+  }
+
+  .side-panel-header h1 {
+    font-size: 1rem;
+  }
+
+  .controls.collapsed input[type="color"] {
+    margin: 0;
+    width: 100%;
+  }
+
+
+  .controls label,
+  .controls select,
+  .controls input {
+    font-size: 0.9rem; 
+    margin:  0.3 0rem;
+  }
+
+ 
+  .controls input {
+    padding: 0.3rem;
+  }
+
+  .controls button {
+    padding: 0.4rem 0.8rem;
+    margin: 0.8rem 0;
+    font-size: 0.8rem;
+  }
+
+  .controls.collapsed select {
+    padding: 0.2rem;
+    margin: 0.8rem 0;
+    font-size: 0.7rem;
+  }
+
+  
+  
+}

@@ -3,7 +3,7 @@ import { Stage, Layer, Line, Image, Rect, Circle, Transformer } from 'react-konv
 import { useCanvas } from './useCanvas';
 import { useEffect, useRef } from 'react';
 import Konva from 'konva'; 
-import Controls from './Controls';
+import Controls from '../SidePanel/Controls';
 
 const Canvas: React.FC = () => {
   const {
@@ -55,8 +55,12 @@ const Canvas: React.FC = () => {
     setShapes(newShapes);  // Update state with the new positions
   };
 
+  const aspectRatio = 1861 / 1548;
+const canvasWidth = windowSize.width * 0.7; // Calculate canvas width based on window size
+const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height based on aspect ratio
+
   return (
-    <div className="canvas">
+    <div className="canvas-container">
       {/* Control panel with tools and settings */}
       <Controls 
         tool={tool}
@@ -71,18 +75,18 @@ const Canvas: React.FC = () => {
         saveCanvasToFirebase={() => saveCanvasToFirebase(shapes)}
       />
 
-      <div id="canvas-wrapper" style={{ width: `${windowSize.width * 0.7}px`, height: `${windowSize.height * 0.8}px` }}>
+
         {/* Konva Stage component (canvas area) */}
         <Stage
-          width={windowSize.width * 0.7}
-          height={windowSize.height * 0.8}
+          width={canvasWidth} // Use calculated canvasWidth
+          height={canvasHeight} // Use calculated canvasHeight
           onMouseDown={handleMouseDown}  // Track mouse down
           onMouseMove={handleMouseMove}  // Track mouse move
           onMouseUp={handleMouseUp}  // Track mouse up
           ref={stageRef}  // Reference to the Konva stage
           saveCanvasToFirebase={saveCanvasToFirebase}
         >
-          <Layer>
+          <Layer className="canvas-layer">
             {/* Render all shapes stored in state */}
             {shapes.map((shape, index) => {
               // Common properties applied to each shape
@@ -119,7 +123,7 @@ const Canvas: React.FC = () => {
             )}
           </Layer>
         </Stage>
-      </div>
+     
     </div>
   );
 };
