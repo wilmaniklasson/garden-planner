@@ -56,7 +56,7 @@ const Canvas: React.FC = () => {
     setShapes(newShapes);  // Update state with the new positions
   };
 
-  const aspectRatio = 2500 / 1548;
+  const aspectRatio = 2600 / 1548;
 const canvasWidth = windowSize.width * 0.7; // Calculate canvas width based on window size
 const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height based on aspect ratio
 
