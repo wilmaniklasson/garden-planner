@@ -2,6 +2,7 @@ import { Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { auth } from "../firebaseConfig";
 import { onAuthStateChanged, User } from "firebase/auth";
+import LoadingSpinner from "../utils/LoadingSpinner/LoadingSpinner"; 
 
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -16,9 +17,8 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
 
     return () => unsubscribe(); // Cleanup the listener on unmount
   }, []);
-
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />; // Använd spinnern istället för text
   }
 
   if (!user) {

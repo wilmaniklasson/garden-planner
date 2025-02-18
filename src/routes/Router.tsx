@@ -1,16 +1,17 @@
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Suspense } from "react";
 import React from "react";
-
+import LoadingSpinner from "../utils/LoadingSpinner/LoadingSpinner";
+import ProtectedRoute from "./ProtectedRoute";
 // Dynamically import the pages
 const LoginPage = React.lazy(() => import("../pages/LoginPage/LoginPage"));
 const HomePage = React.lazy(() => import("../pages/HomePage/HomePage"));
 const CanvasPage = React.lazy(() => import("../pages/CanvasPage/CanvasPage"));
-import ProtectedRoute from "./ProtectedRoute";
+
 
 const AppRouter = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<LoadingSpinner />}>
       <Router>
         <Routes>
           {/* The login page is accessible without logging in */}
