@@ -20,22 +20,26 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
-      <h1 className="homepage-title">Welcome!</h1>
-      
-      <button 
-        type="button"
-        onClick={() => navigate("/canvas")} 
-        className="homepage-button">
-        Go to Canvas
-      </button>
+      <div className="homepage-wrapper">
+        <h1 className="homepage-title">Welcome!</h1>
+        <div className="button-container">
+          <button 
+            type="button"
+            onClick={() => navigate("/canvas")} 
+            className="to-canvas-button">
+            Go to Canvas
+          </button>
 
-      <button 
-        type="button"
-        onClick={handleLogout} 
-        className="homepage-button">
-        Log out
-      </button>
-      <DeleteAccountButton />
+          <button 
+            type="button"
+            onClick={handleLogout} 
+            className="log-out-button">
+            Log out
+          </button>
+          <DeleteAccountButton />
+        </div>
+      
+      </div>
     </div>
   );
 };

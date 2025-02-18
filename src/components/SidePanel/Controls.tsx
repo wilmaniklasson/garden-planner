@@ -27,12 +27,9 @@ interface ControlsProps {
   setSelectedSVG: React.Dispatch<React.SetStateAction<string>>;  // Update selected SVG
   lineWidth: number; // Line width
   setLineWidth: React.Dispatch<React.SetStateAction<number>>; // Update line width
-  handleExport: () => void;  // Export the design
-  saveCanvasToFirebase: () => void;  // Save the canvas to Firebase
-  handleZoom: (zoomIn: boolean) => void;  // Zoom in or out
 }
 
-const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, handleExport, lineWidth, setLineWidth, saveCanvasToFirebase, handleZoom }) => {
+const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, lineWidth, setLineWidth, }) => {
   const [collapsed, setCollapsed] = useState(false); // State för att kontrollera om panelen är vikad eller inte
 
   const togglePanel = () => {
@@ -44,7 +41,7 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
     <aside className={`side-panel ${collapsed ? 'collapsed' : ''}`}>
       {/* Ikon för att växla panelen */}
       <div className="icon" onClick={togglePanel}>
-        <span>{collapsed ? '☰' : '✖'}</span> {/* Använd en ikon eller symbol */}
+        <span>{collapsed ? '☰' : '✖'}</span>
       </div>
    
       <div className='side-panel-header'>
@@ -130,13 +127,6 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
         <option value={PinkFlowerGroup}>Pink Flower Group</option>
         <option value={BigPinkFloweGroup}>Big Pink Flower Group</option>
       </select>
-
-      {/* Export Button */}
-      <button className="handleExport" type="button" onClick={handleExport}>Export</button>
-      <button className='saveCanvasToFirebase' type="button" onClick={saveCanvasToFirebase}>Save Canvas</button>
-      <button type='button' className="zoom-button" onClick={() => handleZoom(true)}>+</button>
-      <button type='button' className="zoom-button" onClick={() => handleZoom(false)}>−</button>
-
     </div>
     </aside>
     </>

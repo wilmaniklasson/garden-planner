@@ -2,11 +2,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+  
     height: 100vh;
-    background-color: #f3f4f6;
     text-align: center;
     padding: 20px;
+  }
+
+  .homepage-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f3f4f6;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 1rem;
+    width: 50%;
+  }
+  .button-container {
+    display: flex;
+    gap: 1rem;
   }
   
   .homepage-title {
@@ -16,18 +31,59 @@
     color: #333;
   }
   
-  .homepage-button {
+  .to-canvas-button, .log-out-button{
     padding: 12px 24px;
-    background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
+    width: 10rem;
   }
+
   
-  .homepage-button:hover {
-    background-color: #45a049;
+.to-canvas-button {
+  background-color: var(--color-primary-green);
+}
+
+.to-canvas-button:hover {
+  background-color: var(--color-primary-green-hover);
+  transform: scale(1.05);
+}
+
+.log-out-button {
+  background-color: var(--color-primary-blue);
+}
+
+.log-out-button:hover {
+  background-color: var(--color-primary-blue-hover);
+  transform: scale(1.05);
+}
+
+
+
+  @media (max-width: 768px) {
+    .homepage-title {
+      font-size: 1.5rem;
+    }
+    .to-canvas-button, .log-out-button{
+      font-size: 0.9rem;
+    }
   }
-  
+
+  @media ( max-height: 650px) {
+    .homepage-title {
+      font-size: 1.5rem;
+    }
+    .to-canvas-button, .log-out-button{
+      font-size: 0.8rem;
+    }
+
+    .homepage-container {
+      justify-content: flex-start;
+      gap: 0.5rem;
+    }
+    
+  }
+ 

@@ -3,7 +3,14 @@
    flex-direction: row;
    margin: 0;
    padding: 0;
-   
+  }
+
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
 
   .konvajs-content {
@@ -14,9 +21,9 @@
     border: 2px solid rgb(84, 84, 84);
     box-sizing: border-box;
     border-radius: 5px;
-    margin: 0.5rem;
+    margin: 0;
+    padding: 0;
   }
-
 
   .canvas {
     display: flex;

@@ -4,6 +4,7 @@ import { useCanvas } from './useCanvas';
 import { useEffect, useRef } from 'react';
 import Konva from 'konva'; 
 import Controls from '../SidePanel/Controls';
+import CanvasHeader from './CanvasHeader';
 
 const Canvas: React.FC = () => {
   const {
@@ -72,13 +73,18 @@ const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height base
         setColor={setColor}
         selectedSVG={selectedSVG}
         setSelectedSVG={setSelectedSVG}
-        handleExport={handleExport}
         lineWidth={lineWidth}
         setLineWidth={setLineWidth}
+      
+      />
+ <div className="main-content">
+      <CanvasHeader 
+        handleExport={handleExport}
         saveCanvasToFirebase={() => saveCanvasToFirebase(shapes)}
         handleZoom={handleZoom}
       />
-
+  
+   
 
         {/* Konva Stage component (canvas area) */}
         <Stage className='canvas'
@@ -151,6 +157,7 @@ const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height base
             )}
           </Layer>
         </Stage>
+        </div>
      
     </div>
   );

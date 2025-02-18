@@ -64,9 +64,10 @@ const LoginPage = () => {
 
   return (
     <div className="login-container">
-      <h1>Garden Planner</h1>
-      <img src={icon} alt="Garden Planner Icon" />
-
+      <div className="login-header">
+        <h1>Garden Planner</h1>
+        <img src={icon} alt="Garden Planner Icon" />
+      </div>
       {isLogin ? (
         <>
           <h1 className="login-title">Log in</h1>
