@@ -1,13 +1,31 @@
 import Konva from "konva";
 
+
+export enum ToolType {
+  Line = 'line',
+  Circle = 'circle',
+  Rect = 'rect',
+  SVG = 'svg',
+  CircleGrass = 'circle-grass',
+  RectGrass = 'rect-grass',
+}
+
+
+
 export interface Shape {
   id: string;
-  tool: 'line' | 'circle' | 'rect' | 'svg';
+  tool: ToolType;
   points?: number[];
   x?: number;
   y?: number;
   color?: string;
   radius?: number;
+  stroke?: string;
+  strokeWidth?: number;
+  gradient?: {
+    startColor: string;
+    endColor: string;
+  };
   width?: number;
   height?: number;
   image?: HTMLImageElement | string;

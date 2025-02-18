@@ -18,6 +18,7 @@ export const useCanvas = () => {
   const stageRef = useRef<Konva.Stage | null>(null); // stage referens to access the Konva stage
   const [windowSize, setWindowSize] = useState({ width: window.innerWidth,height: window.innerHeight,});
   
+  
   // From hook useCanvasEvents
   const {
     handleMouseDown,

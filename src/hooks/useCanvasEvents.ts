@@ -1,6 +1,6 @@
 // /hooks/useCanvasEvents.ts
 import { useState } from 'react';
-import { Shape, loadImage } from '../utils/shapes';
+import { Shape, ToolType, loadImage } from '../utils/shapes';
 import Konva from 'konva';
 
 export const useCanvasEvents = (
@@ -11,8 +11,8 @@ export const useCanvasEvents = (
   isDrawing: boolean, 
   setIsDrawing: React.Dispatch<React.SetStateAction<boolean>>, 
   selectedSVG: string,
-  color: string,  // Använd det aktuella färgvärdet
-  lineWidth: number,  // Använd den aktuella linjebredden
+  color: string,
+  lineWidth: number,
 ) => {
   const [selectedShapeIndex, setSelectedShapeIndex] = useState<number | null>(null);
 
@@ -37,20 +37,38 @@ export const useCanvasEvents = (
     let newShape: Shape | null = null;
     switch (tool) {
       case 'draw':
-        newShape = { id: Date.now().toString(), tool: 'line', points: [pos.x, pos.y], color: color, lineWidth: lineWidth, };
+        newShape = { id: Date.now().toString(), tool: ToolType.Line, points: [pos.x, pos.y], color: color, lineWidth: lineWidth, };
         setIsDrawing(true);
         break;
       case 'circle':
-        newShape = { id: Date.now().toString(), tool: 'circle', x: pos.x, y: pos.y, color: color, radius: 30 };
+        newShape = { id: Date.now().toString(), tool: ToolType.Circle , x: pos.x, y: pos.y, color: color, radius: 30 };
         break;
       case 'rectangle':
-        newShape = { id: Date.now().toString(), tool: 'rect', x: pos.x, y: pos.y, color: color, width: 80, height: 80 };
+        newShape = { id: Date.now().toString(), tool: ToolType.Rect , x: pos.x, y: pos.y, color: color, width: 80, height: 80 };
         break;
       case 'svg': {
         const img = await loadImage(selectedSVG);
-        newShape = { id: Date.now().toString(), tool: 'svg', x: pos.x, y: pos.y, image: img };
+        newShape = { id: Date.now().toString(), tool: ToolType.SVG, x: pos.x, y: pos.y, image: img };
         break;
       }
+      case 'circle-grass': {
+        newShape = { id: Date.now().toString(), 
+          tool: ToolType.CircleGrass, 
+          x: pos.x, 
+          y: pos.y, 
+          radius: 80,
+          color: 'rgba(76, 175, 80, 0.6)',
+          gradient: {
+            startColor: 'rgba(76, 175, 80, 0.6)',
+            endColor: 'rgba(56, 142, 60, 0.6)',
+          },
+        };
+        break;
+      }
+      case 'rect-grass': {
+        newShape = { id: Date.now().toString(), tool: ToolType.RectGrass, x: pos.x, y: pos.y, color: 'rgba(76, 175, 80, 0.6)', width: 80, height: 80 };
+        break;
+    }
     }
 
     if (newShape) setShapes((prevShapes) => [...prevShapes, newShape]);
@@ -88,3 +106,4 @@ export const useCanvasEvents = (
     setSelectedShapeIndex
   };
 };
+

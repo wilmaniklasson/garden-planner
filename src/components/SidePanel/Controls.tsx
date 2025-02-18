@@ -30,16 +30,15 @@ interface ControlsProps {
 }
 
 const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, lineWidth, setLineWidth, }) => {
-  const [collapsed, setCollapsed] = useState(false); // State för att kontrollera om panelen är vikad eller inte
+  const [collapsed, setCollapsed] = useState(false); 
 
   const togglePanel = () => {
-    setCollapsed(!collapsed); // Växla mellan vikad och utökad
+    setCollapsed(!collapsed); // Uppdatera collapsed state
   };
 
   return (
     <>
     <aside className={`side-panel ${collapsed ? 'collapsed' : ''}`}>
-      {/* Ikon för att växla panelen */}
       <div className="icon" onClick={togglePanel}>
         <span>{collapsed ? '☰' : '✖'}</span>
       </div>
@@ -105,6 +104,8 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
         <option value="svg">Place Garde element</option>
         <option value="edit">Select</option>
         <option value="delete">Delete</option>
+        <option value="circle-grass">Grass Circle</option>
+        <option value="rect-grass">Grass Rectangle</option>
       </select>
 
       {/* SVG Selector */}

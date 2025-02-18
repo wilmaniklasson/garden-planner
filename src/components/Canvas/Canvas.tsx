@@ -149,6 +149,10 @@ const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height base
                   return <Rect key={index} {...shapeProps} x={shape.x} y={shape.y} width={shape.width} height={shape.height} fill={shape.color} />;
                 case 'svg':
                   return shape.image && typeof shape.image !== 'string' ? <Image key={index} {...shapeProps} x={shape.x} y={shape.y} image={shape.image} width={150} height={170} /> : null;
+                  case 'circle-grass':
+                  return <Circle key={index} {...shapeProps} x={shape.x} y={shape.y} radius={shape.radius} fill={shape.color} />;
+                case 'rect-grass':
+                  return <Rect key={index} {...shapeProps} x={shape.x} y={shape.y} width={shape.width} height={shape.height} fill={shape.color} />;
                 default:
                   return null;  // If no type matches, render nothing
               }
