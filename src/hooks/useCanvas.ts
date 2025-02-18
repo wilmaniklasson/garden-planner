@@ -26,7 +26,7 @@ export const useCanvas = () => {
     handleDelete,
     selectedShapeIndex,
     setSelectedShapeIndex
-  } = useCanvasEvents(tool, shapes, setShapes, stageRef, isDrawing, setIsDrawing, selectedSVG);
+  } = useCanvasEvents(tool, shapes, setShapes, stageRef, isDrawing, setIsDrawing, selectedSVG, color, lineWidth);
 
   // From hook useFirebaseCanvas
   const { saveCanvasToFirebase, loadCanvasFromFirebase } = useFirebaseCanvas(setShapes);

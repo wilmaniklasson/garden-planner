@@ -18,7 +18,7 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
     return () => unsubscribe(); // Cleanup the listener on unmount
   }, []);
   if (loading) {
-    return <LoadingSpinner />; // Använd spinnern istället för text
+    return <LoadingSpinner />;
   }
 
   if (!user) {

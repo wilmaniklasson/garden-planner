@@ -3,7 +3,17 @@ import { useState } from 'react';
 import { Shape, loadImage } from '../utils/shapes';
 import Konva from 'konva';
 
-export const useCanvasEvents = (tool: string, shapes: Shape[], setShapes: React.Dispatch<React.SetStateAction<Shape[]>>, stageRef: React.RefObject<Konva.Stage>, isDrawing: boolean, setIsDrawing: React.Dispatch<React.SetStateAction<boolean>>, selectedSVG: string) => {
+export const useCanvasEvents = (
+  tool: string, 
+  shapes: Shape[], 
+  setShapes: React.Dispatch<React.SetStateAction<Shape[]>>, 
+  stageRef: React.RefObject<Konva.Stage>, 
+  isDrawing: boolean, 
+  setIsDrawing: React.Dispatch<React.SetStateAction<boolean>>, 
+  selectedSVG: string,
+  color: string,  // Använd det aktuella färgvärdet
+  lineWidth: number,  // Använd den aktuella linjebredden
+) => {
   const [selectedShapeIndex, setSelectedShapeIndex] = useState<number | null>(null);
 
   const handleMouseDown = async () => {
@@ -27,14 +37,14 @@ export const useCanvasEvents = (tool: string, shapes: Shape[], setShapes: React.
     let newShape: Shape | null = null;
     switch (tool) {
       case 'draw':
-        newShape = { id: Date.now().toString(), tool: 'line', points: [pos.x, pos.y], color: '#ff0000', lineWidth: 3 };
+        newShape = { id: Date.now().toString(), tool: 'line', points: [pos.x, pos.y], color: color, lineWidth: lineWidth, };
         setIsDrawing(true);
         break;
       case 'circle':
-        newShape = { id: Date.now().toString(), tool: 'circle', x: pos.x, y: pos.y, color: '#ff0000', radius: 30 };
+        newShape = { id: Date.now().toString(), tool: 'circle', x: pos.x, y: pos.y, color: color, radius: 30 };
         break;
       case 'rectangle':
-        newShape = { id: Date.now().toString(), tool: 'rect', x: pos.x, y: pos.y, color: '#ff0000', width: 80, height: 80 };
+        newShape = { id: Date.now().toString(), tool: 'rect', x: pos.x, y: pos.y, color: color, width: 80, height: 80 };
         break;
       case 'svg': {
         const img = await loadImage(selectedSVG);
