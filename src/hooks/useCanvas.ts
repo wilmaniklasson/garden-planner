@@ -1,11 +1,11 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { Shape } from './shapes';
+import { Shape } from '../utils/shapes';
 import Konva from 'konva';
 import { getAuth } from 'firebase/auth';
-import { useZoom } from "../../hooks/useZoom";
-import { exportCanvas } from "../../utils/exportCanvas";
-import { useFirebaseCanvas } from "../../hooks/useFirebaseCanvas";
-import { useCanvasEvents } from '../../hooks/useCanvasEvents';
+import { useZoom } from "./useZoom";
+import { exportCanvas } from "../utils/exportCanvas";
+import { useFirebaseCanvas } from "./useFirebaseCanvas";
+import { useCanvasEvents } from './useCanvasEvents';
 
 
 export const useCanvas = () => {

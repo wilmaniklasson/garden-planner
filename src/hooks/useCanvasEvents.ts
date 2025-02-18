@@ -1,6 +1,6 @@
 // /hooks/useCanvasEvents.ts
 import { useState } from 'react';
-import { Shape, loadImage } from '../components/Canvas/shapes';
+import { Shape, loadImage } from '../utils/shapes';
 import Konva from 'konva';
 
 export const useCanvasEvents = (tool: string, shapes: Shape[], setShapes: React.Dispatch<React.SetStateAction<Shape[]>>, stageRef: React.RefObject<Konva.Stage>, isDrawing: boolean, setIsDrawing: React.Dispatch<React.SetStateAction<boolean>>, selectedSVG: string) => {

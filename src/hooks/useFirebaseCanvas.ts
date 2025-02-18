@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { db, setDoc, doc, getDoc } from "../firebaseConfig";
 import { getAuth } from "firebase/auth";
-import { Shape, loadImage } from "../components/Canvas/shapes";
+import { Shape, loadImage } from "../utils/shapes";
 
 export const useFirebaseCanvas = (setShapes: (shapes: Shape[]) => void) => {
   const [loading, setLoading] = useState(false);

@@ -1,10 +1,10 @@
 import './Canvas.css'; 
 import { Stage, Layer, Line, Image, Rect, Circle, Transformer } from 'react-konva';
-import { useCanvas } from './useCanvas';
+import { useCanvas } from '../../hooks/useCanvas';
 import { useEffect, useRef } from 'react';
 import Konva from 'konva'; 
 import Controls from '../SidePanel/Controls';
-import CanvasHeader from './CanvasHeader';
+import CanvasHeader from '../CanvasHeader/CanvasHeader';
 
 const Canvas: React.FC = () => {
   const {
@@ -91,8 +91,11 @@ const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height base
           width={canvasWidth} // Use calculated canvasWidth
           height={canvasHeight} // Use calculated canvasHeight
           onMouseDown={handleMouseDown}  // Track mouse down
+          onTouchStart={handleMouseDown}  // Track touch start
           onMouseMove={handleMouseMove}  // Track mouse move
+          onTouchMove={handleMouseMove}  // Track touch move
           onMouseUp={handleMouseUp}  // Track mouse up
+          onTouchEnd={handleMouseUp}  // Track touch end
           ref={stageRef}  // Reference to the Konva stage
           saveCanvasToFirebase={saveCanvasToFirebase}
         >
