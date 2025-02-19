@@ -1,73 +1,42 @@
-import { Shape, ToolType, loadImage } from '../utils/shapes';
 import { useCanvasToolsStore } from '../store/CanvasToolsStore';
 import { useCanvasStore } from '../store/canvasStore';
+import { createShape } from '../utils/canvasTools';
+import { Shape, ToolType } from '../utils/shapes';
 
-export const useCanvasEvents = (shapes: Shape[], setShapes: React.Dispatch<React.SetStateAction<Shape[]>> ) => {
-
-  
-  const { tool, color, lineWidth, SVG } = useCanvasToolsStore(); // Zustand
-  const {stageRef, isDrawing, setIsDrawing, setSelectedShapeIndex,} = useCanvasStore(); // Zustand
+export const useCanvasEvents = (
+  shapes: Shape[],
+  setShapes: React.Dispatch<React.SetStateAction<Shape[]>>
+) => {
+  const { tool, color, lineWidth, SVG } = useCanvasToolsStore() as { tool: ToolType, color: string, lineWidth: number, SVG: string }; // Zustand
+  const { stageRef, isDrawing, setIsDrawing, setSelectedShapeIndex } = useCanvasStore(); // Zustand
 
   const handleMouseDown = async () => {
     if (!stageRef.current) return;
     const stage = stageRef.current.getStage();
     const pos = stage.getPointerPosition();
     if (!pos) return;
-    
+
     const clickedShape = stage.getIntersection(pos);
     if (clickedShape) {
       const node = clickedShape;
       const index = shapes.findIndex((shape) => shape.id === node.id());
       if (index !== -1) {
         setSelectedShapeIndex(index);
-        return; // Skip creating a new shape
+        return;
       }
     }
 
     if (tool === "edit") return;
 
-    let newShape: Shape | null = null;
-    switch (tool) {
-      case 'draw':
-        newShape = { id: Date.now().toString(), tool: ToolType.Line, points: [pos.x, pos.y], color: color, lineWidth: lineWidth, };
-        setIsDrawing(true);
-        break;
-      case 'circle':
-        newShape = { id: Date.now().toString(), tool: ToolType.Circle , x: pos.x, y: pos.y, color: color, radius: 30 };
-        break;
-      case 'rectangle':
-        newShape = { id: Date.now().toString(), tool: ToolType.Rect , x: pos.x, y: pos.y, color: color, width: 80, height: 80 };
-        break;
-      case 'svg': {
-        const img = await loadImage(SVG);
-        newShape = { id: Date.now().toString(), tool: ToolType.SVG, x: pos.x, y: pos.y, image: img };
-        break;
-      }
-      case 'circle-grass': {
-        newShape = { id: Date.now().toString(), 
-          tool: ToolType.CircleGrass, 
-          x: pos.x, 
-          y: pos.y, 
-          radius: 80,
-          color: 'rgba(76, 175, 80, 0.6)',
-          gradient: {
-            startColor: 'rgba(76, 175, 80, 0.6)',
-            endColor: 'rgba(56, 142, 60, 0.6)',
-          },
-        };
-        break;
-      }
-      case 'rect-grass': {
-        newShape = { id: Date.now().toString(), tool: ToolType.RectGrass, x: pos.x, y: pos.y, color: 'rgba(76, 175, 80, 0.6)', width: 130, height: 90 };
-        break;
+    const newShape = await createShape(tool, pos, color, lineWidth, SVG);
+    if (newShape) {
+      setShapes((prevShapes) => [...prevShapes, newShape]);
+      if (tool === 'line') setIsDrawing(true);
     }
-    }
-
-    if (newShape) setShapes((prevShapes) => [...prevShapes, newShape]);
   };
 
   const handleMouseMove = () => {
-    if (!isDrawing || tool !== 'draw' || !stageRef.current) return;
+    if (!isDrawing || tool !== 'line' || !stageRef.current) return;
     const stage = stageRef.current.getStage();
     const pos = stage.getPointerPosition();
     if (!pos) return;
@@ -96,4 +65,3 @@ export const useCanvasEvents = (shapes: Shape[], setShapes: React.Dispatch<React
     handleDelete,
   };
 };
-

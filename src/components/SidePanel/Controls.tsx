@@ -128,9 +128,9 @@ const Controls: React.FC = () => {
         onChange={(e) => setTool(e.target.value)}
       >
         <option value="">None</option>
-        <option value="draw">Draw</option>
+        <option value="line">Draw</option>
         <option value="circle">Place Circle</option>
-        <option value="rectangle">Place Rectangle</option>
+        <option value="rect">Place Rectangle</option>
         <option value="svg">Place Garde element</option>
         <option value="edit">Select</option>
         <option value="delete">Delete</option>
