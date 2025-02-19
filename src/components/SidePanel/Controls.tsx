@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './SidePanel.css';
-//import { MdFence, MdGrass, MdLocalFlorist } from 'react-icons/md';
+import { MdGrass, } from 'react-icons/md';
+//import {  MdFence, MdLocalFlorist } from 'react-icons/md';
 //import { FaTree } from 'react-icons/fa';
 import icon from '../../assets/garden-planner-icon.svg';
 // Bushes
@@ -16,6 +17,10 @@ import TripleLayerPinkFlower from '../../assets/images/Triple-Layer-Pink-Flower.
 import MultiLayeredPinkFlower from '../../assets/images/Multi-Layered-Pink-Flower.svg';
 import PinkFlowerGroup from '../../assets/images/Pink-Flower-Group.svg';
 import BigPinkFloweGroup from '../../assets/images/Big-Pink-Flower-Group.svg';
+import './GroundMaterials.css';
+
+import circleGrass from '../../assets/images/GroundMaterials/circle-grass.svg';
+import rectGrass from '../../assets/images/GroundMaterials/rect-grass.svg';
 
 
 interface ControlsProps {
@@ -36,10 +41,18 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
     setCollapsed(!collapsed); // Uppdatera collapsed state
   };
 
+  const [showOptions, setShowOptions] = useState(false);
+  const [selectedTool, setSelectedTool] = useState<string>('');
+
+  const handleSelectTool = (tool: string) => {
+    setTool(tool);
+    setSelectedTool(tool);
+  };
+
   return (
     <>
     <aside className={`side-panel ${collapsed ? 'collapsed' : ''}`}>
-      <div className="icon" onClick={togglePanel}>
+      <div className="menu-icon" onClick={togglePanel}>
         <span>{collapsed ? '☰' : '✖'}</span>
       </div>
    
@@ -47,11 +60,35 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
         <h1>Garden Planner</h1>
         <img className='Garden-Planner-Icon' src={icon} alt="Garden Planner Icon" />
       </div>
-       {/*
-      <div className='icon'>
+       
+    
+      <div>
+      <div className='icon' onClick={() => setShowOptions(!showOptions)}>
         <MdGrass size={40} color="#382918" />
-        <h2>Ground Materials</h2>
+        <h2 className='option-name'>Ground Materials</h2>
       </div>
+      
+      {showOptions && (
+        <div className='options'>
+          <button 
+            className={`option-button ${selectedTool === 'circle-grass' ? 'selected' : ''}`} 
+            onClick={() => handleSelectTool('circle-grass')}
+          >
+            <img src={circleGrass} alt="Grass Circle" className='option-image' />
+            <p className='option-text'>Round Lawn</p>
+          </button>
+          <button 
+            className={`option-button ${selectedTool === 'rect-grass' ? 'selected' : ''}`} 
+            onClick={() => handleSelectTool('rect-grass')}
+          >
+            <img src={rectGrass} alt="Grass Rectangle" className='option-image' />
+            <p className='option-text'>Rect Lawn</p>
+          </button>
+        </div>
+      )}
+    </div>
+      
+      {/*
       <div className='icon'>
         <FaTree size={40} color="#382918" />
         <h2>Trees & Bushes</h2>
@@ -104,8 +141,7 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
         <option value="svg">Place Garde element</option>
         <option value="edit">Select</option>
         <option value="delete">Delete</option>
-        <option value="circle-grass">Grass Circle</option>
-        <option value="rect-grass">Grass Rectangle</option>
+      
       </select>
 
       {/* SVG Selector */}

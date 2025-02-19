@@ -66,7 +66,7 @@ export const useCanvasEvents = (
         break;
       }
       case 'rect-grass': {
-        newShape = { id: Date.now().toString(), tool: ToolType.RectGrass, x: pos.x, y: pos.y, color: 'rgba(76, 175, 80, 0.6)', width: 80, height: 80 };
+        newShape = { id: Date.now().toString(), tool: ToolType.RectGrass, x: pos.x, y: pos.y, color: 'rgba(76, 175, 80, 0.6)', width: 130, height: 90 };
         break;
     }
     }
