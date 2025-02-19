@@ -1,26 +1,25 @@
 import { create } from 'zustand';
-import { Shape } from '../utils/shapes';
 import Konva from 'konva';
 import React from 'react';
 
 interface CanvasState {
-  shapes: Shape[];
   isDrawing: boolean;
   windowSize: { width: number; height: number };
   stageRef: React.RefObject<Konva.Stage>;
-  setShapes: (shapes: Shape[]) => void;
+  selectedShapeIndex: number | null;
   setIsDrawing: (isDrawing: boolean) => void;
   setWindowSize: (windowSize: { width: number; height: number }) => void;
-  setStageRef: (stageRef: React.RefObject<Konva.Stage> ) => void;
+  setStageRef: (stageRef: React.RefObject<Konva.Stage>) => void;
+  setSelectedShapeIndex: (index: number | null) => void;
 }
 
 export const useCanvasStore = create<CanvasState>((set) => ({
-  shapes: [],
   isDrawing: false,
   windowSize: { width: window.innerWidth, height: window.innerHeight },
   stageRef: React.createRef<Konva.Stage>(),
-  setShapes: (shapes) => set({ shapes }),
+  selectedShapeIndex: null,
   setIsDrawing: (isDrawing) => set({ isDrawing }),
   setWindowSize: (windowSize) => set({ windowSize }),
   setStageRef: (stageRef) => set({ stageRef }),
+  setSelectedShapeIndex: (index) => set({ selectedShapeIndex: index }),
 }));

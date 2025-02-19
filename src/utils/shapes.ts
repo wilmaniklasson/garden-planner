@@ -8,6 +8,8 @@ export enum ToolType {
   SVG = 'svg',
   CircleGrass = 'circle-grass',
   RectGrass = 'rect-grass',
+  Edit = 'edit',
+  Delete = 'delete',
 }
 
 

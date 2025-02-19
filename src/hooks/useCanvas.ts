@@ -10,15 +10,13 @@ import { useCanvasStore } from '../store/canvasStore';
 
 export const useCanvas = () => {
   const [shapes, setShapes] = useState<Shape[]>([]); // All shapes on the canvas
-  const { windowSize, stageRef, setWindowSize} = useCanvasStore();
+  const { stageRef, setWindowSize} = useCanvasStore(); // Zustand
  
   const {
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
     handleDelete,
-    selectedShapeIndex,
-    setSelectedShapeIndex
   } = useCanvasEvents(shapes, setShapes,);
 
   // From hook useFirebaseCanvas
@@ -61,14 +59,10 @@ export const useCanvas = () => {
   return {
     shapes,
     setShapes,
-    windowSize,
-    stageRef,
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,
     handleDelete,
-    selectedShapeIndex,
-    setSelectedShapeIndex,
     handleExport,
     saveCanvasToFirebase,
     loadCanvasFromFirebase,

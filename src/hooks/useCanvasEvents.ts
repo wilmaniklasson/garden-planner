@@ -1,18 +1,12 @@
-// /hooks/useCanvasEvents.ts
-import { useState } from 'react';
 import { Shape, ToolType, loadImage } from '../utils/shapes';
 import { useCanvasToolsStore } from '../store/CanvasToolsStore';
 import { useCanvasStore } from '../store/canvasStore';
 
-export const useCanvasEvents = (
+export const useCanvasEvents = (shapes: Shape[], setShapes: React.Dispatch<React.SetStateAction<Shape[]>> ) => {
 
-  shapes: Shape[], 
-  setShapes: React.Dispatch<React.SetStateAction<Shape[]>>, 
   
-) => {
-  const [selectedShapeIndex, setSelectedShapeIndex] = useState<number | null>(null);
-  const { tool, color, lineWidth, SVG } = useCanvasToolsStore(); 
-    const {stageRef, isDrawing, setIsDrawing} = useCanvasStore();
+  const { tool, color, lineWidth, SVG } = useCanvasToolsStore(); // Zustand
+  const {stageRef, isDrawing, setIsDrawing, setSelectedShapeIndex,} = useCanvasStore(); // Zustand
 
   const handleMouseDown = async () => {
     if (!stageRef.current) return;
@@ -100,8 +94,6 @@ export const useCanvasEvents = (
     handleMouseMove,
     handleMouseUp,
     handleDelete,
-    selectedShapeIndex,
-    setSelectedShapeIndex
   };
 };
 

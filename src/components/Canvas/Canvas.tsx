@@ -10,8 +10,8 @@ import { useCanvasStore } from '../../store/canvasStore';
 
 
 const Canvas: React.FC = () => {
-  const { tool } = useCanvasToolsStore(); 
-  const { windowSize, stageRef,} = useCanvasStore();
+  const { tool } = useCanvasToolsStore(); // Zustand
+  const { windowSize, stageRef, selectedShapeIndex, setSelectedShapeIndex} = useCanvasStore(); // Zustand
   const {
     shapes,
     setShapes,
@@ -19,8 +19,6 @@ const Canvas: React.FC = () => {
     handleMouseMove,
     handleMouseUp,
     handleDelete,
-    selectedShapeIndex,
-    setSelectedShapeIndex,
     handleExport,
     saveCanvasToFirebase,
     handleZoom,
@@ -53,8 +51,8 @@ const Canvas: React.FC = () => {
   };
 
   const aspectRatio = 2600 / 1548;
-const canvasWidth = windowSize.width * 0.7; // Calculate canvas width based on window size
-const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height based on aspect ratio
+  const canvasWidth = windowSize.width * 0.7; // Calculate canvas width based on window size
+  const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height based on aspect ratio
 
 
 
@@ -69,9 +67,6 @@ const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height base
         saveCanvasToFirebase={() => saveCanvasToFirebase(shapes)}
         handleZoom={handleZoom}
       />
-  
-   
-
         {/* Konva Stage component (canvas area) */}
         <Stage className='canvas'
           width={canvasWidth} // Use calculated canvasWidth
