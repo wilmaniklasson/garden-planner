@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
 import './SidePanel.css';
-import { MdGrass, } from 'react-icons/md';
-//import {  MdFence, MdLocalFlorist } from 'react-icons/md';
-//import { FaTree } from 'react-icons/fa';
 import icon from '../../assets/garden-planner-icon.svg';
 // Bushes
 import SquircleBush from '../../assets/images/Squircle-Bush.svg';
@@ -17,11 +14,13 @@ import TripleLayerPinkFlower from '../../assets/images/Triple-Layer-Pink-Flower.
 import MultiLayeredPinkFlower from '../../assets/images/Multi-Layered-Pink-Flower.svg';
 import PinkFlowerGroup from '../../assets/images/Pink-Flower-Group.svg';
 import BigPinkFloweGroup from '../../assets/images/Big-Pink-Flower-Group.svg';
-import './GroundMaterials.css';
+import './options.css';
 
-import circleGrass from '../../assets/images/GroundMaterials/circle-grass.svg';
-import rectGrass from '../../assets/images/GroundMaterials/rect-grass.svg';
 import { useCanvasToolsStore } from '../../store/CanvasToolsStore';
+import GroundMaterials from './GroundMaterials';
+import TreesAndBushes from './TreesAndBushes';
+import Plants from './Plants';
+import Decoration from './Decoration';
 
 
 
@@ -34,12 +33,18 @@ const Controls: React.FC = () => {
     setCollapsed(!collapsed); // Uppdatera collapsed state
   };
 
-  const [showOptions, setShowOptions] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTool, setSelectedTool] = useState<string>('');
+
 
   const handleSelectTool = (tool: string) => {
     setTool(tool);
     setSelectedTool(tool);
+  };
+  
+
+  const toggleCategory = (category: string) => {
+    setSelectedCategory(prev => (prev === category ? null : category));
   };
 
   return (
@@ -56,45 +61,51 @@ const Controls: React.FC = () => {
        
     
       <div>
-      <div className='icon' onClick={() => setShowOptions(!showOptions)}>
-        <MdGrass size={40} color="#382918" />
-        <h2 className='option-name'>Ground Materials</h2>
-      </div>
+  <GroundMaterials 
+    selectedTool={selectedTool} 
+    handleSelectTool={handleSelectTool}
+    isOpen={selectedCategory === "groundMaterials"} 
+    toggle={() => toggleCategory("groundMaterials")} 
+  />
+  
+  <TreesAndBushes 
+    selectedTool={selectedTool} 
+    isOpen={selectedCategory === "treesAndBushes"} 
+    toggle={() => toggleCategory("treesAndBushes")} 
+    handleSelectTool={(tool, svg) => {
+      setTool(tool);
+      setSVG(svg);
+    }}
+  />
+
+  <Plants 
+    selectedTool={selectedTool} 
+    isOpen={selectedCategory === "plants"} 
+    toggle={() => toggleCategory("plants")} 
+    handleSelectTool={(tool, svg) => {
+      setTool(tool);
+      setSVG(svg);
+    }}
+  />
+
+  <Decoration 
+    selectedTool={selectedTool} 
+    isOpen={selectedCategory === "decoration"} 
+    toggle={() => toggleCategory("decoration")} 
+    handleSelectTool={(tool, svg) => {
+      setTool(tool);
+      setSVG(svg);
+    }}
+  />
+</div>
+
+
       
-      {showOptions && (
-        <div className='options'>
-          <button 
-            className={`option-button ${selectedTool === 'circle-grass' ? 'selected' : ''}`} 
-            onClick={() => handleSelectTool('circle-grass')}
-          >
-            <img src={circleGrass} alt="Grass Circle" className='option-image' />
-            <p className='option-text'>Round Lawn</p>
-          </button>
-          <button 
-            className={`option-button ${selectedTool === 'rect-grass' ? 'selected' : ''}`} 
-            onClick={() => handleSelectTool('rect-grass')}
-          >
-            <img src={rectGrass} alt="Grass Rectangle" className='option-image' />
-            <p className='option-text'>Rect Lawn</p>
-          </button>
-        </div>
-      )}
-    </div>
+    
+    
+
       
-      {/*
-      <div className='icon'>
-        <FaTree size={40} color="#382918" />
-        <h2>Trees & Bushes</h2>
-      </div>
-      <div className='icon'>
-        <MdLocalFlorist size={40} color="#382918" />
-        <h2>Plants & Flowers</h2>
-      </div>
-      <div className='icon'>
-        <MdFence size={40} color="#382918" />
-        <h2>Decoration</h2>
-      </div>
-      */}
+      
     
     <div className={`controls ${collapsed ? 'collapsed' : ''}`}>
       {/* Color Picker */}

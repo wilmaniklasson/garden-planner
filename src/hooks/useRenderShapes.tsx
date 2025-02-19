@@ -40,7 +40,7 @@ export const useRenderShapes = () => {
         case 'rect':
           return <Rect key={index} {...shapeProps} x={shape.x} y={shape.y} width={shape.width || 100} height={shape.height || 100} fill={shape.color} />;
         case 'svg':
-          return shape.image && typeof shape.image !== 'string' ? <Image key={index} {...shapeProps} x={shape.x} y={shape.y} image={shape.image} width={150} height={170} /> : null;
+          return shape.image && typeof shape.image !== 'string' ? <Image key={index} {...shapeProps} x={shape.x} y={shape.y} image={shape.image} width={70} height={70} /> : null;
         case 'circle-grass':
           return <Circle key={index} {...shapeProps} x={shape.x} y={shape.y} radius={shape.radius || 50} fill={shape.color} />;
         case 'rect-grass':

@@ -55,20 +55,6 @@
   transition: 0.3s ease;
 }
 
-.icon {
-  display: flex;
-  align-items: center;
-  font-size: 1.5rem;
-  color: #333;
-  cursor: pointer;
-  transition: 0.3s ease;
-  border-bottom: 1px solid #ccc;
-}
-
-.option-name {
-  font-size: 1rem;
-  margin-bottom: 0;
-}
 
 
 
