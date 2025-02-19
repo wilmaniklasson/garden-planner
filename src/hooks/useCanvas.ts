@@ -1,23 +1,17 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Shape } from '../utils/shapes';
-import Konva from 'konva';
 import { getAuth } from 'firebase/auth';
 import { useZoom } from "./useZoom";
 import { exportCanvas } from "../utils/exportCanvas";
 import { useFirebaseCanvas } from "./useFirebaseCanvas";
 import { useCanvasEvents } from './useCanvasEvents';
-import { useCanvasToolsStore } from '../store/store';
+import { useCanvasStore } from '../store/canvasStore';
 
 
 export const useCanvas = () => {
-  const { tool, color, lineWidth, SVG } = useCanvasToolsStore(); 
   const [shapes, setShapes] = useState<Shape[]>([]); // All shapes on the canvas
-  const [isDrawing, setIsDrawing] = useState(false); // If the user is currently drawing
-  const stageRef = useRef<Konva.Stage | null>(null); // stage referens to access the Konva stage
-  const [windowSize, setWindowSize] = useState({ width: window.innerWidth,height: window.innerHeight,});
-  
-  
-  // From hook useCanvasEvents
+  const { windowSize, stageRef, setWindowSize} = useCanvasStore();
+ 
   const {
     handleMouseDown,
     handleMouseMove,
@@ -25,7 +19,7 @@ export const useCanvas = () => {
     handleDelete,
     selectedShapeIndex,
     setSelectedShapeIndex
-  } = useCanvasEvents(tool, shapes, setShapes, stageRef, isDrawing, setIsDrawing, SVG, color, lineWidth);
+  } = useCanvasEvents(shapes, setShapes,);
 
   // From hook useFirebaseCanvas
   const { saveCanvasToFirebase, loadCanvasFromFirebase } = useFirebaseCanvas(setShapes);

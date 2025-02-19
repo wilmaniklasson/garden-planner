@@ -5,15 +5,16 @@ import { useEffect, useRef } from 'react';
 import Konva from 'konva'; 
 import Controls from '../SidePanel/Controls';
 import CanvasHeader from '../CanvasHeader/CanvasHeader';
-import { useCanvasToolsStore } from '../../store/store';
+import { useCanvasToolsStore } from '../../store/CanvasToolsStore';
+import { useCanvasStore } from '../../store/canvasStore';
+
 
 const Canvas: React.FC = () => {
   const { tool } = useCanvasToolsStore(); 
+  const { windowSize, stageRef,} = useCanvasStore();
   const {
     shapes,
     setShapes,
-    windowSize,
-    stageRef,
     handleMouseDown,
     handleMouseMove,
     handleMouseUp,

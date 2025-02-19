@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Konva from "konva";
-import { useCanvasStore } from "../store/store";
+import { useCanvasZoomStore } from "../store/CanvasZoomStore";
 
 export const useZoom = (stageRef: React.RefObject<Konva.Stage>) => {
   useEffect(() => {
@@ -17,7 +17,7 @@ export const useZoom = (stageRef: React.RefObject<Konva.Stage>) => {
       const pointer = stage.getPointerPosition();
       if (!pointer) return;
 
-      const { scale, setScale } = useCanvasStore.getState();
+      const { scale, setScale } = useCanvasZoomStore.getState();
       const newScale = e.deltaY > 0 ? scale / scaleBy : scale * scaleBy;
       const minScale = 0.5;
       const maxScale = 3;
@@ -53,7 +53,7 @@ export const useZoom = (stageRef: React.RefObject<Konva.Stage>) => {
     if (!stage) return;
 
     const scaleBy = 1.05;
-    const { scale, setScale } = useCanvasStore.getState();
+    const { scale, setScale } = useCanvasZoomStore.getState();
     const newScale = zoomIn ? scale * scaleBy : scale / scaleBy;
     const minScale = 0.5;
     const maxScale = 3;

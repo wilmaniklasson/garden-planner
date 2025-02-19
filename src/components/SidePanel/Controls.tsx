@@ -21,7 +21,7 @@ import './GroundMaterials.css';
 
 import circleGrass from '../../assets/images/GroundMaterials/circle-grass.svg';
 import rectGrass from '../../assets/images/GroundMaterials/rect-grass.svg';
-import { useCanvasToolsStore } from '../../store/store';
+import { useCanvasToolsStore } from '../../store/CanvasToolsStore';
 
 
 

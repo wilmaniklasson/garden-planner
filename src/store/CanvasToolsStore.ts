@@ -1,17 +1,5 @@
 import { create } from "zustand";
 
-// interface for Canvas zoom state
-interface CanvasState {
-  scale: number;
-  setScale: (scale: number) => void;
-}
-
-export const useCanvasStore = create<CanvasState>((set) => ({
-  scale: 1, // Default scale
-  setScale: (scale) => set({ scale }),
-}));
-
-
 // interface for Canvas Tools
 interface CanvasToolsState {
   tool: string;

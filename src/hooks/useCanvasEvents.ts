@@ -1,20 +1,18 @@
 // /hooks/useCanvasEvents.ts
 import { useState } from 'react';
 import { Shape, ToolType, loadImage } from '../utils/shapes';
-import Konva from 'konva';
+import { useCanvasToolsStore } from '../store/CanvasToolsStore';
+import { useCanvasStore } from '../store/canvasStore';
 
 export const useCanvasEvents = (
-  tool: string, 
+
   shapes: Shape[], 
   setShapes: React.Dispatch<React.SetStateAction<Shape[]>>, 
-  stageRef: React.RefObject<Konva.Stage>, 
-  isDrawing: boolean, 
-  setIsDrawing: React.Dispatch<React.SetStateAction<boolean>>, 
-  SVG: string,
-  color: string,
-  lineWidth: number,
+  
 ) => {
   const [selectedShapeIndex, setSelectedShapeIndex] = useState<number | null>(null);
+  const { tool, color, lineWidth, SVG } = useCanvasToolsStore(); 
+    const {stageRef, isDrawing, setIsDrawing} = useCanvasStore();
 
   const handleMouseDown = async () => {
     if (!stageRef.current) return;
