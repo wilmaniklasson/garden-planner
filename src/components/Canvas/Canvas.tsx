@@ -1,5 +1,5 @@
 import './Canvas.css'; 
-import { Stage, Layer,Transformer } from 'react-konva';
+import { Stage, Layer,Transformer, Rect } from 'react-konva';
 import { useCanvas } from '../../hooks/useCanvas';
 import { useEffect, useRef } from 'react';
 import Konva from 'konva'; 
@@ -10,7 +10,7 @@ import { useRenderShapes } from '../../hooks/useRenderShapes';
 
 
 const Canvas: React.FC = () => {
-  const { windowSize, stageRef, selectedShapeIndex,} = useCanvasStore(); // Zustand
+  const { windowSize, stageRef, selectedShapeIndex, setSelectedShapeIndex} = useCanvasStore(); // Zustand
   const {
     shapes,
     setShapes,
@@ -24,6 +24,10 @@ const Canvas: React.FC = () => {
   } = useCanvas();
   
   const transformerRef = useRef<Konva.Transformer | null>(null);  // Used to manipulate objects on the canvas
+  const handleDeselect = () => {
+    setSelectedShapeIndex(null);
+  };
+  
 
   useEffect(() => {
     // If stageRef or transformerRef doesn't exist or no object is selected, do nothing
@@ -80,6 +84,13 @@ const Canvas: React.FC = () => {
           saveCanvasToFirebase={saveCanvasToFirebase}
         >
           <Layer className="canvas-layer">
+          <Rect
+              width={canvasWidth}
+              height={canvasHeight}
+              fill="transparent"
+              onClick={handleDeselect}
+              onTap={handleDeselect}
+            />
             {renderShapes(shapes, handleDelete, handleDragEnd)}
             {selectedShapeIndex !== null && <Transformer ref={transformerRef} touchEnabled={true} />}
           </Layer>
