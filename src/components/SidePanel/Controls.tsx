@@ -21,20 +21,13 @@ import './GroundMaterials.css';
 
 import circleGrass from '../../assets/images/GroundMaterials/circle-grass.svg';
 import rectGrass from '../../assets/images/GroundMaterials/rect-grass.svg';
+import { useCanvasToolsStore } from '../../store/store';
 
 
-interface ControlsProps {
-  tool: string;  // Selected tool
-  setTool: React.Dispatch<React.SetStateAction<string>>;  // Update selected tool
-  color: string;  // Selected color
-  setColor: React.Dispatch<React.SetStateAction<string>>;  // Update selected color
-  selectedSVG: string;  // Selected SVG
-  setSelectedSVG: React.Dispatch<React.SetStateAction<string>>;  // Update selected SVG
-  lineWidth: number; // Line width
-  setLineWidth: React.Dispatch<React.SetStateAction<number>>; // Update line width
-}
 
-const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, selectedSVG, setSelectedSVG, lineWidth, setLineWidth, }) => {
+
+const Controls: React.FC = () => {
+  const { tool, setTool, color, setColor, lineWidth, setLineWidth, SVG, setSVG} = useCanvasToolsStore(); 
   const [collapsed, setCollapsed] = useState(false); 
 
   const togglePanel = () => {
@@ -148,8 +141,8 @@ const Controls: React.FC<ControlsProps> = ({ tool, setTool, color, setColor, sel
       <label>Select SVG:</label>
       <select 
         title="Choose an SVG" 
-        value={selectedSVG} 
-        onChange={(e) => setSelectedSVG(e.target.value)} 
+        value={SVG} 
+        onChange={(e) => setSVG(e.target.value)} 
       >
         <option value="">None</option>
         <option value={SquircleBush}>Squircle Bush</option>

@@ -5,17 +5,13 @@ import { useEffect, useRef } from 'react';
 import Konva from 'konva'; 
 import Controls from '../SidePanel/Controls';
 import CanvasHeader from '../CanvasHeader/CanvasHeader';
+import { useCanvasToolsStore } from '../../store/store';
 
 const Canvas: React.FC = () => {
+  const { tool } = useCanvasToolsStore(); 
   const {
-    tool,
-    setTool,
-    color,
-    setColor,
     shapes,
     setShapes,
-    selectedSVG,
-    setSelectedSVG,
     windowSize,
     stageRef,
     handleMouseDown,
@@ -24,8 +20,6 @@ const Canvas: React.FC = () => {
     handleDelete,
     selectedShapeIndex,
     setSelectedShapeIndex,
-    lineWidth,
-    setLineWidth,
     handleExport,
     saveCanvasToFirebase,
     handleZoom,
@@ -66,17 +60,8 @@ const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height base
   return (
     <div className="canvas-container">
       {/* Control panel with tools and settings */}
-      <Controls 
-        tool={tool}
-        setTool={setTool}
-        color={color}
-        setColor={setColor}
-        selectedSVG={selectedSVG}
-        setSelectedSVG={setSelectedSVG}
-        lineWidth={lineWidth}
-        setLineWidth={setLineWidth}
+      <Controls/>
       
-      />
  <div className="main-content">
       <CanvasHeader 
         handleExport={handleExport}

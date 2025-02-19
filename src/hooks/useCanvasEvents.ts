@@ -10,7 +10,7 @@ export const useCanvasEvents = (
   stageRef: React.RefObject<Konva.Stage>, 
   isDrawing: boolean, 
   setIsDrawing: React.Dispatch<React.SetStateAction<boolean>>, 
-  selectedSVG: string,
+  SVG: string,
   color: string,
   lineWidth: number,
 ) => {
@@ -47,7 +47,7 @@ export const useCanvasEvents = (
         newShape = { id: Date.now().toString(), tool: ToolType.Rect , x: pos.x, y: pos.y, color: color, width: 80, height: 80 };
         break;
       case 'svg': {
-        const img = await loadImage(selectedSVG);
+        const img = await loadImage(SVG);
         newShape = { id: Date.now().toString(), tool: ToolType.SVG, x: pos.x, y: pos.y, image: img };
         break;
       }
