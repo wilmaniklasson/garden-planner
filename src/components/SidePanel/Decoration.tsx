@@ -1,6 +1,5 @@
 import {  MdFence} from 'react-icons/md';
 
-
 import './Options.css';
 import OptionProps from './OptionProps';
 import Pool from '../../assets/images/Decoration/Pool.svg';
@@ -35,5 +34,6 @@ const Decoration: React.FC<OptionProps> = ({ selectedTool, selectedSVG, handleSe
     </div>
   );
 };
+
 
 export default Decoration;

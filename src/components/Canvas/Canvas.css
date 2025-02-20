@@ -1,17 +1,13 @@
 .canvas-container {
-   display: flex;
-   flex-direction: row;
-   margin: 0;
-   padding: 0;
-  }
-
-  .main-content {
+  flex-grow: 1;
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin: 0;
-    padding: 0;
+    height: 100vh;
+    overflow: auto;
   }
+  
+
+  
 
   .konvajs-content {
     display: flex;
@@ -19,9 +15,8 @@
     padding: 0;
     background-color: rgb(241, 239, 239);
     border: 2px solid rgb(84, 84, 84);
-    
     border-radius: 5px;
-    margin: 0;
+    margin-bottom: 1rem;
     padding: 0;
   }
 
@@ -29,4 +24,5 @@
     display: flex;
     justify-content: center;
     width: 100%;
+
   }

@@ -3,15 +3,10 @@ import { MdGrass } from 'react-icons/md';
 import './Options.css';
 import circleGrass from '../../assets/images/GroundMaterials/circle-grass.svg';
 import rectGrass from '../../assets/images/GroundMaterials/rect-grass.svg';
+import OptionProps from './OptionProps';
 
-interface GroundMaterialsProps {
-    selectedTool: string;
-    handleSelectTool: (tool: string) => void;
-    isOpen: boolean;
-    toggle: () => void;
-    }
 
-  const GroundMaterials: React.FC<GroundMaterialsProps> = ({ selectedTool, handleSelectTool, isOpen, toggle }) => {
+  const GroundMaterials: React.FC<OptionProps> = ({ selectedTool, handleSelectTool, isOpen, toggle }) => {
     return (
       <div>
         <div className='icon' onClick={toggle}>
@@ -22,8 +17,8 @@ interface GroundMaterialsProps {
         {isOpen && (
           <div className='options'>
             <button 
-              className={`option-button ${selectedTool === 'circle-grass' ? 'selected' : ''}`} 
-              onClick={() => handleSelectTool('circle-grass')}
+            className={`option-button ${selectedTool === 'circle-grass' ? 'selected' : ''}`} 
+            onClick={() => handleSelectTool('circle-grass')}
             >
               <img src={circleGrass} alt="Grass Circle" className='option-image' />
               <p className='option-text'>Round Lawn</p>

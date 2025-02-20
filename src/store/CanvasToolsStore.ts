@@ -18,7 +18,7 @@ export const useCanvasToolsStore = create<CanvasToolsState>((set) => ({
   setTool: (tool) => set({ tool }),
   lineWidth: 3, // Default line width
   setLineWidth: (lineWidth) => set({ lineWidth }),
-  color: '#ff0000', // Default color
+  color: '#6AB96D', // Default color
   setColor: (color) => set({ color }),
   SVG: '', // Default SVG
   setSVG: (SVG) => set({ SVG }),

@@ -3,7 +3,6 @@ import { Stage, Layer,Transformer, Rect } from 'react-konva';
 import { useCanvas } from '../../hooks/useCanvas';
 import { useEffect, useRef } from 'react';
 import Konva from 'konva'; 
-import Controls from '../SidePanel/Controls';
 import CanvasHeader from '../CanvasHeader/CanvasHeader';
 import { useCanvasStore } from '../../store/canvasStore';
 import { useRenderShapes } from '../../hooks/useRenderShapes';
@@ -61,10 +60,8 @@ const Canvas: React.FC = () => {
 
   return (
     <div className="canvas-container">
-      {/* Control panel with tools and settings */}
-      <Controls/>
       
- <div className="main-content">
+
       <CanvasHeader 
         handleExport={handleExport}
         saveCanvasToFirebase={() => saveCanvasToFirebase(shapes)}
@@ -95,7 +92,7 @@ const Canvas: React.FC = () => {
             {selectedShapeIndex !== null && <Transformer ref={transformerRef} touchEnabled={true} />}
           </Layer>
         </Stage>
-        </div>
+
      
     </div>
   );
