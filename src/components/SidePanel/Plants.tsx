@@ -9,8 +9,8 @@ const Plants: React.FC<OptionProps> = ({ selectedTool, selectedSVG, handleSelect
   return (
     <div>
 
-      <div className='icon' onClick={toggle}>
-        <MdLocalFlorist size={40} color="#382918" />
+      <div className='icon-container' onClick={toggle}>
+        <MdLocalFlorist className='icon' size={40} color="#382918" />
         <h2 className='option-name'>Plants</h2>
       </div>
 

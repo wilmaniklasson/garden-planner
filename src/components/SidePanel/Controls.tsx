@@ -51,7 +51,7 @@ const Controls: React.FC = () => {
         <h1>Garden Planner</h1>
         <img className='Garden-Planner-Icon' src={icon} alt="Garden Planner Icon" />
       </div>
-    
+      <div className='side-panel-content'>
       <Actions
         selectedTool={selectedTool}
         isOpen={selectedCategory === 'actions'}
@@ -112,8 +112,7 @@ const Controls: React.FC = () => {
             lineWidth={lineWidth}
             setLineWidth={setLineWidth}
           />
-
-
+      </div>
     </aside>
     </>
 

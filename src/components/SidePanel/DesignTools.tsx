@@ -26,8 +26,8 @@ const DesignTools: React.FC<DesignToolsProps> = ({
   return (
     <div className="design-tools-wrapper">
       <div className="design-tools">
-        <div className="icon" onClick={toggle}>
-          <FaPaintBrush size={40} color="#382918" />
+        <div className="icon-container" onClick={toggle}>
+          <FaPaintBrush className="icon" size={40} color="#382918" />
           <h2 className="option-name">Design Tools</h2>
         </div>
 

@@ -9,8 +9,8 @@ import OptionProps from './OptionProps';
   const GroundMaterials: React.FC<OptionProps> = ({ selectedTool, handleSelectTool, isOpen, toggle }) => {
     return (
       <div>
-        <div className='icon' onClick={toggle}>
-          <MdGrass size={40} color="#382918" />
+        <div className='icon-container' onClick={toggle}>
+          <MdGrass className='icon' size={40} color="#382918" />
           <h2 className='option-name'>Ground Materials</h2>
         </div>
   

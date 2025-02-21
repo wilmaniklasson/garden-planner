@@ -1,3 +1,4 @@
+/* ================ Options ================ */
 .options {
   display: flex;
   flex-direction: row;
@@ -6,6 +7,8 @@
   gap: 8px;
   margin-top: 0.5rem;
 }
+
+/* ================ Design Tools Options ================ */
 .DesignTools-options {
   display: flex;
   flex-direction: column;
@@ -16,6 +19,7 @@
   padding-bottom: 1rem;
 }
 
+/* ================ Option Button ================ */
 .option-button {
   display: flex;
   flex-direction: column;
@@ -32,30 +36,30 @@
   transform: scale(1.1);
 }
 
-
+/* ================ Option Image ================ */
 .option-image {
-  width: 50px; 
+  width: 50px;
   height: 50px;
   object-fit: contain;
 }
 
+/* ================ Selected Option Button ================ */
 .option-button.selected img {
   border: 2px solid #382918 !important;
   border-radius: 5px;
   padding: 4px;
 }
 
-  
-
+/* ================ Option Text ================ */
 .option-text {
- font-size: 11px;
- text-align: center;
- margin: 0;
- color: #382918;
+  font-size: 11px;
+  text-align: center;
+  margin: 0;
+  color: #382918;
 }
-  
-  
-.icon {
+
+/* ================ Icon ================ */
+.icon-container {
   display: flex;
   align-items: center;
   font-size: 1.5rem;
@@ -63,19 +67,27 @@
   cursor: pointer;
   transition: 0.3s ease;
   border-bottom: 1px solid #ccc;
-  margin: 0.6rem 0;
+}
+.icon {
+  width: 40px;
+  height: 40px;
+  padding: 0.2rem;
 }
 
+/* ================ Option Name ================ */
 .option-name {
   font-size: 1rem;
   margin-bottom: 0;
 }
 
+/* ================ Tool Selector ================ */
 .tool-selector {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
+
+/* ================ Design Button ================ */
 .design-button {
   background-color: #382918;
   border: none;
@@ -85,8 +97,9 @@
   transition: transform 0.2s;
 }
 
+/* ================ Draw Icon ================ */
 .Draw-icon {
-  width: 24px; 
+  width: 24px;
   height: 24px;
   color: #333;
   transition: transform 0.2s ease-in-out;
@@ -102,6 +115,7 @@
   padding: 4px;
 }
 
+/* ================ Line Width Container ================ */
 .line-width-container {
   display: flex;
   flex-direction: column;
@@ -110,12 +124,15 @@
   font-family: Arial, sans-serif;
 }
 
+/* ================ Slider Wrapper ================ */
 .slider-wrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
   gap: 12px;
 }
 
+/* ================ Styled Slider ================ */
 .styled-slider {
   -webkit-appearance: none;
   width: 150px;
@@ -146,6 +163,7 @@
   transform: scale(1.2);
 }
 
+/* ================ Line Preview ================ */
 .line-preview {
   background-color: #4caf50;
   border-radius: 50%;
@@ -153,6 +171,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
+/* ================ Color Picker ================ */
 .color-picker {
   display: flex;
   flex-direction: column;
@@ -161,7 +180,7 @@
   font-family: Arial, sans-serif;
 }
 
-
+/* ================ Color Option ================ */
 .color-option {
   display: flex;
   flex-direction: column;
@@ -169,22 +188,51 @@
   justify-content: center;
   width: fit-content;
   height: fit-content;
-
 }
 
+/* ================ Color Option Circle Preview ================ */
 .color-option-circle-preview {
   border-radius: 100%;
 }
 
+/* ================ Color Option Rectangle and Circle Preview ================ */
 .color-option-Rectangle-preview, .color-option-circle-preview {
   width: 40px;
   height: 40px;
   border: 2px solid #ccc;
 }
 
-.option-button.selected  .color-option{
+/* ================ Selected Color Option ================ */
+.option-button.selected  .color-option {
   border: 2px solid #382918;
   border-radius: 5px;
   padding: 4px;
 }
 
+
+@media screen and (max-width: 768px) {
+ 
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .Draw-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+/* For very small screens (max-height: 500px) */
+@media screen and (max-height: 500px) {
+  
+  .icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .Draw-icon {
+    width: 20px;
+    height: 20px;
+  }
+}

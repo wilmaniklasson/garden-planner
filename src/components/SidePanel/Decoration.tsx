@@ -9,8 +9,8 @@ const Decoration: React.FC<OptionProps> = ({ selectedTool, selectedSVG, handleSe
   return (
     <div>
 
-      <div className='icon' onClick={toggle}>
-      <MdFence size={40} color="#382918" />
+      <div className='icon-container' onClick={toggle}>
+      <MdFence className='icon' size={40} color="#382918" />
       <h2 className='option-name'>Decoration</h2>
       </div>
 

@@ -8,8 +8,8 @@ const TreesAndBushes: React.FC<OptionProps> = ({ selectedTool, selectedSVG, hand
   return (
     <div>
 
-      <div className='icon' onClick={toggle}>
-        <FaTree size={40} color="#382918" />
+      <div className='icon-container' onClick={toggle}>
+        <FaTree className='icon' size={40} color="#382918" />
         <h2 className='option-name'>Trees & Bushes</h2>
       </div>
 
