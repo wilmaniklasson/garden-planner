@@ -40,6 +40,7 @@ button {
   .zoom-button:hover {
     background-color: var(--color-light-gray);
   }
+  
 
   /* For small screens (768px or below) */
 @media screen and (max-width: 768px) {

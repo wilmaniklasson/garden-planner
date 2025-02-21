@@ -27,7 +27,7 @@
 .side-panel-header {
   display: flex;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin: 0;
 }
 .side-panel-header .Garden-Planner-Icon {
   width: 50px;
@@ -35,6 +35,7 @@
 
 .side-panel-header h1 {
   font-size: 1.3rem;
+  margin: 0.5rem;
 }
 
 .side-panel-content {
@@ -74,6 +75,7 @@
 .side-panel.collapsed .icon-container {
   justify-content: center;
 }
+
 
 
 /* ================ Media Queries ================ */
