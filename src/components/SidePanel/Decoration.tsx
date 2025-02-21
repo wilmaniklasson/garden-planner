@@ -1,7 +1,6 @@
 import { MdFence } from 'react-icons/md';
 import './Options.css';
 import OptionProps from './OptionProps';
-import Pool from '../../assets/images/Decoration/Pool.svg';
 import OptionsList from './OptionsList';
 import StonePatio from '../../assets/images/Decoration/Stone-Patio.svg';
 import Pathway from '../../assets/images/Decoration/Pathway.svg';
