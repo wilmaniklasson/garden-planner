@@ -60,6 +60,16 @@
   transform: scale(1.05);
 }
 
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+  background-color: #f3f4f6;
+  box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+}
+
 @media screen and (max-width: 1030px) {
   .homepage-wrapper {
     width: 70%;

@@ -19,6 +19,7 @@ const HomePage = () => {
   };
 
   return (
+    <>
     <div className="homepage-container">
       <div className="homepage-wrapper">
         <h1 className="homepage-title">Welcome!</h1>
@@ -41,6 +42,12 @@ const HomePage = () => {
       
       </div>
     </div>
+    <footer>
+  <p>Some icons in this project are created by <a href="https://www.freepik.com/author/macrovector-official" target="_blank" rel="noopener">macrovector_official</a>, <a href="https://www.freepik.com/author/brgfx" target="_blank" rel="noopener">brgfx</a>, and <a href="https://www.freepik.com/author/pch-vector" target="_blank" rel="noopener">pch.vector</a>, and are used under Freepik's license.</p>
+</footer>
+
+    </>
+    
   );
 };
 
