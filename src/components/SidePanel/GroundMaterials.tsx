@@ -20,14 +20,21 @@ import OptionProps from './OptionProps';
             className={`option-button ${selectedTool === 'circle-grass' ? 'selected' : ''}`} 
             onClick={() => handleSelectTool('circle-grass')}
             >
-              <img src={circleGrass} alt="Grass Circle" className='option-image' />
+                <div className='option-image-container'>
+                  <img src={circleGrass} alt="Grass Circle" className='option-image' />
+                </div>
+             
               <p className='option-text'>Round Lawn</p>
             </button>
             <button 
               className={`option-button ${selectedTool === 'rect-grass' ? 'selected' : ''}`} 
               onClick={() => handleSelectTool('rect-grass')}
             >
-              <img src={rectGrass} alt="Grass Rectangle" className='option-image' />
+               <div className='option-image-container'>
+                <img src={rectGrass} alt="Grass Rectangle" className='option-image' />
+
+               </div>
+              
               <p className='option-text'>Rect Lawn</p>
             </button>
           </div>

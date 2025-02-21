@@ -27,7 +27,7 @@ const DesignTools: React.FC<DesignToolsProps> = ({
     <div className="design-tools-wrapper">
       <div className="design-tools">
         <div className="icon-container" onClick={toggle}>
-          <FaPaintBrush className="icon" size={40} color="#382918" />
+          <FaPaintBrush className="icon-container"size={40} color="#382918" />
           <h2 className="option-name">Design Tools</h2>
         </div>
 
@@ -39,11 +39,11 @@ const DesignTools: React.FC<DesignToolsProps> = ({
                 className={`option-button ${selectedTool === 'circle' ? 'selected' : ''}`}
                 onClick={() => handleSelectTool('circle')}
               >
-                <div className='color-option'>
-                  <div 
-                    className="color-option-circle-preview" 
-                    style={{ backgroundColor: color }}
-                  />
+                  <div className='color-option'>
+                    <div 
+                      className="color-option-circle-preview" 
+                      style={{ backgroundColor: color }}
+                    />
                 </div>
                 <label className='option-text'>Circle</label>
               </button>
@@ -58,6 +58,7 @@ const DesignTools: React.FC<DesignToolsProps> = ({
                     style={{ backgroundColor: color }}
                   />
                 </div>
+          
                 <label className='option-text'>Rectangle</label>
               </button>
             </div>
@@ -81,7 +82,9 @@ const DesignTools: React.FC<DesignToolsProps> = ({
                 className={`option-button ${selectedTool === 'line' ? 'selected' : ''}`}
                 onClick={() => handleSelectTool('line')}
               >
-                <FaPencilAlt className='Draw-icon' />
+                <div className='color-option'>
+                  <FaPencilAlt className='Draw-icon' />
+                </div>
                 <p className='option-text'>Draw</p>
               </button>
             </div>

@@ -5,7 +5,8 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 8px;
-  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 /* ================ Design Tools Options ================ */
@@ -29,33 +30,42 @@
   padding: 5px;
   margin: 0;
   cursor: pointer;
-  transition: transform 0.2s;
 }
 
-.option-button:hover {
-  transform: scale(1.1);
-}
 
 /* ================ Option Image ================ */
 .option-image {
   width: 50px;
   height: 50px;
-  object-fit: contain;
+  padding: 4px;
 }
 
 /* ================ Selected Option Button ================ */
-.option-button.selected img {
-  border: 2px solid #382918 !important;
-  border-radius: 5px;
-  padding: 4px;
+
+
+
+
+.option-image-container {
+ padding: 1px;
 }
+
+.option-image-container.selected  {
+  border: 1px solid #42a222;
+  border-radius: 4px;
+  padding: 0;
+}
+
+
+
+  
 
 /* ================ Option Text ================ */
 .option-text {
   font-size: 11px;
   text-align: center;
   margin: 0;
-  color: #382918;
+  padding: 0.5rem;
+  color: black;
 }
 
 /* ================ Icon ================ */
@@ -103,17 +113,17 @@
   height: 24px;
   color: #333;
   transition: transform 0.2s ease-in-out;
+  padding: 0.5rem;
 }
 
-.option-button:hover .Draw-icon {
-  transform: scale(1.1);
+.option-button.selected .option-image-container {
+  border: 1px solid #42a222;
+  border-radius: 4px;
+  padding: 0;
 }
 
-.option-button.selected .Draw-icon {
-  border: 2px solid #382918;
-  border-radius: 5px;
-  padding: 4px;
-}
+
+
 
 /* ================ Line Width Container ================ */
 .line-width-container {
@@ -199,14 +209,14 @@
 .color-option-Rectangle-preview, .color-option-circle-preview {
   width: 40px;
   height: 40px;
-  border: 2px solid #ccc;
+  
 }
 
 /* ================ Selected Color Option ================ */
 .option-button.selected  .color-option {
-  border: 2px solid #382918;
-  border-radius: 5px;
-  padding: 4px;
+  border: 1px solid #42a222;
+  border-radius: 4px;
+  padding: 0.5rem;
 }
 
 

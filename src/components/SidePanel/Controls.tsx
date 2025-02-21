@@ -30,7 +30,7 @@ const Controls: React.FC = () => {
 
 
 
-  const handleSelectTool = (tool: string) => {
+  const handleSelectTool = (tool: string,) => {
     setTool(tool);
     setSelectedTool(tool);
   };

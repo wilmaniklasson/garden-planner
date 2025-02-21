@@ -1,10 +1,16 @@
+
 import { FaTree } from 'react-icons/fa';
 import './Options.css';
 import OptionProps from './OptionProps';
 import CloudBush from '../../assets/images/TreesAndBushes/Cloud-Bush.svg';
 import JapaneseTree from '../../assets/images/TreesAndBushes/Japanese-Tree.svg';
+import OptionsList from './OptionsList';
 
-const TreesAndBushes: React.FC<OptionProps> = ({ selectedTool, selectedSVG, handleSelectTool, isOpen, toggle }) => {
+const TreesAndBushes: React.FC<OptionProps> = ({ selectedTool, handleSelectTool, isOpen, toggle }) => {
+  const items = [
+    { name: 'Cloud Bush', img: CloudBush },
+    { name: 'Japanese Tree', img: JapaneseTree }
+  ];
   return (
     <div>
 
@@ -13,25 +19,19 @@ const TreesAndBushes: React.FC<OptionProps> = ({ selectedTool, selectedSVG, hand
         <h2 className='option-name'>Trees & Bushes</h2>
       </div>
 
-      {isOpen && (
-        <div className='options'>
-          {[
-            { name: 'Cloud Bush', img: CloudBush },
-            { name: 'Japanese Tree', img: JapaneseTree }
-          ].map(({ name, img }) => (
-            <button 
-              key={name}
-              className={`option-button ${selectedTool === 'svg' && selectedSVG === img ? 'selected' : ''}`} 
-              onClick={() => handleSelectTool('svg', img)}
-            >
-              <img src={img} alt={name} className='option-image' />
-              <p className='option-text'>{name}</p>
-            </button>
-          ))}
-        </div>
-      )}
+      <OptionsList
+        isOpen={isOpen}
+        selectedTool={selectedTool}
+        handleSelectTool={handleSelectTool}
+        items={items}
+      />
     </div>
   );
 };
 
 export default TreesAndBushes;
+
+
+
+
+            
