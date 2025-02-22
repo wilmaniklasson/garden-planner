@@ -16,10 +16,14 @@ const OptionsList: React.FC<OptionsListProps> = ({ isOpen, handleSelectTool, ite
   const [selectedSVG, setSelectedSVG] = useState<string | undefined>(undefined);
   
   const handleSVGSelection = (img: string) => {
+    if (selectedSVG === img) {
+      setSelectedSVG('');
+    handleSelectTool('');
+  } else {
     setSelectedSVG(img);
     handleSelectTool('svg', img);
   };
-
+}
   return (
     isOpen && (
       <div className='options'>

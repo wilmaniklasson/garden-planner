@@ -22,7 +22,7 @@ const Controls: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false); 
 
   const togglePanel = () => {
-    setCollapsed(!collapsed); // Uppdatera collapsed state
+    setCollapsed(!collapsed);
   };
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -30,10 +30,17 @@ const Controls: React.FC = () => {
 
 
 
-  const handleSelectTool = (tool: string,) => {
-    setTool(tool);
-    setSelectedTool(tool);
+  const handleSelectTool = (tool: string) => {
+    if (selectedTool === tool) {
+      setTool('');
+      setSelectedTool('');
+    } else {
+      setTool(tool);
+      setSelectedTool(tool);
+    }
   };
+  
+  
   
 
   const toggleCategory = (category: string) => {
