@@ -3,12 +3,10 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
   
-
-  
-
   .konvajs-content {
     display: flex;
     flex-direction: column;
@@ -24,6 +22,4 @@
     display: flex;
     justify-content: center;
     width: 100%;
-
   }
-

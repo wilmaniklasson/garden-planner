@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useCanvasToolsStore } from '../store/CanvasToolsStore';
 import { useCanvasStore } from '../store/CanvasStore';
 import { createShape } from '../utils/canvasTools';
@@ -9,6 +10,9 @@ export const useCanvasEvents = (
 ) => {
   const { tool, color, lineWidth, SVG } = useCanvasToolsStore() as { tool: ToolType, color: string, lineWidth: number, SVG: string }; // Zustand
   const { stageRef, isDrawing, setIsDrawing, setSelectedShapeIndex } = useCanvasStore(); // Zustand
+  // State for dragging around the canvas
+  const [isDragging, setIsDragging] = useState(false);
+  const [lastPos, setLastPos] = useState<{ x: number, y: number } | null>(null);
 
   const handleMouseDown = async () => {
     if (!stageRef.current) return;
@@ -26,32 +30,54 @@ export const useCanvasEvents = (
       }
     }
 
-    if (tool === "edit") return;
+    
 
     const newShape = await createShape(tool, pos, color, lineWidth, SVG);
     if (newShape) {
       setShapes((prevShapes) => [...prevShapes, newShape]);
       if (tool === 'line') setIsDrawing(true);
     }
+
+    if (tool === "edit") 
+    // Start dragging the canvas if we click outside of a shape
+    setIsDragging(true);
+    setLastPos(pos);
+    return;
   };
 
   const handleMouseMove = () => {
-    if (!isDrawing || tool !== 'line' || !stageRef.current) return;
+    if (!stageRef.current) return;
     const stage = stageRef.current.getStage();
     const pos = stage.getPointerPosition();
     if (!pos) return;
 
-    setShapes((prevShapes) => {
-      const lastShape = prevShapes[prevShapes.length - 1];
-      if (lastShape?.points) {
-        lastShape.points = [...lastShape.points, pos.x, pos.y];
-      }
-      return [...prevShapes];
-    });
+    // Move the canvas if we are dragging
+    if (isDragging && lastPos) {
+      const dx = pos.x - lastPos.x;
+      const dy = pos.y - lastPos.y;
+      stage.position({
+        x: stage.x() + dx,
+        y: stage.y() + dy,
+      });
+      stage.batchDraw();
+      setLastPos(pos); // Update last position
+    }
+
+    // Draw the line if we are drawing
+    if (isDrawing && tool === 'line') {
+      setShapes((prevShapes) => {
+        const lastShape = prevShapes[prevShapes.length - 1];
+        if (lastShape?.points) {
+          lastShape.points = [...lastShape.points, pos.x, pos.y];
+        }
+        return [...prevShapes];
+      });
+    }
   };
 
   const handleMouseUp = () => {
     setIsDrawing(false);
+    setIsDragging(false);
   };
 
   const handleDelete = (index: number) => {
