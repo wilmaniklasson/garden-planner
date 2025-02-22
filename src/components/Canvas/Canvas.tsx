@@ -57,7 +57,7 @@ const Canvas: React.FC = () => {
 
   const renderShapes = useRenderShapes();
   const aspectRatio = 2600 / 1548;
-  const canvasWidth = windowSize.width * 0.7; // Calculate canvas width based on window size
+  const canvasWidth = (windowSize.width) ; // Calculate canvas width based on scale'
   const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height based on aspect ratio
 
 
@@ -85,7 +85,7 @@ const Canvas: React.FC = () => {
           onTouchEnd={handleMouseUp}  // Track touch end
           ref={stageRef}  // Reference to the Konva stage
           saveCanvasToFirebase={saveCanvasToFirebase}
-        >
+          style={{position: 'relative', border: '2px solid black', margin: '0.5rem', marginTop: '0', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', backgroundColor: 'white', cursor: 'grab', overflow: 'hidden' }}>
           <Layer className="canvas-layer">
           <Rect
               width={canvasWidth}
