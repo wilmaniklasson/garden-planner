@@ -60,6 +60,24 @@ const Canvas: React.FC = () => {
   const canvasWidth = (windowSize.width) ; // Calculate canvas width based on scale'
   const canvasHeight = canvasWidth / aspectRatio;  // Calculate canvas height based on aspect ratio
 
+  const { setCanvasSize } = useCanvasStore();  // Get canvasSize from Zustand
+
+  // Get stageRef from Zustand
+
+  useEffect(() => {
+    if (stageRef.current) {
+      // Use getWidth and getHeight methods for Konva Stage instance
+      const width = stageRef.current.width();
+      const height = stageRef.current.height();
+
+      // Set the size in state
+      setCanvasSize({ width, height });
+
+      // Log the size
+      console.log(`Canvas Stage - Width: ${width}, Height: ${height}`);
+    }
+  }, [stageRef]);  // Runs when stageRef changes
+
 
   return (
     <div className="canvas-container">
