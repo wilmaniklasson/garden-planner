@@ -6,7 +6,7 @@
     overflow-x: hidden;
     overflow-y: auto;
   }
-  
+
   .konvajs-content {
     display: flex;
     flex-direction: column;
