@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Shape } from '../utils/shapes';
 import { getAuth } from 'firebase/auth';
-import { useZoom } from "./useZoom";
 import { exportCanvas } from "../utils/exportCanvas";
 import { useFirebaseCanvas } from "./useFirebaseCanvas";
 import { useCanvasEvents } from './useCanvasEvents';
@@ -21,9 +20,8 @@ export const useCanvas = () => {
 
   // From hook useFirebaseCanvas
   const { saveCanvasToFirebase, loadCanvasFromFirebase } = useFirebaseCanvas(setShapes);
-  useZoom(stageRef);
 
-  const { handleZoom } = useZoom(stageRef);
+
 
   // Load the canvas from Firebase when the user logs in
   useEffect(() => {
@@ -66,6 +64,5 @@ export const useCanvas = () => {
     handleExport,
     saveCanvasToFirebase,
     loadCanvasFromFirebase,
-    handleZoom,
   };
 };

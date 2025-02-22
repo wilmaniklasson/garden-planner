@@ -2,7 +2,7 @@ import { Line, Circle, Rect, Image } from 'react-konva';
 import Konva from 'konva';
 import { Shape } from '../utils/shapes';
 import { useCanvasToolsStore } from '../store/CanvasToolsStore';
-import { useCanvasStore } from '../store/canvasStore';
+import { useCanvasStore } from '../store/CanvasStore';
 
 export const useRenderShapes = () => {
   const { tool } = useCanvasToolsStore(); // Zustand

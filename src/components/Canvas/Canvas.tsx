@@ -4,11 +4,13 @@ import { useCanvas } from '../../hooks/useCanvas';
 import { useEffect, useRef } from 'react';
 import Konva from 'konva'; 
 import CanvasHeader from '../CanvasHeader/CanvasHeader';
-import { useCanvasStore } from '../../store/canvasStore';
+import { useCanvasStore } from '../../store/CanvasStore';
 import { useRenderShapes } from '../../hooks/useRenderShapes';
+import { useCanvasZoomStore } from '../../store/CanvasZoomStore';
 
 
 const Canvas: React.FC = () => {
+  const { scale, x, y} = useCanvasZoomStore();
   const { windowSize, stageRef, selectedShapeIndex, setSelectedShapeIndex} = useCanvasStore(); // Zustand
   const {
     shapes,
@@ -19,7 +21,6 @@ const Canvas: React.FC = () => {
     handleDelete,
     handleExport,
     saveCanvasToFirebase,
-    handleZoom,
   } = useCanvas();
   
   const transformerRef = useRef<Konva.Transformer | null>(null);  // Used to manipulate objects on the canvas
@@ -39,6 +40,8 @@ const Canvas: React.FC = () => {
       transformerRef.current.getLayer()?.batchDraw();
     }
   }, [selectedShapeIndex, shapes, stageRef]);
+
+  
 
   // Function to handle when an object is dragged (moved)
   const handleDragEnd = (e: Konva.KonvaEventObject<DragEvent>, index: number) => {
@@ -65,10 +68,13 @@ const Canvas: React.FC = () => {
       <CanvasHeader 
         handleExport={handleExport}
         saveCanvasToFirebase={() => saveCanvasToFirebase(shapes)}
-        handleZoom={handleZoom}
       />
         {/* Konva Stage component (canvas area) */}
-        <Stage className='canvas'
+        <Stage className='canvas-stage'
+        scaleX={scale}  // Apply scale from zustand
+        scaleY={scale}  // Apply scale from zustand
+        x={x}  // Apply position from zustand
+        y={y}  // Apply position from zustand
           width={canvasWidth} // Use calculated canvasWidth
           height={canvasHeight} // Use calculated canvasHeight
           onMouseDown={handleMouseDown}  // Track mouse down
