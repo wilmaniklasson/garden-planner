@@ -1,5 +1,5 @@
 import { useCanvasToolsStore } from '../store/CanvasToolsStore';
-import { useCanvasStore } from '../store/canvasStore';
+import { useCanvasStore } from '../store/CanvasStore';
 import { createShape } from '../utils/canvasTools';
 import { Shape, ToolType } from '../utils/shapes';
 

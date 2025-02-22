@@ -5,7 +5,7 @@ import { useZoom } from "./useZoom";
 import { exportCanvas } from "../utils/exportCanvas";
 import { useFirebaseCanvas } from "./useFirebaseCanvas";
 import { useCanvasEvents } from './useCanvasEvents';
-import { useCanvasStore } from '../store/canvasStore';
+import { useCanvasStore } from '../store/CanvasStore';
 
 
 export const useCanvas = () => {
