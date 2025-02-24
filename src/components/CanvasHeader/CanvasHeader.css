@@ -1,16 +1,13 @@
-
-
 .canvas-header {
-  position: sticky;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 90vh;
+    height: 100%;
     background-color: white;
-    padding: 0.5rem;
     box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.1);
     z-index: 1;
     border-radius: 10px;
+    padding: 0 0.5rem;
   }
   
 button {
@@ -56,7 +53,6 @@ button {
         margin: 0.3rem;
         font-size: 0.8rem;
     }
-  
   }
   
   /* For very small screens (max-height: 500px) */

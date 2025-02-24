@@ -2,28 +2,30 @@
   flex-grow: 1;
     display: flex;
     flex-direction: row;
-    height: 100vh;
+    height: 90vh;
     overflow-x: hidden;
     overflow-y: auto;
-  }
-  
-  .canvas-stage {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    border-radius: 10px;
-    border: solid 2px black;
-    background-color: white;
-    cursor: grab;
-    overflow: hidden;
+    gap: 1rem;
   }
 
-  .canvas-wrapper {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    display: block;
-    margin: 1rem;
+  .canvas-stage {
+    position: 'relative';
+    border: 2px solid black;
+    border-Radius: 10px;
+    box-Shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   background-color: white;
+    cursor: grab;
+    overflow: hidden; 
   }
-  
+
+@media screen  and (max-width: 800px) {
+  .canvas-container {
+    gap: 0.5rem;
+  }
+}
+
+@media screen  and (max-height: 500px) {
+  .canvas-container {
+    height: 96vh;
+  }
+}

@@ -37,7 +37,7 @@ const CanvasHeader: React.FC<CanvasHeaderProps> = ({ handleExport, saveCanvasToF
       <button className="handleExport" type="button" onClick={handleExport}>Export</button>
       <button className="zoom-button" type='button' onClick={() => handleZoom(true)}>+</button>
       <button className="zoom-button" type='button' onClick={() => handleZoom(false)}>−</button>
-      <p>Zoom: {zoomPercentage}%</p>
+      <p  className='zoom'>Zoom: {zoomPercentage}%</p>
     </header>
   );
 };
