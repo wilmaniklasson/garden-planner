@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SidePanel.css';
 import icon from '../../assets/garden-planner-icon.svg';
 
@@ -39,6 +39,21 @@ const Controls: React.FC = () => {
       setSelectedTool(tool);
     }
   };
+  
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 1000) {
+        setCollapsed(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   
   
   

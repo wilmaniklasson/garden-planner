@@ -12,13 +12,13 @@ const Grid = ({ gridSize = 50, stageWidth, stageHeight }: GridProps) => {
 
   for (let x = 0; x < stageWidth; x += gridSize) {
     lines.push(
-      <Line key={`v-${x}`} points={[x, 0, x, stageHeight]} stroke="#BCBAB8" strokeWidth={2} />
+      <Line key={`v-${x}`} points={[x, 0, x, stageHeight]} stroke="#DBDBDB" strokeWidth={2} />
     );
   }
 
   for (let y = 0; y < stageHeight; y += gridSize) {
     lines.push(
-      <Line key={`h-${y}`} points={[0, y, stageWidth, y]} stroke="#BCBAB8" strokeWidth={2} />
+      <Line key={`h-${y}`} points={[0, y, stageWidth, y]} stroke="#DBDBDB" strokeWidth={2} />
     );
   }
 

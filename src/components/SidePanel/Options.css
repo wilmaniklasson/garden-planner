@@ -51,7 +51,7 @@
 }
 
 .option-image-container.selected  {
-  border: 1px solid #42a222;
+  border: solid 2px rgb(0, 229, 255);
   border-radius: 4px;
   padding: 0;
 }
@@ -118,7 +118,7 @@
 }
 
 .option-button.selected .option-image-container {
-  border: 1px solid #42a222;
+  border: solid 2px rgb(0, 229, 255);
   border-radius: 4px;
   padding: 0;
 }
@@ -215,7 +215,7 @@
 
 /* ================ Selected Color Option ================ */
 .option-button.selected  .color-option {
-  border: 1px solid #42a222;
+  border: solid 2px rgb(0, 229, 255);
   border-radius: 4px;
   padding: 0.5rem;
 }

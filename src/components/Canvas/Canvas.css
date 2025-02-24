@@ -1,7 +1,7 @@
 .canvas-container {
   flex-grow: 1;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: 100vh;
     overflow-x: hidden;
     overflow-y: auto;
@@ -19,11 +19,11 @@
   }
 
   .canvas-wrapper {
-    border: solid 2px rgb(0, 229, 255);
     display: flex;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    display: block;
     margin: 1rem;
   }
   

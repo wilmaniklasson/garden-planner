@@ -7,13 +7,13 @@ import CanvasHeader from '../CanvasHeader/CanvasHeader';
 import { useCanvasStore } from '../../store/CanvasStore';
 import { useRenderShapes } from '../../hooks/useRenderShapes';
 import { useCanvasZoomStore } from '../../store/CanvasZoomStore';
-import Grid from './Grid';
+//import Grid from './Grid';
 
 
 const Canvas: React.FC = () => {
   const { scale, x, y} = useCanvasZoomStore();
   const canvasWrapper = useRef<HTMLDivElement | null>(null); 
-  const { windowSize, stageRef, selectedShapeIndex, setSelectedShapeIndex, canvasSize} = useCanvasStore(); // Zustand
+  const { windowSize, stageRef, selectedShapeIndex, setSelectedShapeIndex} = useCanvasStore(); // Zustand
   const {
     shapes,
     setShapes,
@@ -86,11 +86,6 @@ const Canvas: React.FC = () => {
   return (
     <div className="canvas-container">
       
-
-      <CanvasHeader 
-        handleExport={handleExport}
-        saveCanvasToFirebase={() => saveCanvasToFirebase(shapes)}
-      />
       <div className="canvas-wrapper" ref={canvasWrapper}>
         {/* Konva Stage component (canvas area) */}
         <Stage className='canvas-stage'
@@ -109,7 +104,7 @@ const Canvas: React.FC = () => {
           ref={stageRef}  // Reference to the Konva stage
           saveCanvasToFirebase={saveCanvasToFirebase}
         >
-          <Grid stageWidth={canvasSize.width} stageHeight={canvasSize.height} gridSize={50}/>
+          {/*<Grid stageWidth={canvasSize.width} stageHeight={canvasSize.height} gridSize={50}/>*/}
           <Layer className="canvas-layer">
           <Rect
               width={canvasWidth}
@@ -123,6 +118,10 @@ const Canvas: React.FC = () => {
           </Layer>
         </Stage>
         </div>
+        <CanvasHeader 
+        handleExport={handleExport}
+        saveCanvasToFirebase={() => saveCanvasToFirebase(shapes)}
+      />
 
      
     </div>

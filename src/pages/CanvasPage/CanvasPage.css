@@ -1,4 +1,7 @@
 .CanvasPage {
   display: flex;
   flex-direction: row;
+  padding: 1rem;
+  max-width: 2500px;
+  margin: 0 auto;
 }

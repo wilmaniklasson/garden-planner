@@ -33,7 +33,7 @@ const CanvasHeader: React.FC<CanvasHeaderProps> = ({ handleExport, saveCanvasToF
 
   return (
     <header className="canvas-header">
-      <button className='saveCanvasToFirebase' type="button" onClick={saveCanvasToFirebase}>Save Canvas</button>
+      <button className='saveCanvasToFirebase' type="button" onClick={saveCanvasToFirebase}>Save</button>
       <button className="handleExport" type="button" onClick={handleExport}>Export</button>
       <button className="zoom-button" type='button' onClick={() => handleZoom(true)}>+</button>
       <button className="zoom-button" type='button' onClick={() => handleZoom(false)}>−</button>
