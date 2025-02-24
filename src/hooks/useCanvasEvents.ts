@@ -20,6 +20,12 @@ export const useCanvasEvents = (
     const pos = stage.getPointerPosition();
     if (!pos) return;
 
+    if (tool === "move-canvas") {
+      setIsDragging(true);
+      setLastPos(pos);
+      return;
+    }
+
     const clickedShape = stage.getIntersection(pos);
     if (clickedShape) {
       const node = clickedShape;
@@ -38,11 +44,7 @@ export const useCanvasEvents = (
       if (tool === 'line') setIsDrawing(true);
     }
 
-    if (tool === "edit") 
-    // Start dragging the canvas if we click outside of a shape
-    setIsDragging(true);
-    setLastPos(pos);
-    return;
+    
   };
 
   const handleMouseMove = () => {

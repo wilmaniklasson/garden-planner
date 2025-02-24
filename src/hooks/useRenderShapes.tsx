@@ -12,8 +12,9 @@ export const useRenderShapes = () => {
        {/* Render all shapes stored in state */}
     return shapes.map((shape, index) => {
         // Common properties applied to each shape
+        const draggable = tool !== 'move-canvas'; 
       const shapeProps = {
-        draggable: true, // Make each shape draggable
+        draggable, // Make each shape draggable
         onClick: () => {
           if (tool === 'delete') handleDelete(index); // Delete the shape if Delete is active for desktop
           if (tool === 'edit') setSelectedShapeIndex(index); // Select the shape if Edit is active for desktop

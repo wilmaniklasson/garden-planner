@@ -13,8 +13,8 @@ const Actions: React.FC<OptionProps> = ({ selectedTool, handleSelectTool, }) => 
             
             
                 <button 
-                className={`option-button ${selectedTool === 'edit' ? 'selected' : ''}`} 
-                onClick={() => handleSelectTool('edit')}
+                className={`option-button ${selectedTool === 'move-canvas' ? 'selected' : ''}`} 
+                onClick={() => handleSelectTool('move-canvas')}
                 >
                     <div className='option-image-container'>
                         <FaHandPointer className='Draw-icon' />

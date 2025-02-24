@@ -1,5 +1,6 @@
 import './CanvasHeader.css';
 import { useCanvasZoomStore } from '../../store/CanvasZoomStore';
+import { useCanvasStore } from '../../store/CanvasStore';
 import { useEffect, useState } from 'react';
 
 interface CanvasHeaderProps {
@@ -10,9 +11,11 @@ interface CanvasHeaderProps {
 const CanvasHeader: React.FC<CanvasHeaderProps> = ({ handleExport, saveCanvasToFirebase }) => {
   // Get the current scale value from Zustand
   const scale = useCanvasZoomStore(state => state.scale);
-  const setScale = useCanvasZoomStore(state => state.setScale);
 
   const [zoomPercentage, setZoomPercentage] = useState<string>((scale * 100).toFixed(0));
+
+  // Fetch canvas size from CanvasStore to calculate zoom center correctly
+  const { canvasSize } = useCanvasStore(); //Zustand
 
   useEffect(() => {
     // Update the zoom percentage when the scale value changes
@@ -20,9 +23,12 @@ const CanvasHeader: React.FC<CanvasHeaderProps> = ({ handleExport, saveCanvasToF
   }, [scale]);
 
   const handleZoom = (zoomIn: boolean) => {
-    const scaleBy = 1.05;
-    const newScale = zoomIn ? scale * scaleBy : scale / scaleBy;
-    setScale(newScale);  // Update the scale value in Zustand
+    // Calculate zoom center based on canvasSize
+    const stageCenterX = canvasSize.width / 2;
+    const stageCenterY = canvasSize.height / 2;
+
+    // Use Zustand's zoom function to adjust zoom and position
+    useCanvasZoomStore.getState().zoom(zoomIn, stageCenterX, stageCenterY);
   };
 
   return (

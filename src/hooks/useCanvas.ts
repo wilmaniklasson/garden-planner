@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Shape } from '../utils/shapes';
 import { getAuth } from 'firebase/auth';
 import { exportCanvas } from "../utils/exportCanvas";
@@ -9,7 +9,7 @@ import { useCanvasStore } from '../store/CanvasStore';
 
 export const useCanvas = () => {
   const [shapes, setShapes] = useState<Shape[]>([]); // All shapes on the canvas
-  const { stageRef, setWindowSize} = useCanvasStore(); // Zustand
+  const { stageRef} = useCanvasStore(); // Zustand
  
   const {
     handleMouseDown,
@@ -35,18 +35,6 @@ export const useCanvas = () => {
     return () => unsubscribe();
   }, []);
   
-
-  // Function to update the window size
-  const updateWindowSize = useCallback(() => {
-    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-  }, []);
-
-
-  // useEffect to add event listener for window resize
-  useEffect(() => {
-    window.addEventListener('resize', updateWindowSize);
-    return () => window.removeEventListener('resize', updateWindowSize);
-  }, [updateWindowSize]);
 
 
 // Function to handle when an object is dragged (moved)

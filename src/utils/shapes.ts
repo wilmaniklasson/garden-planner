@@ -9,6 +9,7 @@ export enum ToolType {
   CircleGrass = 'circle-grass',
   RectGrass = 'rect-grass',
   Edit = 'edit',
+  MoveCanvas = 'move-canvas',
   Delete = 'delete',
 }
 

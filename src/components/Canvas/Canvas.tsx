@@ -7,11 +7,13 @@ import CanvasHeader from '../CanvasHeader/CanvasHeader';
 import { useCanvasStore } from '../../store/CanvasStore';
 import { useRenderShapes } from '../../hooks/useRenderShapes';
 import { useCanvasZoomStore } from '../../store/CanvasZoomStore';
+import Grid from './Grid';
 
 
 const Canvas: React.FC = () => {
   const { scale, x, y} = useCanvasZoomStore();
-  const { windowSize, stageRef, selectedShapeIndex, setSelectedShapeIndex} = useCanvasStore(); // Zustand
+  const canvasWrapper = useRef<HTMLDivElement | null>(null); 
+  const { windowSize, stageRef, selectedShapeIndex, setSelectedShapeIndex, canvasSize} = useCanvasStore(); // Zustand
   const {
     shapes,
     setShapes,
@@ -62,22 +64,24 @@ const Canvas: React.FC = () => {
 
   const { setCanvasSize } = useCanvasStore();  // Get canvasSize from Zustand
 
-  // Get stageRef from Zustand
-
+  // Get canvas wrapper size and update canvas size when wrapper is resized
   useEffect(() => {
-    if (stageRef.current) {
-      // Use getWidth and getHeight methods for Konva Stage instance
-      const width = stageRef.current.width();
-      const height = stageRef.current.height();
+    const handleResize = () => {
+      if (canvasWrapper.current) {
+        const { width, height } = canvasWrapper.current.getBoundingClientRect();
+        setCanvasSize({ width, height });
+        console.log(`Canvas Wrapper - Width: ${width}, Height: ${height}`);
+      }
+    };
 
-      // Set the size in state
-      setCanvasSize({ width, height });
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial size on mount
 
-      // Log the size
-      console.log(`Canvas Stage - Width: ${width}, Height: ${height}`);
-    }
-  }, [stageRef]);  // Runs when stageRef changes
-
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [setCanvasSize]);
+  
 
   return (
     <div className="canvas-container">
@@ -87,6 +91,7 @@ const Canvas: React.FC = () => {
         handleExport={handleExport}
         saveCanvasToFirebase={() => saveCanvasToFirebase(shapes)}
       />
+      <div className="canvas-wrapper" ref={canvasWrapper}>
         {/* Konva Stage component (canvas area) */}
         <Stage className='canvas-stage'
         scaleX={scale}  // Apply scale from zustand
@@ -103,7 +108,8 @@ const Canvas: React.FC = () => {
           onTouchEnd={handleMouseUp}  // Track touch end
           ref={stageRef}  // Reference to the Konva stage
           saveCanvasToFirebase={saveCanvasToFirebase}
-          style={{position: 'relative', border: '2px solid black', margin: '0.5rem', marginTop: '0', borderRadius: '10px', boxShadow: '0 0 10px rgba(0, 0, 0, 0.1)', backgroundColor: 'white', cursor: 'grab', overflow: 'hidden' }}>
+        >
+          <Grid stageWidth={canvasSize.width} stageHeight={canvasSize.height} gridSize={50}/>
           <Layer className="canvas-layer">
           <Rect
               width={canvasWidth}
@@ -116,6 +122,7 @@ const Canvas: React.FC = () => {
             {selectedShapeIndex !== null && <Transformer ref={transformerRef} touchEnabled={true} />}
           </Layer>
         </Stage>
+        </div>
 
      
     </div>
