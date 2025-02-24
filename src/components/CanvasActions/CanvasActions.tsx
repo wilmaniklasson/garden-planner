@@ -1,14 +1,11 @@
-import './CanvasHeader.css';
+import './CanvasActions.css';
 import { useCanvasZoomStore } from '../../store/CanvasZoomStore';
 import { useCanvasStore } from '../../store/CanvasStore';
 import { useEffect, useState } from 'react';
+import Actions from './Actions';
 
-interface CanvasHeaderProps {
-  handleExport: () => void;
-  saveCanvasToFirebase: () => void;
-}
 
-const CanvasHeader: React.FC<CanvasHeaderProps> = ({ handleExport, saveCanvasToFirebase }) => {
+const CanvasActions: React.FC = () => {
   // Get the current scale value from Zustand
   const scale = useCanvasZoomStore(state => state.scale);
 
@@ -32,14 +29,13 @@ const CanvasHeader: React.FC<CanvasHeaderProps> = ({ handleExport, saveCanvasToF
   };
 
   return (
-    <header className="canvas-header">
-      <button className='saveCanvasToFirebase' type="button" onClick={saveCanvasToFirebase}>Save</button>
-      <button className="handleExport" type="button" onClick={handleExport}>Export</button>
+    <div className="canvas-Actions">
+        <Actions/>
       <button className="zoom-button" type='button' onClick={() => handleZoom(true)}>+</button>
       <button className="zoom-button" type='button' onClick={() => handleZoom(false)}>−</button>
       <p  className='zoom'>Zoom: {zoomPercentage}%</p>
-    </header>
+    </div>
   );
 };
 
-export default CanvasHeader;
+export default CanvasActions;

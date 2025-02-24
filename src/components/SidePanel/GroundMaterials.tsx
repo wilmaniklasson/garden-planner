@@ -37,6 +37,17 @@ import OptionProps from './OptionProps';
               
               <p className='option-text'>Rect Lawn</p>
             </button>
+            <button 
+              className={`option-button ${selectedTool === 'garden-bed' ? 'selected' : ''}`} 
+              onClick={() => handleSelectTool('garden-bed')}
+            >
+               <div className='option-image-container'>
+                <img src={rectGrass} alt="garden-bed" className='option-image' />
+
+               </div>
+              
+              <p className='option-text'>Garden Bed</p>
+            </button>
           </div>
         )}
       </div>

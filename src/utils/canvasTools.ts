@@ -59,10 +59,8 @@ export const createShape = async (
         y: pos.y,
         radius: 80,
         color: 'rgba(76, 175, 80, 0.6)',
-        gradient: {
-          startColor: 'rgba(76, 175, 80, 0.6)',
-          endColor: 'rgba(56, 142, 60, 0.6)',
-        },
+        width: 700,
+        height: 500,
       };
       break;
     case 'rect-grass':
@@ -72,10 +70,33 @@ export const createShape = async (
         x: pos.x,
         y: pos.y,
         color: 'rgba(76, 175, 80, 0.6)',
+        width: 700,
+        height: 500,
+      };
+      break;
+    case 'garden-bed':
+      newShape = {
+        id: Date.now().toString(),
+        tool: ToolType.GardenBed,
+        x: pos.x,
+        y: pos.y,
+        color: 'rgba(139, 69, 19, 0.6)',
         width: 130,
         height: 90,
       };
       break;
+    case 'grid':
+      newShape = {
+        id: Date.now().toString(),
+        tool: ToolType.Grid,
+        x: pos.x,
+        y: pos.y,
+        color: 'rgba(0, 0, 0, 0.6)',
+        width: 700,
+        height: 500,
+      };
+      break;
+    default:
   }
 
   return newShape;
