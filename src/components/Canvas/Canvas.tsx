@@ -24,7 +24,7 @@ const Canvas: React.FC = () => {
   useEffect(() => {
     const updateCanvasSize = () => {
       setCanvasSizeState({ width: window.innerWidth, height: window.innerHeight });
-      setCanvasSize({ width: window.innerWidth, height: window.innerHeight }); // Uppdatera Zustand
+      setCanvasSize({ width: window.innerWidth, height: window.innerHeight }); // Update Zustand
     };
 
     window.addEventListener('resize', updateCanvasSize);
@@ -62,6 +62,7 @@ const Canvas: React.FC = () => {
               ...shape,
               x: node.x(),
               y: node.y(),
+              rotation: node.rotation(),
               // circle: update radius
               ...(shape.tool === 'rect' && shape.width && shape.height
                 ? { width: shape.width * scaleX, height: shape.height * scaleY }
@@ -81,10 +82,6 @@ const Canvas: React.FC = () => {
                 : {}),
               ...(shape.tool === 'grid' && shape.width && shape.height
                 ? { width: shape.width * scaleX, height: shape.height * scaleY }
-                : {}),
-              // line: update points
-              ...(shape.tool === 'line' && shape.points
-                ? { points: shape.points.map((point, idx) => (idx % 2 === 0 ? point * scaleX : point * scaleY)) }
                 : {}),
               // SVG: update width and height
               ...(shape.tool === 'svg' && shape.width && shape.height

@@ -32,6 +32,7 @@ export interface Shape {
   image?: HTMLImageElement | string;
   node?: Konva.Node;
   lineWidth?: number;
+  rotation?: number;
 }
 
 // Function to load an image (handles both regular images and SVGs)

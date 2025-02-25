@@ -17,7 +17,7 @@ export const useCanvasZoomStore = create<CanvasZoomState>((set, get) => ({
   y: 0,
   setScale: (newScale, centerX = 0, centerY = 0) => {
     const { scale, x, y } = get();
-    const minScale = 1;
+    const minScale = 0.5;
     const maxScale = 3;
 
     // Limit the scale

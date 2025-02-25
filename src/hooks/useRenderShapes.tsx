@@ -35,18 +35,18 @@ export const useRenderShapes = () => {
       // Render different Konva components depending on the shape type
       switch (shape.tool) {
         case 'line':
-          return <Line key={index} {...shapeProps} points={shape.points || []} stroke={shape.color} strokeWidth={shape.lineWidth || 3} lineCap="round" lineJoin="round" />;
+          return <Line key={index} {...shapeProps} points={shape.points || []} stroke={shape.color} strokeWidth={shape.lineWidth || 3} lineCap="round" lineJoin="round"/>;
         case 'circle':
-          return <Circle key={index} {...shapeProps} x={shape.x} y={shape.y} radius={shape.radius || 50} fill={shape.color} />;
+          return <Circle key={index} {...shapeProps} x={shape.x} y={shape.y} radius={shape.radius || 50} fill={shape.color} rotation={shape.rotation || 0} />;
         case 'rect':
-          return <Rect key={index} {...shapeProps} x={shape.x} y={shape.y} width={shape.width || 100} height={shape.height || 100} fill={shape.color} />;
+          return <Rect key={index} {...shapeProps} x={shape.x} y={shape.y} width={shape.width || 100} height={shape.height || 100} fill={shape.color} rotation={shape.rotation || 0}/>;
         case 'svg':
           return shape.image && typeof shape.image !== 'string' ? <Image key={index} {...shapeProps} x={shape.x} y={shape.y} image={shape.image} width={shape.width || 100}
-          height={shape.height || 100}  /> : null;
+          height={shape.height || 100}  rotation={shape.rotation || 0}/> : null;
         case 'circle-grass':
-          return <Circle key={index} {...shapeProps} x={shape.x} y={shape.y} radius={shape.radius || 50} width={shape.width || 100} height={shape.height || 100} fill={shape.color} />;
+          return <Circle key={index} {...shapeProps} x={shape.x} y={shape.y} radius={shape.radius || 50} width={shape.width || 100} height={shape.height || 100} fill={shape.color} rotation={shape.rotation || 0}/>;
         case 'rect-grass':
-          return <Rect key={index} {...shapeProps} x={shape.x} y={shape.y} width={shape.width || 100} height={shape.height || 100} fill={shape.color} />;
+          return <Rect key={index} {...shapeProps} x={shape.x} y={shape.y} width={shape.width || 100} height={shape.height || 100} fill={shape.color} rotation={shape.rotation || 0}/>;
           case 'garden-bed' :
           return <Rect key={index} {...shapeProps} x={shape.x} y={shape.y} width={shape.width || 100} height={shape.height || 100} fill={shape.color} />;
           case 'grid' :
