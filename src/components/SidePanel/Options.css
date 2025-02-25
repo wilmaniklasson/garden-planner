@@ -8,16 +8,6 @@
   padding-bottom: 0.5rem;
 }
 
-/* ================ Action Options ================ */
-.Actions-options {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 0.5rem;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 1rem;
-}
 
 
 

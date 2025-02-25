@@ -80,6 +80,7 @@
 
 .side-panel.collapsed .icon-container {
   justify-content: center;
+  margin: 0;
 }
 
 
@@ -90,7 +91,15 @@
   .side-panel {
     width: 250px;
   }
+
+   .side-panel.collapsed {
+    width: 70px;
+    padding: 0.3rem;
+    top: 0.4rem;
+    left: 0.4rem;
+  }
 }
+
 
 /* For small screens (768px or below) */
 @media screen and (max-width: 768px) {
