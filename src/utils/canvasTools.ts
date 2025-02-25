@@ -6,7 +6,7 @@ export const createShape = async (
   color: string,
   lineWidth: number,
   SVG: string
-) => {
+): Promise<Shape> => {
   let newShape: Shape | null = null;
 
   switch (tool) {
@@ -38,6 +38,7 @@ export const createShape = async (
         color: color,
         width: 80,
         height: 80,
+        radius: 0,
       };
       break;
     case 'svg': {
@@ -48,6 +49,9 @@ export const createShape = async (
         x: pos.x,
         y: pos.y,
         image: img,
+        radius: 0,
+        width: 80,
+        height: 80,
       };
       break;
     }
@@ -59,10 +63,8 @@ export const createShape = async (
         y: pos.y,
         radius: 80,
         color: 'rgba(76, 175, 80, 0.6)',
-        gradient: {
-          startColor: 'rgba(76, 175, 80, 0.6)',
-          endColor: 'rgba(56, 142, 60, 0.6)',
-        },
+        width: 700,
+        height: 500,
       };
       break;
     case 'rect-grass':
@@ -71,12 +73,46 @@ export const createShape = async (
         tool: ToolType.RectGrass,
         x: pos.x,
         y: pos.y,
+        radius: 0,
         color: 'rgba(76, 175, 80, 0.6)',
+        width: 700,
+        height: 500,
+      };
+      break;
+    case 'garden-bed':
+      newShape = {
+        id: Date.now().toString(),
+        tool: ToolType.GardenBed,
+        x: pos.x,
+        y: pos.y,
+        color: 'rgba(139, 69, 19, 0.6)',
         width: 130,
         height: 90,
+        radius: 0,
       };
+      break;
+    case 'grid':
+      newShape = {
+        id: Date.now().toString(),
+        tool: ToolType.Grid,
+        x: pos.x,
+        y: pos.y,
+        color: 'rgba(0, 0, 0, 0.6)',
+        width: 700,
+        height: 500,
+        radius: 0,
+      };
+      break;
+    default:
       break;
   }
 
-  return newShape;
+  // if (newShape)  is null, return a default shape
+  return newShape || {
+    id: Date.now().toString(),
+    tool: ToolType.Line,
+    points: [0, 0],
+    color: 'black',
+    lineWidth: 1,
+  };
 };

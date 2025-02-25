@@ -8,9 +8,12 @@ export enum ToolType {
   SVG = 'svg',
   CircleGrass = 'circle-grass',
   RectGrass = 'rect-grass',
+  GardenBed = 'garden-bed',
+  Grid = 'grid',
   Edit = 'edit',
   MoveCanvas = 'move-canvas',
   Delete = 'delete',
+  Transform = 'transform',
 }
 
 
@@ -25,15 +28,12 @@ export interface Shape {
   radius?: number;
   stroke?: string;
   strokeWidth?: number;
-  gradient?: {
-    startColor: string;
-    endColor: string;
-  };
   width?: number;
   height?: number;
   image?: HTMLImageElement | string;
   node?: Konva.Node;
   lineWidth?: number;
+  rotation?: number;
 }
 
 // Function to load an image (handles both regular images and SVGs)

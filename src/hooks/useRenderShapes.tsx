@@ -5,47 +5,97 @@ import { useCanvasToolsStore } from '../store/CanvasToolsStore';
 import { useCanvasStore } from '../store/CanvasStore';
 
 export const useRenderShapes = () => {
-  const { tool } = useCanvasToolsStore(); // Zustand
-  const { setSelectedShapeIndex } = useCanvasStore(); // Zustand
+  const { tool } = useCanvasToolsStore();
+  const { setSelectedShapeIndex, selectedShapeIndex } = useCanvasStore();
 
   return (shapes: Shape[], handleDelete: (index: number) => void, handleDragEnd: (e: Konva.KonvaEventObject<DragEvent>, index: number) => void) => {
-       {/* Render all shapes stored in state */}
     return shapes.map((shape, index) => {
-        // Common properties applied to each shape
-        const draggable = tool !== 'move-canvas'; 
+      const draggable = tool !== 'move-canvas';
+
       const shapeProps = {
-        draggable, // Make each shape draggable
+        draggable, // Make the shape draggable unless 'move-canvas' is selected
+        id: `shape-${index}`, // Unique ID for each shape
+        strokeWidth: selectedShapeIndex === index ? 2 : 1, // Adjust stroke width if selected
+        stroke: selectedShapeIndex === index ? 'rgb(0, 229, 255)' : undefined, // Highlight selected shape
+
+      
+        // EVENTS FOR DESKTOP:
         onClick: () => {
-          if (tool === 'delete') handleDelete(index); // Delete the shape if Delete is active for desktop
-          if (tool === 'edit') setSelectedShapeIndex(index); // Select the shape if Edit is active for desktop
-        },
-        onTap: () => {
-          if (tool === 'delete') handleDelete(index); // Delete the shape if Delete is active for mobile
+          if (tool === 'delete') handleDelete(index); // Delete shape when clicked (if delete tool is active)
+          if (tool === 'transform') setSelectedShapeIndex(index); // Select shape when clicked (if edit tool is active)
         },
         onDblClick: () => {
-          if (tool !== 'delete') setSelectedShapeIndex(index); // Select the shape if Delete is not active and the shape is double clicked for desktop
-          if (tool === 'edit') setSelectedShapeIndex(index); // Select the shape if Edit is active for mobile
+          if (tool !== 'delete') setSelectedShapeIndex(index); // Select shape when double-clicked (if not in delete mode)
+        },
+      
+        // EVENTS FOR MOBILE:
+        onTap: () => {
+          if (tool === 'delete') handleDelete(index); // Delete shape when tapped (if delete tool is active)
         },
         onDblTap: () => {
-          if (tool !== 'delete') setSelectedShapeIndex(index);
+          if (tool !== 'delete') setSelectedShapeIndex(index); // Select shape when double-tapped (if not in delete mode)
         },
-        onDragEnd: (e: Konva.KonvaEventObject<DragEvent>) => handleDragEnd(e, index), // Handle drag end
-        id: `shape-${index}`, // Set a unique ID for each shape
+      
+        // COMMON EVENT FOR BOTH:
+        onDragEnd: (e: Konva.KonvaEventObject<DragEvent>) => handleDragEnd(e, index), // Handle drag end for both desktop & mobile
       };
-      // Render different Konva components depending on the shape type
+      
+
       switch (shape.tool) {
         case 'line':
-          return <Line key={index} {...shapeProps} points={shape.points || []} stroke={shape.color} strokeWidth={shape.lineWidth || 3} lineCap="round" lineJoin="round" />;
+          return (
+            <Line
+              key={index}
+              {...shapeProps}
+              points={shape.points || []}
+              stroke={shape.color}
+              strokeWidth={shape.lineWidth || 3}
+              lineCap="round"
+              lineJoin="round"
+            />
+          );
         case 'circle':
-          return <Circle key={index} {...shapeProps} x={shape.x} y={shape.y} radius={shape.radius || 50} fill={shape.color} />;
-        case 'rect':
-          return <Rect key={index} {...shapeProps} x={shape.x} y={shape.y} width={shape.width || 100} height={shape.height || 100} fill={shape.color} />;
-        case 'svg':
-          return shape.image && typeof shape.image !== 'string' ? <Image key={index} {...shapeProps} x={shape.x} y={shape.y} image={shape.image}  /> : null;
         case 'circle-grass':
-          return <Circle key={index} {...shapeProps} x={shape.x} y={shape.y} radius={shape.radius || 50} fill={shape.color} />;
+          return (
+            <Circle
+              key={index}
+              {...shapeProps}
+              x={shape.x}
+              y={shape.y}
+              radius={shape.radius || 50}
+              fill={shape.color}
+              rotation={shape.rotation || 0}
+            />
+          );
+        case 'rect':
         case 'rect-grass':
-          return <Rect key={index} {...shapeProps} x={shape.x} y={shape.y} width={shape.width || 100} height={shape.height || 100} fill={shape.color} />;
+        case 'garden-bed':
+        case 'grid':
+          return (
+            <Rect
+              key={index}
+              {...shapeProps}
+              x={shape.x}
+              y={shape.y}
+              width={shape.width || 100}
+              height={shape.height || 100}
+              fill={shape.color}
+              rotation={shape.rotation || 0}
+            />
+          );
+        case 'svg':
+          return shape.image && typeof shape.image !== 'string' ? (
+            <Image
+              key={index}
+              {...shapeProps}
+              x={shape.x}
+              y={shape.y}
+              image={shape.image}
+              width={shape.width || 100}
+              height={shape.height || 100}
+              rotation={shape.rotation || 0}
+            />
+          ) : null;
         default:
           return null;
       }

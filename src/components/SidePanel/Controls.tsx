@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './SidePanel.css';
 import icon from '../../assets/garden-planner-icon.svg';
-
-
 import './options.css';
-
 import { useCanvasToolsStore } from '../../store/CanvasToolsStore';
 import GroundMaterials from './GroundMaterials';
 import TreesAndBushes from './TreesAndBushes';
 import Plants from './Plants';
 import Decoration from './Decoration';
 import DesignTools from './DesignTools';
-import Actions from './Actions';
+import Grid from './Grid';
 
 
 
@@ -74,12 +71,16 @@ const Controls: React.FC = () => {
         <img className='Garden-Planner-Icon' src={icon} alt="Garden Planner Icon" />
       </div>
       <div className='side-panel-content'>
-      <Actions
-        selectedTool={selectedTool}
-        isOpen={selectedCategory === 'actions'}
-        toggle={() => toggleCategory('actions')}
-        handleSelectTool={handleSelectTool}
-      />
+        <Grid   selectedTool={selectedTool} 
+          isOpen={selectedCategory === "grid"} 
+          toggle={() => toggleCategory("grid")} 
+          handleSelectTool={(tool, svg) => {
+            setTool(tool);
+            if (svg) {
+              setSVG(svg);
+            }
+          }}
+        />
         <GroundMaterials 
           selectedTool={selectedTool} 
           handleSelectTool={handleSelectTool}
