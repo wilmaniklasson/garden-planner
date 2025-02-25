@@ -1,7 +1,8 @@
 .canvas-header {
     position: absolute;
     top: 1rem;
-    left: 10rem;
+    left: 50%;
+    transform: translateX(-50%); 
     z-index: 5;
       display: flex;
       flex-direction: row;
