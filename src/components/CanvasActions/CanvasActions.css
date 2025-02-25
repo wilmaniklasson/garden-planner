@@ -90,6 +90,10 @@ button {
   
   /* For very small screens (max-height: 500px) */
   @media screen and (max-height: 500px) {
+
+    .canvas-Actions {
+      height: 95vh;
+    }
     button {
       padding: 0.4rem 0.8rem;
       margin: 0.3rem;

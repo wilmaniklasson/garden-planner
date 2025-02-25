@@ -129,5 +129,8 @@
   .side-panel-header {
     margin-bottom: 0;
     margin-top: 0.5rem;
+    height: 95vh;
   }
+
+  
 }
