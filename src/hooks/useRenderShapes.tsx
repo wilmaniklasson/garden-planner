@@ -56,6 +56,7 @@ export const useRenderShapes = () => {
           );
         case 'circle':
         case 'circle-grass':
+        case 'circle-garden-bed':
           return (
             <Circle
               key={index}

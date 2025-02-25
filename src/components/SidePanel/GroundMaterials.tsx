@@ -3,6 +3,8 @@ import { MdGrass } from 'react-icons/md';
 import './Options.css';
 import circleGrass from '../../assets/images/GroundMaterials/circle-grass.svg';
 import rectGrass from '../../assets/images/GroundMaterials/rect-grass.svg';
+import gardenBed from '../../assets/images/GroundMaterials/garden-bed.svg';
+import circleGardenBed from '../../assets/images/GroundMaterials/circle-garden-bed.svg';
 import OptionProps from './OptionProps';
 
 
@@ -42,11 +44,20 @@ import OptionProps from './OptionProps';
               onClick={() => handleSelectTool('garden-bed')}
             >
                <div className='option-image-container'>
-                <img src={rectGrass} alt="garden-bed" className='option-image' />
+                <img src={gardenBed} alt="garden-bed" className='option-image' />
 
                </div>
               
               <p className='option-text'>Garden Bed</p>
+            </button>
+            <button 
+              className={`option-button ${selectedTool === 'circle-garden-bed' ? 'selected' : ''}`} 
+              onClick={() => handleSelectTool('circle-garden-bed')}
+            >
+               <div className='option-image-container'>
+                <img src={circleGardenBed} alt="circle-garden-bed" className='option-image' />
+               </div>
+               <p className='option-text'>Round Garden Bed</p>
             </button>
           </div>
         )}

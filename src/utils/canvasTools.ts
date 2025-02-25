@@ -67,6 +67,18 @@ export const createShape = async (
         height: 500,
       };
       break;
+      case 'circle-garden-bed':
+      newShape = {
+        id: Date.now().toString(),
+        tool: ToolType.CircleGrass,
+        x: pos.x,
+        y: pos.y,
+        radius: 80,
+        color: 'rgba(139, 69, 19, 0.6)',
+        width: 700,
+        height: 500,
+      };
+      break;
     case 'rect-grass':
       newShape = {
         id: Date.now().toString(),
