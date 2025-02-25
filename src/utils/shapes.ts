@@ -13,6 +13,7 @@ export enum ToolType {
   Edit = 'edit',
   MoveCanvas = 'move-canvas',
   Delete = 'delete',
+  Transform = 'transform',
 }
 
 

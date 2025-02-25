@@ -6,7 +6,7 @@ export const createShape = async (
   color: string,
   lineWidth: number,
   SVG: string
-) => {
+): Promise<Shape> => {
   let newShape: Shape | null = null;
 
   switch (tool) {
@@ -104,7 +104,15 @@ export const createShape = async (
       };
       break;
     default:
+      break;
   }
 
-  return newShape;
+  // if (newShape)  is null, return a default shape
+  return newShape || {
+    id: Date.now().toString(),
+    tool: ToolType.Line,
+    points: [0, 0],
+    color: 'black',
+    lineWidth: 1,
+  };
 };
