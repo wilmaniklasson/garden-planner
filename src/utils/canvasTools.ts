@@ -38,6 +38,7 @@ export const createShape = async (
         color: color,
         width: 80,
         height: 80,
+        radius: 0,
       };
       break;
     case 'svg': {
@@ -48,6 +49,9 @@ export const createShape = async (
         x: pos.x,
         y: pos.y,
         image: img,
+        radius: 0,
+        width: 80,
+        height: 80,
       };
       break;
     }
@@ -69,6 +73,7 @@ export const createShape = async (
         tool: ToolType.RectGrass,
         x: pos.x,
         y: pos.y,
+        radius: 0,
         color: 'rgba(76, 175, 80, 0.6)',
         width: 700,
         height: 500,
@@ -83,6 +88,7 @@ export const createShape = async (
         color: 'rgba(139, 69, 19, 0.6)',
         width: 130,
         height: 90,
+        radius: 0,
       };
       break;
     case 'grid':
@@ -94,6 +100,7 @@ export const createShape = async (
         color: 'rgba(0, 0, 0, 0.6)',
         width: 700,
         height: 500,
+        radius: 0,
       };
       break;
     default:

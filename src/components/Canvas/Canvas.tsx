@@ -48,6 +48,72 @@ const Canvas: React.FC = () => {
     newShapes[index] = { ...newShapes[index], x: e.target.x(), y: e.target.y() };
     setShapes(newShapes);
   };
+  const handleTransformEnd = (e: Konva.KonvaEventObject<Event>) => {
+    if (selectedShapeIndex === null) return;
+  
+    const node = e.target;
+    const scaleX = node.scaleX();
+    const scaleY = node.scaleY();
+  
+    setShapes((prevShapes) =>
+      prevShapes.map((shape, index) =>
+        index === selectedShapeIndex
+          ? {
+              ...shape,
+              x: node.x(),
+              y: node.y(),
+              // circle: update radius
+              ...(shape.tool === 'rect' && shape.width && shape.height
+                ? { width: shape.width * scaleX, height: shape.height * scaleY }
+                : {}),
+              ...(shape.tool === 'circle' && shape.radius
+                ? { radius: shape.radius * scaleX }
+                : {}),
+              ...(shape.tool === 'circle-grass' && shape.radius
+                ? { radius: shape.radius * scaleX }
+                : {}),
+                // rect: update width and height
+              ...(shape.tool === 'rect-grass' && shape.width && shape.height
+                ? { width: shape.width * scaleX, height: shape.height * scaleY }
+                : {}),
+              ...(shape.tool === 'garden-bed' && shape.width && shape.height
+                ? { width: shape.width * scaleX, height: shape.height * scaleY }
+                : {}),
+              ...(shape.tool === 'grid' && shape.width && shape.height
+                ? { width: shape.width * scaleX, height: shape.height * scaleY }
+                : {}),
+              // line: update points
+              ...(shape.tool === 'line' && shape.points
+                ? { points: shape.points.map((point, idx) => (idx % 2 === 0 ? point * scaleX : point * scaleY)) }
+                : {}),
+              // SVG: update width and height
+              ...(shape.tool === 'svg' && shape.width && shape.height
+                ? { width: shape.width * scaleX, height: shape.height * scaleY }
+                : {}),
+            }
+          : shape
+      )
+    );
+  
+    // reset scale
+    node.scaleX(1);
+    node.scaleY(1);
+  };
+
+  useEffect(() => {
+    if (!transformerRef.current) return;
+  
+    transformerRef.current.on("transformend", () => {
+      const nodes = transformerRef.current?.nodes();
+      if (!nodes) return;
+  
+      nodes.forEach(node => {
+        console.log(`Shape resized: ID=${node.id()}, New Width=${node.width()}, New Height=${node.height()}`);
+      });
+    });
+  }, []);
+  
+  
 
   const renderShapes = useRenderShapes();
 
@@ -79,7 +145,7 @@ const Canvas: React.FC = () => {
             onTap={handleDeselect}
           />
           {renderShapes(shapes, handleDelete, handleDragEnd)}
-          {selectedShapeIndex !== null && <Transformer ref={transformerRef} touchEnabled={true} />}
+          {selectedShapeIndex !== null && <Transformer ref={transformerRef} touchEnabled={true} onTransformEnd={handleTransformEnd}/>}
         </Layer>
       </Stage>
       <CanvasActions/>

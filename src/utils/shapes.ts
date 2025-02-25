@@ -27,10 +27,6 @@ export interface Shape {
   radius?: number;
   stroke?: string;
   strokeWidth?: number;
-  gradient?: {
-    startColor: string;
-    endColor: string;
-  };
   width?: number;
   height?: number;
   image?: HTMLImageElement | string;
