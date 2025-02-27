@@ -15,6 +15,9 @@ export enum ToolType {
   MoveCanvas = 'move-canvas',
   Delete = 'delete',
   Transform = 'transform',
+  Wedge = 'wedge',
+  wedgeGrass = 'wedge-grass',
+  wedgeGardenBed = 'wedge-garden-bed',
 }
 
 
@@ -25,6 +28,7 @@ export interface Shape {
   points?: number[] | null;
   x?: number | null;
   y?: number | null;
+  angle?: number;
   color?: string;
   radius?: number;
   stroke?: string;

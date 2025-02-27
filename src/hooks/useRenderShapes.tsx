@@ -1,4 +1,4 @@
-import { Line, Circle, Rect, Image } from 'react-konva';
+import { Line, Circle, Rect, Image, Wedge } from 'react-konva';
 import Konva from 'konva';
 import { Shape } from '../utils/shapes';
 import { useCanvasToolsStore } from '../store/CanvasToolsStore';
@@ -85,6 +85,45 @@ export const useRenderShapes = () => {
               y={shape.y ?? 0}
               width={shape.width || 100}
               height={shape.height || 100}
+              fill={shape.color}
+              rotation={shape.rotation || 0}
+            />
+          );
+        case 'wedge':
+          return (
+            <Wedge
+              key={index}
+              {...shapeProps}
+              x={shape.x ?? 0}
+              y={shape.y ?? 0}
+              radius={shape.radius || 50}
+              angle={shape.angle || 60}
+              fill={shape.color}
+              rotation={shape.rotation || 0}
+            />
+          );
+        case 'wedge-grass':
+          return (
+            <Wedge
+              key={index} 
+              {...shapeProps}
+              x={shape.x ?? 0}
+              y={shape.y ?? 0}
+              radius={shape.radius || 50}
+              angle={shape.angle || 60}
+              fill={shape.color}
+              rotation={shape.rotation || 0}
+            />
+          );
+        case 'wedge-garden-bed':
+          return (
+            <Wedge
+              key={index}
+              {...shapeProps}
+              x={shape.x ?? 0}
+              y={shape.y ?? 0}
+              radius={shape.radius || 50}
+              angle={shape.angle || 60}
               fill={shape.color}
               rotation={shape.rotation || 0}
             />

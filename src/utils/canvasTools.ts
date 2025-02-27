@@ -65,9 +65,9 @@ export const createShape = async (
         x: pos.x,
         y: pos.y,
         radius: 80,
-        color: 'rgba(76, 175, 80, 0.6)',
-        width: 700,
-        height: 500,
+        color: '#7DB775',
+        width: 100,
+        height: 200,
       };
       break;
       case 'circle-garden-bed':
@@ -77,9 +77,9 @@ export const createShape = async (
         x: pos.x,
         y: pos.y,
         radius: 80,
-        color: 'rgba(139, 69, 19, 0.6)',
-        width: 700,
-        height: 500,
+        color: '#AB8463',
+        width: 100,
+        height: 200,
       };
       break;
     case 'rect-grass':
@@ -89,9 +89,9 @@ export const createShape = async (
         x: pos.x,
         y: pos.y,
         radius: 0,
-        color: 'rgba(76, 175, 80, 0.6)',
-        width: 700,
-        height: 500,
+        color: '#7DB775',
+        width: 200,
+        height: 120,
       };
       break;
     case 'garden-bed':
@@ -100,12 +100,51 @@ export const createShape = async (
         tool: ToolType.GardenBed,
         x: pos.x,
         y: pos.y,
-        color: 'rgba(139, 69, 19, 0.6)',
-        width: 130,
-        height: 90,
+        color: '#AB8463',
+        width: 200,
+        height: 120,
         radius: 0,
       };
       break;
+      case 'wedge':
+      newShape = {
+      id: Date.now().toString(),
+      tool: ToolType.Wedge,
+      x: pos.x,
+      y: pos.y,
+      radius: 80,
+      angle: 180,
+      color: color,
+      width: 100,
+      height: 200,
+      };
+      break;
+      case 'wedge-grass':
+        newShape = {
+        id: Date.now().toString(),
+        tool: ToolType.Wedge,
+        x: pos.x,
+        y: pos.y,
+        radius: 80,
+        angle: 180,
+        color: '#7DB775',
+        width: 100,
+        height: 200,
+        };
+        break;
+      case 'wedge-garden-bed':
+        newShape = {
+        id: Date.now().toString(),
+        tool: ToolType.Wedge,
+        x: pos.x,
+        y: pos.y,
+        radius: 80,
+        angle: 180,
+        color: '#AB8463',
+        width: 100,
+        height: 200,
+        };
+        break;
     default:
       break;
   }
