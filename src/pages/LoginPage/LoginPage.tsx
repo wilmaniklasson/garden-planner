@@ -15,10 +15,6 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
 
-  // Handle guest login (To do: Implement Firebase "Anonymous Authentication")
-  const handleGuestLogin = () => {
-    navigate("/home");
-  };
 
   // Handle user login
   const handleLogin = async (event: React.FormEvent) => {
@@ -102,11 +98,8 @@ const LoginPage = () => {
             <button type="submit" className="login-button">Log in</button>
           </form>
 
-          <div className="guest-login">
-            <button onClick={handleGuestLogin} className="guest-button">
-              Continue as Guest
-            </button>
-          </div>
+          
+      
 
           <div className="toggle-link">
             <span>Don't have an account? <button onClick={toggleLoginCreate} className="toggle-button">Create one</button></span>
