@@ -2,9 +2,11 @@ import { FaTrash, FaExpandArrowsAlt, FaHandPaper } from 'react-icons/fa';
 import '../SidePanel/Options.css';
 import { useCanvasToolsStore } from '../../store/CanvasToolsStore';
 import { useState } from 'react';
+import { useCanvasStore } from '../../store/CanvasStore';
 
 const Actions: React.FC = () => {
   const { setTool } = useCanvasToolsStore();
+  const { shapes, setSelectedShapeIndex } = useCanvasStore();
   const [selectedTool, setSelectedTool] = useState<string>('');
 
   const handleSelectTool = (tool: string) => {
@@ -14,6 +16,10 @@ const Actions: React.FC = () => {
     } else {
       setTool(tool);
       setSelectedTool(tool);
+  
+      if (tool === 'transform' && shapes.length > 0) {
+        setSelectedShapeIndex(0);
+      }
     }
   };
 
@@ -45,8 +51,8 @@ const Actions: React.FC = () => {
 
         {/* Edit Tool */}
         <button 
-          className={`option-button ${selectedTool === 'edit' ? 'selected' : ''}`} 
-          onClick={() => handleSelectTool('edit')}
+          className={`option-button ${selectedTool === 'transform' ? 'selected' : ''}`} 
+          onClick={() => handleSelectTool('transform')}
         >
           <div className='option-image-container'>
             <FaExpandArrowsAlt className='Draw-icon' />

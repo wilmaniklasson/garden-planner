@@ -5,7 +5,10 @@ export const createShape = async (
   pos: { x: number; y: number },
   color: string,
   lineWidth: number,
-  SVG: string
+  SVG: string,
+  width: number,
+  height: number
+  
 ): Promise<Shape> => {
   let newShape: Shape | null = null;
 
@@ -50,8 +53,8 @@ export const createShape = async (
         y: pos.y,
         image: img,
         radius: 0,
-        width: 80,
-        height: 80,
+        width: width || 100,
+        height: height || 100,
       };
       break;
     }
@@ -100,18 +103,6 @@ export const createShape = async (
         color: 'rgba(139, 69, 19, 0.6)',
         width: 130,
         height: 90,
-        radius: 0,
-      };
-      break;
-    case 'grid':
-      newShape = {
-        id: Date.now().toString(),
-        tool: ToolType.Grid,
-        x: pos.x,
-        y: pos.y,
-        color: 'rgba(0, 0, 0, 0.6)',
-        width: 700,
-        height: 500,
         radius: 0,
       };
       break;

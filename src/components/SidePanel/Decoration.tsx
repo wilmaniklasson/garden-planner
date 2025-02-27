@@ -63,13 +63,11 @@ const Decoration: React.FC<OptionProps> = ({ selectedTool, handleSelectTool, isO
 
   return (
     <div>
-      {/* Specifik del för varje kategori */}
       <div className='icon-container' onClick={toggle}>
         <MdFence className='icon' size={40} color="#382918" />
         <h2 className='option-name'>Decoration</h2>
       </div>
 
-      {/* Använd den återanvändbara OptionsList-komponenten */}
       <OptionsList
         isOpen={isOpen}
         selectedTool={selectedTool}
