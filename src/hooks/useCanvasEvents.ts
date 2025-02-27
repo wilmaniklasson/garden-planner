@@ -67,11 +67,14 @@ export const useCanvasEvents = () => {
       const lastShape = shapes[shapes.length - 1]; 
       if (lastShape?.points) {
         lastShape.points = [...lastShape.points, pos.x, pos.y];  
-        addShape(lastShape);
+        const newShapes = [...shapes];
+        newShapes[shapes.length - 1] = lastShape;
+        setShapes(newShapes);
       }
     }
   };
 
+  
 
   const handleMouseUp = () => {
     setIsDrawing(false);
@@ -142,6 +145,7 @@ export const useCanvasEvents = () => {
     node.scaleX(1);
     node.scaleY(1);
   };
+  
 
   return {
     handleMouseDown,

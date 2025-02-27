@@ -41,6 +41,7 @@ export const useRenderShapes = () => {
       };
       
 
+      
       switch (shape.tool) {
         case 'line':
           return (
@@ -52,6 +53,10 @@ export const useRenderShapes = () => {
               strokeWidth={shape.lineWidth || 3}
               lineCap="round"
               lineJoin="round"
+              rotation={shape.rotation || 0}
+              x={shape.x ?? 0}
+              y={shape.y ?? 0}
+              
             />
           );
         case 'circle':
@@ -61,8 +66,8 @@ export const useRenderShapes = () => {
             <Circle
               key={index}
               {...shapeProps}
-              x={shape.x}
-              y={shape.y}
+              x={shape.x ?? 0}
+              y={shape.y ?? 0}
               radius={shape.radius || 50}
               fill={shape.color}
               rotation={shape.rotation || 0}
@@ -76,8 +81,8 @@ export const useRenderShapes = () => {
             <Rect
               key={index}
               {...shapeProps}
-              x={shape.x}
-              y={shape.y}
+              x={shape.x ?? 0}
+              y={shape.y ?? 0}
               width={shape.width || 100}
               height={shape.height || 100}
               fill={shape.color}
@@ -89,8 +94,8 @@ export const useRenderShapes = () => {
             <Image
               key={index}
               {...shapeProps}
-              x={shape.x}
-              y={shape.y}
+              x={shape.x ?? 0}
+              y={shape.y ?? 0}
               image={shape.image}
               width={shape.width || 100}
               height={shape.height || 100}

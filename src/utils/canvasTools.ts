@@ -2,12 +2,12 @@ import { Shape, ToolType, loadImage } from '../utils/shapes';
 
 export const createShape = async (
   tool: ToolType,
-  pos: { x: number; y: number },
+  pos: { x: number | null; y: number | null; },
   color: string,
   lineWidth: number,
   SVG: string,
   
-): Promise<Shape> => {
+): Promise<Shape | null> => {
   let newShape: Shape | null = null;
 
   switch (tool) {
@@ -15,9 +15,11 @@ export const createShape = async (
       newShape = {
         id: Date.now().toString(),
         tool: ToolType.Line,
-        points: [pos.x, pos.y],
+        points: [pos.x ?? 0, pos.y ?? 0],
         color: color,
         lineWidth: lineWidth,
+        x: null,
+        y: null
       };
       break;
     case 'circle':
@@ -107,13 +109,6 @@ export const createShape = async (
     default:
       break;
   }
-
-  // if (newShape)  is null, return a default shape
-  return newShape || {
-    id: Date.now().toString(),
-    tool: ToolType.Line,
-    points: [0, 0],
-    color: 'black',
-    lineWidth: 1,
+  
+  return newShape || null;
   };
-};

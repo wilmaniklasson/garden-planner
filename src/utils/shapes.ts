@@ -22,9 +22,9 @@ export enum ToolType {
 export interface Shape {
   id: string;
   tool: ToolType;
-  points?: number[];
-  x?: number;
-  y?: number;
+  points?: number[] | null;
+  x?: number | null;
+  y?: number | null;
   color?: string;
   radius?: number;
   stroke?: string;
