@@ -25,6 +25,9 @@ export const useCanvas = () => {
     handleDelete,
     handleDragEnd,
     handleTransformEnd,
+    handleCopy,
+    handlePaste,
+    copiedShape,
   } = useCanvasEvents(); 
 
   // From hook useFirebaseCanvas 
@@ -32,6 +35,7 @@ export const useCanvas = () => {
 
   // Ref for the transformer
   const transformerRef = useRef<Konva.Transformer | null>(null); 
+  
 
   /* ============= useEffects ============= */
 
@@ -57,6 +61,27 @@ export const useCanvas = () => {
     window.addEventListener('resize', updateCanvasSize);
     return () => window.removeEventListener('resize', updateCanvasSize);
   }, [setCanvasSize]);
+
+// useEffect for keydown event copy and paste
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key === 'c') {
+          handleCopy();
+        } else if (e.key === 'v') {
+          handlePaste();
+        }
+      }
+    };
+
+    // EventListener for keydown
+    window.addEventListener('keydown', handleKeyDown);
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [shapes, selectedShapeIndex, copiedShape]);
 
   /* ============= Functions for useEffects ============= */
 
@@ -89,6 +114,7 @@ export const useCanvas = () => {
     }, [transformerRef]);
   };
 
+
   /* ============= Functions ============= */
   
   // Export the canvas as an image
@@ -102,6 +128,7 @@ export const useCanvas = () => {
   function handleDeselect() {
     setSelectedShapeIndex(null);
   }
+
 
   return {
     shapes,

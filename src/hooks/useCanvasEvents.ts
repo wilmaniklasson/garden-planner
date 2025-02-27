@@ -8,10 +8,13 @@ import Konva from 'konva';
 export const useCanvasEvents = () => {
   const { tool, color, lineWidth, SVG } = useCanvasToolsStore() as { tool: ToolType, color: string, lineWidth: number, SVG: string }; // Zustand
   const { shapes,setShapes, selectedShapeIndex, addShape, removeShape, stageRef, isDrawing, setIsDrawing, setSelectedShapeIndex } = useCanvasStore(); // Zustand
- 
+
+
   // State for dragging around the canvas
   const [isDragging, setIsDragging] = useState(false);
   const [lastPos, setLastPos] = useState<{ x: number, y: number } | null>(null);
+   // State for the copied shape
+   const [copiedShape, setCopiedShape] = useState<Shape | null>(null);
 
   const handleMouseDown = async () => {
     if (!stageRef.current) return;
@@ -68,7 +71,6 @@ export const useCanvasEvents = () => {
       }
     }
   };
-    
 
 
   const handleMouseUp = () => {
@@ -79,6 +81,32 @@ export const useCanvasEvents = () => {
   const handleDelete = (index: number) => {
     removeShape(index); 
   };
+
+  // copy the selected shape
+  const handleCopy = () => {
+    if (selectedShapeIndex === null || selectedShapeIndex === undefined) return;
+
+    const shapeToCopy = shapes[selectedShapeIndex];
+    setCopiedShape({ ...shapeToCopy }); // save the shape to the copiedShape state
+  };
+
+  // paste the copied shape
+  const handlePaste = () => {
+    if (!copiedShape) return;
+
+    // Create a new shape with the copied shape's properties
+    const newShape: Shape = {
+      ...copiedShape,
+      id: `${copiedShape.id}-paste`,  // give the new shape a unique ID
+      // Move the position to not collide with the original shape
+      x: (copiedShape.x ?? 0) + 20, 
+      y: (copiedShape.y ?? 0) + 20,  
+    };
+
+    addShape(newShape);  // Add the new shape to the shapes array
+    setSelectedShapeIndex(shapes.length);  // Select the new shape
+  };
+
 
   // Handle the end of a drag event
   const handleDragEnd = (e: Konva.KonvaEventObject<DragEvent>, index: number) => {
@@ -122,5 +150,8 @@ export const useCanvasEvents = () => {
     handleDelete,
     handleDragEnd,
     handleTransformEnd,
+    handleCopy,
+    handlePaste,
+    copiedShape,
   };
 };

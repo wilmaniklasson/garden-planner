@@ -6,8 +6,6 @@ export const createShape = async (
   color: string,
   lineWidth: number,
   SVG: string,
-  width: number,
-  height: number
   
 ): Promise<Shape> => {
   let newShape: Shape | null = null;
@@ -53,8 +51,8 @@ export const createShape = async (
         y: pos.y,
         image: img,
         radius: 0,
-        width: width || 100,
-        height: height || 100,
+        width: 100,
+        height: 100,
       };
       break;
     }
