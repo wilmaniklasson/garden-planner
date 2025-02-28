@@ -38,16 +38,24 @@ const Canvas = () => {
     useUpdateTransformer();
     useLogShapeResize();
 
-  // Update the transformer when the selected shape changes
-  useEffect(() => {
-    if (!stageRef.current || !transformerRef.current || selectedShapeIndex === null) return;
+    useEffect(() => {
+      if (!stageRef.current || !transformerRef.current) return;
     
-    const selectedNode = stageRef.current.findOne(`#shape-${selectedShapeIndex}`) as Konva.Node;
-    if (selectedNode) {
-      transformerRef.current.nodes([selectedNode]);
-      transformerRef.current.getLayer()?.batchDraw();
-    }
-  }, [selectedShapeIndex, shapes, stageRef]);
+      const transformer = transformerRef.current;
+      
+      if (selectedShapeIndex === null) {
+        transformer.nodes([]); 
+        transformer.getLayer()?.batchDraw();
+        return;
+      }
+    
+      const selectedNode = stageRef.current.findOne(`#shape-${selectedShapeIndex}`) as Konva.Node;
+      
+      if (selectedNode) {
+        transformer.nodes([selectedNode]);
+        transformer.getLayer()?.batchDraw();
+      }
+    }, [selectedShapeIndex, shapes, stageRef]);
 
   const renderShapes = useRenderShapes();
 
@@ -79,7 +87,7 @@ const Canvas = () => {
             onTap={handleDeselect}
           />
           {renderShapes(shapes, handleDelete, handleDragEnd)}
-          {selectedShapeIndex !== null && <Transformer ref={transformerRef} touchEnabled={true} onTransformEnd={handleTransformEnd}/>}
+          <Transformer ref={transformerRef} touchEnabled={true} onTransformEnd={handleTransformEnd}/>
         </Layer>
       </Stage>
       <CanvasActions/>
