@@ -9,6 +9,8 @@ const Actions: React.FC = () => {
   const { shapes, setSelectedShapeIndex } = useCanvasStore();
   const [selectedTool, setSelectedTool] = useState<string>('');
 
+
+ 
   const handleSelectTool = (tool: string) => {
     if (selectedTool === tool) {
       setTool('');

@@ -8,6 +8,7 @@ import { useCanvasStore } from '../../store/CanvasStore';
 import { useCanvasZoomStore } from '../../store/CanvasZoomStore';
 import CanvasActions from '../CanvasActions/CanvasActions';
 import CanvasHeader from './CanvasHeader/CanvasHeader';
+import HelpModal from '../HelpModal/HelpModal';
 
 
 const Canvas = () => {
@@ -82,6 +83,7 @@ const Canvas = () => {
         </Layer>
       </Stage>
       <CanvasActions/>
+      <HelpModal />
     </div>
   );
 };

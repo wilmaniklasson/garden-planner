@@ -95,8 +95,7 @@
    .side-panel.collapsed {
     top: 0.5rem;
     left: 0.5rem;
-    width: 70px;
-    padding: 0;
+    width: 90px;
   }
 }
 

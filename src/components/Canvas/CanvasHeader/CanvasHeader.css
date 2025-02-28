@@ -49,6 +49,14 @@
       background-color: var(--color-light-gray);
     }
     
+
+    .help-button {
+      background-color: rgb(143, 143, 143);
+    }
+    .help-button:hover {
+      background-color: rgb(100, 100, 100);
+    }
+
     @media screen and (max-width: 950px) {
       .canvas-header {
         top: 0.4rem;
