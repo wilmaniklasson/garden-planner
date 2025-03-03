@@ -1,7 +1,7 @@
 .canvas-header {
     position: absolute;
     top: 1rem;
-    left: 55%;
+    left: 50%;
     transform: translateX(-50%); 
     z-index: 5;
       display: flex;
@@ -69,6 +69,9 @@
           padding: 0.4rem 0.8rem;
           margin: 0.3rem;
           font-size: 0.8rem;
+      }
+      .canvas-header {
+        left: 55%;
       }
     }
     
