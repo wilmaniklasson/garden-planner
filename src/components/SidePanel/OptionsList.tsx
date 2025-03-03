@@ -36,7 +36,7 @@ const OptionsList: React.FC<OptionsListProps> = ({ isOpen, handleSelectTool, ite
             <div className={`option-image-container ${selectedSVG === img ? 'selected' : ''}`}>
               <img src={img} alt={name} className='option-image' />
             </div>
-            <p className='option-text'>{name}</p>
+           
           </button>
         ))}
       </div>
