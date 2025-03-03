@@ -14,6 +14,8 @@ import HelpModal from '../HelpModal/HelpModal';
 const Canvas = () => {
   const { scale, x, y } = useCanvasZoomStore(); // Zustand
   const { stageRef, selectedShapeIndex, canvasSize} = useCanvasStore(); // zustand
+  const handleWheelZoom = useCanvasZoomStore(state => state.handleWheelZoom); // Zustand
+
     
   // From hook useCanvas
   const {
@@ -62,6 +64,7 @@ const Canvas = () => {
   return (
     <div className="canvas-container">
       <CanvasHeader handleExport={handleExport} saveCanvasToFirebase={() => saveCanvasToFirebase(shapes)} />
+      <div onWheel={handleWheelZoom}>
       <Stage
         className='canvas-stage'
         scaleX={scale}
@@ -90,8 +93,10 @@ const Canvas = () => {
           <Transformer ref={transformerRef} touchEnabled={true} onTransformEnd={handleTransformEnd}/>
         </Layer>
       </Stage>
+      </div>
       <CanvasActions/>
       <HelpModal />
+      
     </div>
   );
 };

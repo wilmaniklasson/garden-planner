@@ -9,6 +9,7 @@ interface CanvasZoomState {
   setScale: (scale: number, centerX?: number, centerY?: number) => void;
   setPosition: (x: number, y: number) => void;
   zoom: (zoomIn: boolean, centerX: number, centerY: number) => void;
+  handleWheelZoom: (e: React.WheelEvent) => void;  // Add handleWheelZoom function to state
 }
 
 export const useCanvasZoomStore = create<CanvasZoomState>((set, get) => ({
@@ -53,5 +54,22 @@ export const useCanvasZoomStore = create<CanvasZoomState>((set, get) => ({
 
     // Call setScale to update scale and position
     get().setScale(newScale, centerX, centerY);
+  },
+
+  // Handle zoom with mouse wheel
+  handleWheelZoom: (e: React.WheelEvent) => {
+    // Prevent default scroll behavior
+    e.preventDefault();
+
+    // Check if the user is scrolling up or down
+    const zoomIn = e.deltaY < 0; // If scrolling up, zoom in; if down, zoom out
+
+    // Fetch canvas size from CanvasStore for zoom center position
+    const { canvasSize } = useCanvasStore.getState();
+    const centerX = canvasSize.width / 2;
+    const centerY = canvasSize.height / 2;
+
+    // Adjust zoom based on the wheel direction
+    get().zoom(zoomIn, centerX, centerY);
   },
 }));
