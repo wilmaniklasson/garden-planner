@@ -1,6 +1,6 @@
 import React from 'react';
 import './HelpModal.css';
-import { useModalStore } from '../../store/Modal';
+import { useModalStore } from '../../store/ModalStore';
 import { FaTimes } from 'react-icons/fa';
 
 const HelpModal: React.FC = () => {

@@ -1,5 +1,5 @@
 
-import { useModalStore } from '../../../store/Modal';
+import { useModalStore } from '../../../store/ModalStore';
 import './CanvasHeader.css';
 
 interface CanvasHeaderProps {
