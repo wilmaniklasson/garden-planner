@@ -59,7 +59,8 @@ const DesignTools: React.FC<DesignToolsProps> = ({
                   />
                 </div>
           
-                <label className='option-text'>Rectangle</label>
+                <label className='option-text'>
+                Square</label>
               </button>
             </div>
 
