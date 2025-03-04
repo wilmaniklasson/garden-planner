@@ -17,6 +17,7 @@ import PearShapedPond from '../../assets/images/Decoration/pear-shaped-pond.svg'
 import RundShapedPool from '../../assets/images/Decoration/rund-shaped-pool.svg';
 import RundShapedPond from '../../assets/images/Decoration/rund-shaped-pond.svg';
 import WoodenFence from '../../assets/images/Decoration/Wooden-Fence.svg';
+import WoodenFence1 from '../../assets/images/Decoration/Wooden-Fence1.svg';
 import DiningSet from '../../assets/images/Decoration/Dining-Set.svg';
 import WoodenBench from '../../assets/images/Decoration/Wooden-Bench.svg';
 import WoodenTable from '../../assets/images/Decoration/Wooden-Table.svg';
@@ -27,6 +28,9 @@ import StoneNr4 from '../../assets/images/Decoration/Stone-Nr-4.svg';
 import StoneNr5 from '../../assets/images/Decoration/Stone-Nr-5.svg';
 import StoneNr6 from '../../assets/images/Decoration/Stone-Nr-6.svg';
 import StonePatioTerracotta from '../../assets/images/Decoration/Stone-Patio-Terracotta.svg';
+import PatioTerracotta from '../../assets/images/Decoration/Patio-Terracotta.svg';
+import WoodenBench1 from '../../assets/images/Decoration/Wooden-Bench1.svg';
+import WoodenTable1 from '../../assets/images/Decoration/Wooden-Table1.svg';
 const Decoration: React.FC<OptionProps> = ({ selectedTool, handleSelectTool, isOpen, toggle }) => {
   const items = [
     { name: 'Stone Patio', img: StonePatio },
@@ -44,9 +48,12 @@ const Decoration: React.FC<OptionProps> = ({ selectedTool, handleSelectTool, isO
     { name: 'Rund Shaped Pool', img: RundShapedPool },
     { name: 'Rund Shaped Pond', img: RundShapedPond},
     { name: 'Wooden Fence', img: WoodenFence },
+    { name: 'Wooden Fence 1', img: WoodenFence1 },
     { name: 'Dining Set', img: DiningSet },
     { name: 'Wooden Bench', img: WoodenBench },
+    { name: 'Wooden Bench 1', img: WoodenBench1 },
     { name: 'Wooden Table', img: WoodenTable },
+    { name: 'Wooden Table 1', img: WoodenTable1 },
     { name: 'Stone Nr. 1', img: StoneNr1 },
     { name: 'Stone Nr. 2', img: StoneNr2 },
     { name: 'Stone Nr. 3', img: StoneNr3 },
@@ -54,6 +61,10 @@ const Decoration: React.FC<OptionProps> = ({ selectedTool, handleSelectTool, isO
     { name: 'Stone Nr. 5', img: StoneNr5 },
     { name: 'Stone Nr. 6', img: StoneNr6 },
     { name: 'Stone Patio Terracotta', img: StonePatioTerracotta},
+    { name: 'Patio Terracotta', img: PatioTerracotta },
+    
+
+
 
 
     
