@@ -18,6 +18,7 @@ export enum ToolType {
   Wedge = 'wedge',
   wedgeGrass = 'wedge-grass',
   wedgeGardenBed = 'wedge-garden-bed',
+  wedgeGardenBed90Angle = 'wedge-garden-bed-90-angle',
 }
 
 

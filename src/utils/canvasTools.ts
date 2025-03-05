@@ -145,6 +145,19 @@ export const createShape = async (
         height: 200,
         };
         break;
+        case 'wedge-garden-bed-90-angle':
+        newShape = {
+        id: Date.now().toString(),
+        tool: ToolType.Wedge,
+        x: pos.x,
+        y: pos.y,
+        radius: 80,
+        angle: 90,
+        color: '#AB8463',
+        width: 200,
+        height: 200,
+        };
+        break;
     default:
       break;
   }

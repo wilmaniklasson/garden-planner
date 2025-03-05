@@ -7,6 +7,7 @@ import gardenBed from '../../assets/images/GroundMaterials/garden-bed.svg';
 import circleGardenBed from '../../assets/images/GroundMaterials/circle-garden-bed.svg';
 import WedgeGardenBed from '../../assets/images/GroundMaterials/wedge-garden-bed.svg';
 import WedgeGrass from '../../assets/images/GroundMaterials/wedge-grass.svg';
+import WedgeGardenBed90Angle from '../../assets/images/GroundMaterials/Wedge-Garden-Bed-90-angel.svg';
 import OptionProps from './OptionProps';
 
 
@@ -79,6 +80,15 @@ import OptionProps from './OptionProps';
             >
                <div className='option-image-container'>
                 <img src={WedgeGardenBed} alt="wedge-garden-bed" className='option-image' />
+               </div>
+               <p className='option-text'>Wedge Garden Bed</p>
+            </button>
+            <button 
+              className={`option-button ${selectedTool === 'wedge-garden-bed-90-angle' ? 'selected' : ''}`} 
+              onClick={() => handleSelectTool('wedge-garden-bed-90-angle')}
+            >
+               <div className='option-image-container'>
+                <img src={WedgeGardenBed90Angle} alt="wedge-garden-bed" className='option-image' />
                </div>
                <p className='option-text'>Wedge Garden Bed</p>
             </button>
