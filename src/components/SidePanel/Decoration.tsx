@@ -31,6 +31,7 @@ import StonePatioTerracotta from '../../assets/images/Decoration/Stone-Patio-Ter
 import PatioTerracotta from '../../assets/images/Decoration/Patio-Terracotta.svg';
 import WoodenBench1 from '../../assets/images/Decoration/Wooden-Bench1.svg';
 import WoodenTable1 from '../../assets/images/Decoration/Wooden-Table1.svg';
+import StonePatioTerracotta2 from '../../assets/images/Decoration/Stone-Patio-Terracotta2.svg';
 const Decoration: React.FC<OptionProps> = ({ selectedTool, handleSelectTool, isOpen, toggle }) => {
   const items = [
     { name: 'Stone Patio', img: StonePatio },
@@ -62,6 +63,7 @@ const Decoration: React.FC<OptionProps> = ({ selectedTool, handleSelectTool, isO
     { name: 'Stone Nr. 6', img: StoneNr6 },
     { name: 'Stone Patio Terracotta', img: StonePatioTerracotta},
     { name: 'Patio Terracotta', img: PatioTerracotta },
+    { name: 'Stone Patio Terracotta 2', img: StonePatioTerracotta2 },
     
 
 
