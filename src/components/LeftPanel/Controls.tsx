@@ -3,15 +3,11 @@ import './SidePanel.css';
 import icon from '../../assets/garden-planner-icon.svg';
 import './options.css';
 import { useCanvasToolsStore } from '../../store/CanvasToolsStore';
-import GroundMaterials from './Content/GroundMaterials';
-import TreesAndBushes from './Content/TreesAndBushes';
-import Plants from './Content/Plants';
-import Decoration from './Content/Decoration';
+import GroundMaterials from './Content/GroundMaterials/GroundMaterials';
+import TreesAndBushes from './Content/TreesAndBushes/TreesAndBushes';
+import Plants from './Content/Plants/Plants';
+import Decoration from './Content/Decoration/Decoration';
 import DesignTools from './Content/DesignTools';
-
-
-
-
 
 const Controls: React.FC = () => {
   const { setTool, color, setColor, lineWidth, setLineWidth, setSVG} = useCanvasToolsStore(); 
@@ -23,8 +19,6 @@ const Controls: React.FC = () => {
 
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedTool, setSelectedTool] = useState<string>('');
-
-
 
   const handleSelectTool = (tool: string) => {
     if (selectedTool === tool) {
@@ -52,8 +46,6 @@ const Controls: React.FC = () => {
   }, []);
   
   
-  
-
   const toggleCategory = (category: string) => {
     setSelectedCategory(prev => (prev === category ? null : category));
   };
@@ -70,6 +62,7 @@ const Controls: React.FC = () => {
         <img className='Garden-Planner-Icon' src={icon} alt="Garden Planner Icon" />
       </div>
       <div className='side-panel-content'>
+        
         <GroundMaterials 
           selectedTool={selectedTool} 
           handleSelectTool={handleSelectTool}
@@ -127,9 +120,6 @@ const Controls: React.FC = () => {
       </div>
     </aside>
     </>
-
-
-    
   );
 };
 

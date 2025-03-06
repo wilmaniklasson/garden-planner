@@ -5,7 +5,6 @@ import { useCanvas } from '../../hooks/useCanvas';
 import { useRenderShapes } from '../../hooks/useRenderShapes';
 import { useCanvasStore } from '../../store/CanvasStore';
 import { useCanvasZoomStore } from '../../store/CanvasZoomStore';
-import CanvasActions from '../RightPanel/CanvasActions';
 import CanvasHeader from './CanvasHeader/CanvasHeader';
 import HelpModal from '../HelpModal/HelpModal';
 
@@ -95,7 +94,6 @@ const Canvas = () => {
         </Layer>
       </Stage>
       </div>
-      <CanvasActions/>
       <HelpModal />
       
     </div>

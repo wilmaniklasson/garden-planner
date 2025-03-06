@@ -1,5 +1,6 @@
 import Canvas from "../../components/Canvas/Canvas";
 import Controls from '../../components/LeftPanel/Controls';
+import CanvasActions from "../../components/RightPanel/CanvasActions";
 import "./CanvasPage.css";
 
 const CanvasPage = () => {
@@ -7,6 +8,7 @@ const CanvasPage = () => {
      <div className="CanvasPage">
        <Controls/>
         <Canvas />
+        <CanvasActions/>
       </div>
     );
   };

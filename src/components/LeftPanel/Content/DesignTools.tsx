@@ -4,7 +4,7 @@ import '../Options.css';
 
 interface DesignToolsProps {
   selectedTool: string;
-  handleSelectTool: (tool: string, svg?: string) => void;
+  handleSelectTool: (tool: string) => void;
   isOpen: boolean;
   toggle: () => void;
   color: string;
@@ -13,72 +13,71 @@ interface DesignToolsProps {
   setLineWidth: (width: number) => void;
 }
 
-const DesignTools: React.FC<DesignToolsProps> = ({
-  selectedTool, 
-  handleSelectTool, 
-  isOpen, 
-  toggle, 
-  color, 
-  setColor, 
-  lineWidth, 
-  setLineWidth 
-}) => {
+const TOOLS = [
+  { type: 'circle', label: 'Circle', className: 'color-option-circle-preview' },
+  { type: 'rect', label: 'Square', className: 'color-option-Rectangle-preview' }
+];
+
+const ToolButton: React.FC<{ tool: string; label: string; selectedTool: string; handleSelectTool: (tool: string) => void; className: string; color?: string }> = ({ tool, label, selectedTool, handleSelectTool, className, color }) => (
+  <button
+    className={`option-button ${selectedTool === tool ? 'selected' : ''}`}
+    onClick={() => handleSelectTool(tool)}
+  >
+    <div className='color-option'>
+      <div className={className} style={color ? { backgroundColor: color } : {}} />
+    </div>
+    <label className='option-text'>{label}</label>
+  </button>
+);
+
+const ColorPicker: React.FC<{ color: string; setColor: (color: string) => void }> = ({ color, setColor }) => (
+  <div className="color-picker">
+    <input type="color" title="Pick a color" value={color} onChange={(e) => setColor(e.target.value)} />
+    <label className='option-text'>Color</label>
+  </div>
+);
+
+const LineWidthSlider: React.FC<{ lineWidth: number; setLineWidth: (width: number) => void }> = ({ lineWidth, setLineWidth }) => (
+  <div className="line-width-container">
+    <div className="slider-wrapper">
+      <input
+        type="range"
+        title="Choose line width"
+        min="1"
+        max="50"
+        value={lineWidth}
+        onChange={(e) => setLineWidth(Number(e.target.value))}
+        step="1"
+        className="styled-slider"
+      />
+      <div className="line-preview" style={{ width: `${lineWidth}px`, height: `${lineWidth}px` }} />
+    </div>
+    <label className='option-text'>Line Width</label>
+  </div>
+);
+
+const DesignTools: React.FC<DesignToolsProps> = ({ selectedTool, handleSelectTool, isOpen, toggle, color, setColor, lineWidth, setLineWidth }) => {
   return (
     <div className="design-tools-wrapper">
       <div className="design-tools">
         <div className="icon-container" onClick={toggle}>
-          <FaPaintBrush className="icon"size={40} color="#382918" />
+          <FaPaintBrush className="icon" size={40} color="#382918" />
           <h2 className="option-name">Design Tools</h2>
         </div>
 
         {isOpen && (
           <div className="DesignTools-options">
-            {/* First section with Circle and Rectangle options */}
+            {/* Shapes */}
             <div className="options">
-              <button
-                className={`option-button ${selectedTool === 'circle' ? 'selected' : ''}`}
-                onClick={() => handleSelectTool('circle')}
-              >
-                  <div className='color-option'>
-                    <div 
-                      className="color-option-circle-preview" 
-                      style={{ backgroundColor: color }}
-                    />
-                </div>
-                <label className='option-text'>Circle</label>
-              </button>
-
-              <button
-                className={`option-button ${selectedTool === 'rect' ? 'selected' : ''}`}
-                onClick={() => handleSelectTool('rect')}
-              >
-                <div className='color-option'>
-                  <div 
-                    className="color-option-Rectangle-preview" 
-                    style={{ backgroundColor: color }}
-                  />
-                </div>
-          
-                <label className='option-text'>
-                Square</label>
-              </button>
+              {TOOLS.map(({ type, label, className }) => (
+                <ToolButton key={type} tool={type} label={label} selectedTool={selectedTool} handleSelectTool={handleSelectTool} className={className} color={color} />
+              ))}
             </div>
 
-            {/* Color picker and Draw tool */}
+            {/* Color Picker & Draw Tool */}
             <div className="options">
-              {/* Color picker */}
-              <div className="color-picker">
-                <input
-                  id="colorPicker"
-                  type="color"
-                  title="Pick a color"
-                  value={color}
-                  onChange={(e) => setColor(e.target.value)}
-                />
-                <label className='option-text'>Color</label>
-              </div>
+              <ColorPicker color={color} setColor={setColor} />
 
-              {/* Draw button */}
               <button
                 className={`option-button ${selectedTool === 'line' ? 'selected' : ''}`}
                 onClick={() => handleSelectTool('line')}
@@ -90,28 +89,8 @@ const DesignTools: React.FC<DesignToolsProps> = ({
               </button>
             </div>
 
-            {/* Line width range */}
-            <div className="line-width-container">
-              <div className="slider-wrapper">
-                <input
-                  id="lineWidth"
-                  type="range"
-                  title="Choose line width"
-                  min="1"
-                  max="50"
-                  value={lineWidth}
-                  onChange={(e) => setLineWidth(Number(e.target.value))}
-                  step="1"
-                  className="styled-slider"
-                />
-                <div 
-                  className="line-preview"
-                  style={{ width: `${lineWidth}px`, height: `${lineWidth}px` }}
-                />
-              </div>
-              <label className='option-text'>Line Width</label>
-            </div>
-              
+            {/* Line Width Slider */}
+            <LineWidthSlider lineWidth={lineWidth} setLineWidth={setLineWidth} />
           </div>
         )}
       </div>
