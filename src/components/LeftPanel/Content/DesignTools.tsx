@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaPaintBrush, FaPencilAlt } from "react-icons/fa";
-import './Options.css';
+import '../Options.css';
 
 interface DesignToolsProps {
   selectedTool: string;

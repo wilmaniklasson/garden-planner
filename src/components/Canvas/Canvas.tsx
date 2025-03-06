@@ -1,4 +1,3 @@
-import './Canvas.css';
 import { useEffect, useRef } from 'react';
 import Konva from 'konva';
 import { Stage, Layer, Transformer, Rect } from 'react-konva';
@@ -6,7 +5,7 @@ import { useCanvas } from '../../hooks/useCanvas';
 import { useRenderShapes } from '../../hooks/useRenderShapes';
 import { useCanvasStore } from '../../store/CanvasStore';
 import { useCanvasZoomStore } from '../../store/CanvasZoomStore';
-import CanvasActions from '../CanvasActions/CanvasActions';
+import CanvasActions from '../RightPanel/CanvasActions';
 import CanvasHeader from './CanvasHeader/CanvasHeader';
 import HelpModal from '../HelpModal/HelpModal';
 
@@ -61,6 +60,8 @@ const Canvas = () => {
 
   const renderShapes = useRenderShapes();
 
+
+  
   return (
     <div className="canvas-container">
       <CanvasHeader handleExport={handleExport} saveCanvasToFirebase={() => saveCanvasToFirebase(shapes)} />

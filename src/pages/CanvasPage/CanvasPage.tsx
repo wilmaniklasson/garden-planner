@@ -1,5 +1,5 @@
 import Canvas from "../../components/Canvas/Canvas";
-import Controls from '../../components/SidePanel/Controls';
+import Controls from '../../components/LeftPanel/Controls';
 import "./CanvasPage.css";
 
 const CanvasPage = () => {

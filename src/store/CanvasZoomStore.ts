@@ -59,7 +59,7 @@ export const useCanvasZoomStore = create<CanvasZoomState>((set, get) => ({
   // Handle zoom with mouse wheel
   handleWheelZoom: (e: React.WheelEvent) => {
     // Prevent default scroll behavior
-    e.preventDefault();
+ 
 
     // Check if the user is scrolling up or down
     const zoomIn = e.deltaY < 0; // If scrolling up, zoom in; if down, zoom out

@@ -1,23 +1,23 @@
 import { MdLocalFlorist } from 'react-icons/md';
-import './Options.css';
-import OptionProps from './OptionProps';
-import OptionsList from './OptionsList';
-import PlantNr1 from '../../assets/images/Plants/Plant-Nr-1.svg';
-import PlantNr2 from '../../assets/images/Plants/Plant-Nr-2.svg';
-import PlantNr3 from '../../assets/images/Plants/Plant-Nr-3.svg';
-import PlantNr4 from '../../assets/images/Plants/Plant-Nr-4.svg';
-import PlantNr5 from '../../assets/images/Plants/Plant-Nr-5.svg';
-import PlantNr6 from '../../assets/images/Plants/Plant-Nr-6.svg'; 
-import PlantNr7 from '../../assets/images/Plants/Plant-Nr-7.svg';
-import PlantNr8 from '../../assets/images/Plants/Plant-Nr-8.svg';
-import PlantNr9 from '../../assets/images/Plants/Plant-Nr-9.svg';
-import PlantNr10 from '../../assets/images/Plants/Plant-Nr-10.svg';
-import PlantNr11 from '../../assets/images/Plants/Plant-Nr-11.svg';
-import PlantNr12 from '../../assets/images/Plants/Plant-Nr-12.svg';
-import PlantNr13 from '../../assets/images/Plants/Plant-Nr-13.svg';
-import PlantNr14 from '../../assets/images/Plants/Plant-Nr-14.svg';
-import PlantNr15 from '../../assets/images/Plants/Plant-Nr-15.svg';
-import PlantNr16 from '../../assets/images/Plants/Plant-Nr-16.svg';
+import '../Options.css';
+import OptionProps from '../OptionProps';
+import OptionsList from '../OptionsList';
+import PlantNr1 from '../../../assets/images/Plants/Plant-Nr-1.svg';
+import PlantNr2 from '../../../assets/images/Plants/Plant-Nr-2.svg';
+import PlantNr3 from '../../../assets/images/Plants/Plant-Nr-3.svg';
+import PlantNr4 from '../../../assets/images/Plants/Plant-Nr-4.svg';
+import PlantNr5 from '../../../assets/images/Plants/Plant-Nr-5.svg';
+import PlantNr6 from '../../../assets/images/Plants/Plant-Nr-6.svg'; 
+import PlantNr7 from '../../../assets/images/Plants/Plant-Nr-7.svg';
+import PlantNr8 from '../../../assets/images/Plants/Plant-Nr-8.svg';
+import PlantNr9 from '../../../assets/images/Plants/Plant-Nr-9.svg';
+import PlantNr10 from '../../../assets/images/Plants/Plant-Nr-10.svg';
+import PlantNr11 from '../../../assets/images/Plants/Plant-Nr-11.svg';
+import PlantNr12 from '../../../assets/images/Plants/Plant-Nr-12.svg';
+import PlantNr13 from '../../../assets/images/Plants/Plant-Nr-13.svg';
+import PlantNr14 from '../../../assets/images/Plants/Plant-Nr-14.svg';
+import PlantNr15 from '../../../assets/images/Plants/Plant-Nr-15.svg';
+import PlantNr16 from '../../../assets/images/Plants/Plant-Nr-16.svg';
 
 
 

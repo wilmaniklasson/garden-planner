@@ -1,14 +1,14 @@
 
 import { MdGrass } from 'react-icons/md';
-import './Options.css';
-import circleGrass from '../../assets/images/GroundMaterials/circle-grass.svg';
-import rectGrass from '../../assets/images/GroundMaterials/rect-grass.svg';
-import gardenBed from '../../assets/images/GroundMaterials/garden-bed.svg';
-import circleGardenBed from '../../assets/images/GroundMaterials/circle-garden-bed.svg';
-import WedgeGardenBed from '../../assets/images/GroundMaterials/wedge-garden-bed.svg';
-import WedgeGrass from '../../assets/images/GroundMaterials/wedge-grass.svg';
-import WedgeGardenBed90Angle from '../../assets/images/GroundMaterials/Wedge-Garden-Bed-90-angel.svg';
-import OptionProps from './OptionProps';
+import '../Options.css';
+import circleGrass from '../../../assets/images/GroundMaterials/circle-grass.svg';
+import rectGrass from '../../../assets/images/GroundMaterials/rect-grass.svg';
+import gardenBed from '../../../assets/images/GroundMaterials/garden-bed.svg';
+import circleGardenBed from '../../../assets/images/GroundMaterials/circle-garden-bed.svg';
+import WedgeGardenBed from '../../../assets/images/GroundMaterials/wedge-garden-bed.svg';
+import WedgeGrass from '../../../assets/images/GroundMaterials/wedge-grass.svg';
+import WedgeGardenBed90Angle from '../../../assets/images/GroundMaterials/Wedge-Garden-Bed-90-angel.svg';
+import OptionProps from '../OptionProps';
 
 
   const GroundMaterials: React.FC<OptionProps> = ({ selectedTool, handleSelectTool, isOpen, toggle }) => {

@@ -3,12 +3,11 @@ import './SidePanel.css';
 import icon from '../../assets/garden-planner-icon.svg';
 import './options.css';
 import { useCanvasToolsStore } from '../../store/CanvasToolsStore';
-import GroundMaterials from './GroundMaterials';
-import TreesAndBushes from './TreesAndBushes';
-import Plants from './Plants';
-import Decoration from './Decoration';
-import DesignTools from './DesignTools';
-import Grid from './Grid';
+import GroundMaterials from './Content/GroundMaterials';
+import TreesAndBushes from './Content/TreesAndBushes';
+import Plants from './Content/Plants';
+import Decoration from './Content/Decoration';
+import DesignTools from './Content/DesignTools';
 
 
 
@@ -71,16 +70,6 @@ const Controls: React.FC = () => {
         <img className='Garden-Planner-Icon' src={icon} alt="Garden Planner Icon" />
       </div>
       <div className='side-panel-content'>
-        <Grid   selectedTool={selectedTool} 
-          isOpen={selectedCategory === "grid"} 
-          toggle={() => toggleCategory("grid")} 
-          handleSelectTool={(tool, svg) => {
-            setTool(tool);
-            if (svg) {
-              setSVG(svg);
-            }
-          }}
-        />
         <GroundMaterials 
           selectedTool={selectedTool} 
           handleSelectTool={handleSelectTool}
@@ -93,7 +82,7 @@ const Controls: React.FC = () => {
           selectedTool={selectedTool} 
           isOpen={selectedCategory === "treesAndBushes"} 
           toggle={() => toggleCategory("treesAndBushes")} 
-          handleSelectTool={(tool, svg) => {
+          handleSelectTool={(tool: string, svg?: string) => {
             setTool(tool);
             if (svg) {
               setSVG(svg);
@@ -105,7 +94,7 @@ const Controls: React.FC = () => {
           selectedTool={selectedTool} 
           isOpen={selectedCategory === "plants"} 
           toggle={() => toggleCategory("plants")} 
-          handleSelectTool={(tool, svg) => {
+          handleSelectTool={(tool: string, svg?: string) => {
             setTool(tool);
             if (svg) {
               setSVG(svg);
@@ -117,7 +106,7 @@ const Controls: React.FC = () => {
           selectedTool={selectedTool} 
           isOpen={selectedCategory === "decoration"} 
           toggle={() => toggleCategory("decoration")} 
-          handleSelectTool={(tool, svg) => {
+          handleSelectTool={(tool: string, svg?: string) => {
             setTool(tool);
             if (svg) {
               setSVG(svg);

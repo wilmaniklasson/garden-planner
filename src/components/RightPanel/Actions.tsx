@@ -1,5 +1,5 @@
 import { FaTrash, FaExpandArrowsAlt, FaHandPaper } from 'react-icons/fa';
-import '../SidePanel/Options.css';
+import '../LeftPanel/Options.css';
 import { useCanvasToolsStore } from '../../store/CanvasToolsStore';
 import { useState } from 'react';
 import { useCanvasStore } from '../../store/CanvasStore';

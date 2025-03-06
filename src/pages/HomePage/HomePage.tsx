@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { getAuth, signOut } from "firebase/auth";
 import "./HomePage.css";
-import DeleteAccountButton from "../../components/DeleteAccountButton/DeleteAccountButton";
+import DeleteAccountButton from "../../utils/DeleteAccountButton/DeleteAccountButton";
 
 const HomePage = () => {
   const navigate = useNavigate();

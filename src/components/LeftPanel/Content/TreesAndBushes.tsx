@@ -1,18 +1,18 @@
 
 import { FaTree } from 'react-icons/fa';
-import './Options.css';
-import OptionProps from './OptionProps';
-import OptionsList from './OptionsList';
-import TreeNr1 from '../../assets/images/TreesAndBushes/Tree-Nr-1.svg';
-import TreeNr2 from '../../assets/images/TreesAndBushes/Tree-Nr-2.svg';
-import TreeNr3 from '../../assets/images/TreesAndBushes/Tree-Nr-3.svg';
-import TreeNr4 from '../../assets/images/TreesAndBushes/Tree-Nr-4.svg';
-import TreeNr5 from '../../assets/images/TreesAndBushes/Tree-Nr-5.svg';
-import TreeNr6 from '../../assets/images/TreesAndBushes/Tree-Nr-6.svg';
-import TreeNr7 from '../../assets/images/TreesAndBushes/Tree-Nr-7.svg';
-import TreeNr8 from '../../assets/images/TreesAndBushes/Tree-Nr-8.svg';
-import TreeNr9 from '../../assets/images/TreesAndBushes/Tree-Nr-9.svg';
-import TreeNr10 from '../../assets/images/TreesAndBushes/Tree-Nr-10.svg';
+import '../Options.css';
+import OptionProps from '../OptionProps';
+import OptionsList from '../OptionsList';
+import TreeNr1 from '../../../assets/images/TreesAndBushes/Tree-Nr-1.svg';
+import TreeNr2 from '../../../assets/images/TreesAndBushes/Tree-Nr-2.svg';
+import TreeNr3 from '../../../assets/images/TreesAndBushes/Tree-Nr-3.svg';
+import TreeNr4 from '../../../assets/images/TreesAndBushes/Tree-Nr-4.svg';
+import TreeNr5 from '../../../assets/images/TreesAndBushes/Tree-Nr-5.svg';
+import TreeNr6 from '../../../assets/images/TreesAndBushes/Tree-Nr-6.svg';
+import TreeNr7 from '../../../assets/images/TreesAndBushes/Tree-Nr-7.svg';
+import TreeNr8 from '../../../assets/images/TreesAndBushes/Tree-Nr-8.svg';
+import TreeNr9 from '../../../assets/images/TreesAndBushes/Tree-Nr-9.svg';
+import TreeNr10 from '../../../assets/images/TreesAndBushes/Tree-Nr-10.svg';
 
 const TreesAndBushes: React.FC<OptionProps> = ({ selectedTool, handleSelectTool, isOpen, toggle }) => {
   const items = [
