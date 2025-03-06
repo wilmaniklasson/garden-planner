@@ -5,10 +5,17 @@ import { useCanvasToolsStore } from '../store/CanvasToolsStore';
 import { useCanvasStore } from '../store/CanvasStore';
 
 export const useRenderShapes = () => {
+
+  //Zustand state
   const { tool } = useCanvasToolsStore();
   const { setSelectedShapeIndex, selectedShapeIndex } = useCanvasStore();
 
-  return (shapes: Shape[], handleDelete: (index: number) => void, handleDragEnd: (e: Konva.KonvaEventObject<DragEvent>, index: number) => void) => {
+  return (
+    shapes: Shape[], 
+    handleDelete: (index: number) => void, 
+    handleDragEnd: (e: Konva.KonvaEventObject<DragEvent>, 
+    index: number) => void) => {
+      
     return shapes.map((shape, index) => {
       const draggable = tool !== 'move-canvas';
 

@@ -6,6 +6,7 @@ import { Shape, loadImage } from "../utils/shapes";
 export const useFirebaseCanvas = (setShapes: (shapes: Shape[]) => void) => {
   const [loading, setLoading] = useState(false);
 
+  /* Save the current canvas to Firebase */
   const saveCanvasToFirebase = async (shapes: Shape[]) => {
     try {
       const auth = getAuth();
@@ -24,6 +25,7 @@ export const useFirebaseCanvas = (setShapes: (shapes: Shape[]) => void) => {
     }
   };
 
+  /* Load the canvas from Firebase */
   const loadCanvasFromFirebase = async () => {
     setLoading(true);
     try {
@@ -36,7 +38,7 @@ export const useFirebaseCanvas = (setShapes: (shapes: Shape[]) => void) => {
 
       if (docSnap.exists()) {
         const data = docSnap.data();
-        console.log("Canvas loaded!", data);
+        console.log("Canvas loaded!");
 
         if (data.shapes) {
           const shapesWithImages = await Promise.all(

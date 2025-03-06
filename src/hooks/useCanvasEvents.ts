@@ -6,28 +6,34 @@ import { Shape, ToolType } from '../utils/shapes';
 import Konva from 'konva';
 
 export const useCanvasEvents = () => {
-  const { tool, color, lineWidth, SVG } = useCanvasToolsStore() as { tool: ToolType, color: string, lineWidth: number, SVG: string }; // Zustand
-  const { shapes,setShapes, selectedShapeIndex, addShape, removeShape, stageRef, isDrawing, setIsDrawing, setSelectedShapeIndex } = useCanvasStore(); // Zustand
-
+  // Zustand state
+  const { tool, color, lineWidth, SVG } = useCanvasToolsStore() as { tool: ToolType, color: string, lineWidth: number, SVG: string }; 
+  const { shapes,setShapes, selectedShapeIndex, addShape, removeShape, stageRef, isDrawing, setIsDrawing, setSelectedShapeIndex } = useCanvasStore();
 
   // State for dragging around the canvas
   const [isDragging, setIsDragging] = useState(false);
   const [lastPos, setLastPos] = useState<{ x: number, y: number } | null>(null);
-   // State for the copied shape
-   const [copiedShape, setCopiedShape] = useState<Shape | null>(null);
+  // State for the copied shape
+  const [copiedShape, setCopiedShape] = useState<Shape | null>(null);
 
+
+
+   // Handle the mouse down event
   const handleMouseDown = async () => {
     if (!stageRef.current) return;
     const stage = stageRef.current.getStage();
     const pos = stage.getPointerPosition();
     if (!pos) return;
 
+
+    // If the tool is "move-canvas", the can be dragged
     if (tool === "move-canvas") {
       setIsDragging(true);
       setLastPos(pos);
       return;
     }
 
+    // Find the shape that the user clicked on
     const clickedShape = stage.getIntersection(pos);
     if (clickedShape) {
       const node = clickedShape;
@@ -38,6 +44,7 @@ export const useCanvasEvents = () => {
       }
     }
 
+    // Create a new shape based on the
     const newShape = await createShape(tool, pos, color, lineWidth, SVG);
   if (newShape) {
     addShape(newShape);
@@ -45,6 +52,8 @@ export const useCanvasEvents = () => {
   }
 };
 
+
+/*________ Handle the mouse move event___________*/
   const handleMouseMove = () => {
     if (!stageRef.current) return;
     const stage = stageRef.current.getStage();
@@ -63,6 +72,7 @@ export const useCanvasEvents = () => {
       setLastPos(pos); // Update last position
     }
     
+    // If we are drawing a line, update the line's points
     if (isDrawing && tool === 'line') {
       const lastShape = shapes[shapes.length - 1]; 
       if (lastShape?.points) {
@@ -75,17 +85,21 @@ export const useCanvasEvents = () => {
   };
 
   
-
+ /* ____Handle the mouse up event___ */
   const handleMouseUp = () => {
     setIsDrawing(false);
     setIsDragging(false);
   };
 
+
+
+   /* _______ Delete the selected shape_______ */
   const handleDelete = (index: number) => {
     removeShape(index); 
   };
 
-  // copy the selected shape
+
+  /* _______Copy paste functionality_______ */
   const handleCopy = () => {
     if (selectedShapeIndex === null || selectedShapeIndex === undefined) return;
 
@@ -111,13 +125,15 @@ export const useCanvasEvents = () => {
   };
 
 
-  // Handle the end of a drag event
+
+   /* _______ Handle the end of a drag event_______ */
   const handleDragEnd = (e: Konva.KonvaEventObject<DragEvent>, index: number) => {
     const newShapes = [...shapes];
     newShapes[index] = { ...newShapes[index], x: e.target.x(), y: e.target.y() };
     setShapes(newShapes);
   };
 
+  // Handle the end of a transform event
   const handleTransformEnd = (e: Konva.KonvaEventObject<Event>) => {
     if (selectedShapeIndex === null) return;
   
@@ -137,9 +153,7 @@ export const useCanvasEvents = () => {
     const updatedShapes = [...shapes];
     updatedShapes[selectedShapeIndex] = updatedShape(shapes[selectedShapeIndex]);
   
-    // Set the new shapes state
     setShapes(updatedShapes);
-  
   
     // reset scale
     node.scaleX(1);
