@@ -13,11 +13,11 @@ const GroundMaterials: React.FC<OptionProps> = ({ selectedTool, handleSelectTool
 
       {isOpen && (
         <div className='options'>
-          {items.map(({ name, img}) => (
+          {items.map(({ name, img, id }) => (
             <button 
-              key={name} 
-              className={`option-button ${selectedTool === name ? 'selected' : ''}`} 
-              onClick={() => handleSelectTool(name)}
+              key={id} 
+              className={`option-button ${selectedTool === id ? 'selected' : ''}`} 
+              onClick={() => handleSelectTool(id)}
             >
               <div className='option-image-container'>
                 <img src={img} alt={name} className='option-image' />

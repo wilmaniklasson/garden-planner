@@ -10,15 +10,15 @@ export enum ToolType {
   CircleGardenBed = 'circle-garden-bed',
   RectGrass = 'rect-grass',
   GardenBed = 'garden-bed',
+  wedgeGrass = 'wedge-grass',
+  wedgeGardenBed = 'wedge-garden-bed',
+  wedgeGardenBed90Angle = 'wedge-garden-bed-90-angle',
   Grid = 'grid',
   Edit = 'edit',
   MoveCanvas = 'move-canvas',
   Delete = 'delete',
   Transform = 'transform',
   Wedge = 'wedge',
-  wedgeGrass = 'wedge-grass',
-  wedgeGardenBed = 'wedge-garden-bed',
-  wedgeGardenBed90Angle = 'wedge-garden-bed-90-angle',
 }
 
 
